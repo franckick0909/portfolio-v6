@@ -1,0 +1,190 @@
+/* ── About — Wrapper scroll + Section sticky ── */
+
+/* Le wrapper occupe l'espace vertical pour le scroll de l'animation */
+.about-wrapper {
+    height: 600svh; /* Plus d'espace de scroll pour une animation plus lente et majestueuse */
+    position: relative;
+}
+
+/* La section colle en haut pendant que le wrapper scroll en dessous */
+.about-teaser {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
+    z-index: 2;
+}
+
+
+
+.about-bg {
+    position: absolute;
+    inset: 0;
+    will-change: transform;
+    z-index: 1;
+}
+
+/* ─ Voile rouge — couvre tout, clip-path géré par GSAP ─ */
+.about-revealer {
+    position: absolute;
+    inset: 0;
+    background-color: var(--base-600);
+    z-index: 3;
+    will-change: clip-path;
+    opacity: 0; /* Sécurité anti-artefact */
+}
+
+/* ─ Images plein écran (révélées par clip-path GSAP) ─ */
+.about-img {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    will-change: clip-path;
+    opacity: 0; /* Sécurité anti-artefact */
+}
+
+.about-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    will-change: transform;
+}
+
+/* ─ Section Blanche qui scroll normalement ─ */
+.about-content-section {
+    position: relative;
+    z-index: 1; /* Derrière le teaser (z-index 2) */
+    margin-top: -200svh; /* Couvre entièrement l'écran pendant l'ouverture du rideau */
+    background-color: var(--base-100);
+    display: flex;
+    justify-content: center;
+    padding-top: 110svh; /* Repousse le texte vers le bas pour qu'il apparaisse au bon moment */
+    padding-bottom: 20svh;
+    min-height: 200svh;
+}
+
+.about-white-content {
+    max-width: 1400px;
+    padding: 0 4rem;
+    color: var(--base-300);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15svh;
+}
+
+.about-white-title {
+    font-family: var(--font-times);
+    font-size: clamp(2rem, 4.5vw, 5rem);
+    line-height: 1.1;
+    font-weight: normal;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0;
+}
+
+.about-white-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+    width: 100%;
+}
+
+.grid-item {
+    text-align: center;
+}
+
+.grid-item h3 {
+    font-family: var(--font-times);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    margin-top: 0;
+}
+
+.grid-item p {
+    font-family: var(--font-helvetica);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    text-transform: uppercase;
+    color: var(--base-400);
+    margin: 0;
+    font-weight: bold;
+}
+
+/* ── Bloc rouge final et texte ── */
+.about-final-block {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    opacity: 0;
+    pointer-events: none;
+    /* On retire display: flex pour utiliser de l'absolute et garantir le chevauchement */
+}
+
+/* Les deux moitiés du rideau */
+.about-final-half {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: calc(50% + 2px); /* Dépasse légèrement pour se chevaucher de 4px au centre */
+    background-color: var(--base-600);
+    overflow: hidden;
+    will-change: transform;
+}
+
+.about-final-half.left {
+    left: 0;
+}
+
+.about-final-half.right {
+    right: 0;
+}
+
+/* Contenu du texte (identique dans chaque moitié, mais décalé) */
+.about-final-content {
+    position: absolute;
+    top: 0;
+    width: 200%; /* 200% de la moitié = 100% de l'écran total */
+    height: 100svh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--base-100);
+    padding: 0 2rem;
+}
+
+.about-final-content h3 {
+    font-family: var(--font-helvetica);
+    font-size: clamp(2rem, 5vw, 5rem);
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin: 0;
+    text-align: center;
+}
+
+.about-final-desc {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+    max-width: 23rem;
+    font-family: var(--font-helvetica);
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    text-transform: uppercase;
+    text-align: left;
+    line-height: 1.4;
+    letter-spacing: 0.03rem;
+    margin: 0;
+    color: #000;
+}
+
+/* Calage parfait du texte pour la moitié gauche */
+.about-final-half.left .about-final-content {
+    left: 0;
+}
+
+/* Calage parfait du texte pour la moitié droite */
+.about-final-half.right .about-final-content {
+    right: 0;
+}
