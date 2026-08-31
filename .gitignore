@@ -1,0 +1,13 @@
+# Large binary 3D models
+*.glb
+*.gltf
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Dependencies & IDE
+node_modules/
+.vscode/
+.idea/

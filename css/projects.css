@@ -1,0 +1,98 @@
+/* ══ THE FORGE (Projects) — Dark Fantasy Background Only ══ */
+
+.section-forge {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: #080808;
+    overflow: hidden;
+}
+
+/* ── Parallax Background ── */
+.forge-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+/* Base texture with warm tint */
+.forge-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        url('../assets/images/hero/stone-texture.jpg') center / cover no-repeat;
+    opacity: 0.06;
+    filter: brightness(0.3) sepia(0.3) hue-rotate(-10deg);
+}
+
+/* Vignette with warm bottom glow (forge fire feel) */
+.forge-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 50% 100%, rgba(139, 26, 26, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.7) 100%);
+}
+
+/* Forge fire glow at bottom */
+.forge-glow {
+    position: absolute;
+    bottom: -20%;
+    left: 20%;
+    right: 20%;
+    height: 60%;
+    background: radial-gradient(ellipse at 50% 100%,
+        rgba(255, 107, 53, 0.05) 0%,
+        rgba(201, 168, 76, 0.02) 30%,
+        transparent 70%);
+    animation: forgeGlow 8s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes forgeGlow {
+    0% { opacity: 0.4; transform: scale(1); }
+    100% { opacity: 0.7; transform: scale(1.1); }
+}
+
+/* Forge fog with ember tint */
+.forge-fog.fog-ember {
+    background:
+        radial-gradient(ellipse 700px 250px at 40% 80%, rgba(255, 107, 53, 0.03) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 200px at 60% 70%, rgba(150, 100, 50, 0.04) 0%, transparent 70%);
+    animation: fogDrift1 22s ease-in-out infinite alternate;
+    opacity: 0.5;
+}
+
+/* Gold accent line at top */
+.section-forge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 107, 53, 0.3), transparent);
+    opacity: 0.4;
+    z-index: 3;
+}
+
+/* Content container (user fills this) */
+.forge-content {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 10rem 4rem;
+    min-height: 100vh;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    .forge-content {
+        padding: 6rem 1.5rem;
+    }
+}

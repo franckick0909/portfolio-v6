@@ -4,223 +4,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Outfit Landing Page Animayion | FRANCK CHAPELON • Creative Studio</title>
-    <meta name="description" content="Portfolio créatif — Expériences visuelles & cinématographiques.">
+    <title>Artorias — Dark Fantasy Portfolio</title>
+    <meta name="description" content="Artorias — A dark fantasy creative portfolio experience.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@200;300;400;500&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Outfit:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/loader.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/hero.css">
     <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="css/dragons.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+    </script>
 </head>
 
 <body>
 
     <!-- ═══════════════════════════════════════════════════
-         LOADER — OUTFIT
+         PRELOADER
          ═══════════════════════════════════════════════════ -->
 
     <div class="preloader">
-        <div class="preloader-images">
-            <div class="preloader-img"><img src="assets/images/loader/img1.jpg" alt=""></div>
-            <div class="preloader-img"><img src="assets/images/loader/img2.jpg" alt=""></div>
-            <div class="preloader-img"><img src="assets/images/loader/img3.jpg" alt=""></div>
-            <div class="preloader-img"><img src="assets/images/loader/img4.jpg" alt=""></div>
-            <div class="preloader-img"><img src="assets/images/loader/img5.jpg" alt=""></div>
-            <div class="preloader-img"><img src="assets/images/loader/img6.jpg" alt=""></div>
-        </div>
-
-        <div class="preloader-header">
-            <h1>Atlantis</h1>
-
-            <div class="preloader-counter">
-                <p>000</p>
+        <!-- Image Gallery Sequence (Outfit Style) -->
+        <div class="preloader-gallery">
+            <div class="gallery-wrapper">
+                <img src="assets/images/druins.jpg" alt="" class="preloader-img active">
+                <img src="assets/images/sword.jpg" alt="" class="preloader-img">
+                <img src="assets/images/knight.jpg" alt="" class="preloader-img">
+                <img src="assets/images/dragon.jpg" alt="" class="preloader-img">
+                <img src="assets/images/runes.jpg" alt="" class="preloader-img">
+                <img src="assets/images/moon.jpg" alt="" class="preloader-img">
+                <img src="assets/images/hero/hero-bg.jpg" alt="" class="preloader-img">
             </div>
         </div>
+
+        <div class="preloader-header-container">
+            <div class="preloader-header">
+                <h1 class="title-line">Artorias</h1>
+            </div>
+
+            <!-- Minimalist Counter next to title -->
+            <div class="preloader-counter">
+                <div class="counter-digit-slot">
+                    <div class="counter-digit-roll" id="digitHundreds">
+                        <span>0</span><span>1</span>
+                    </div>
+                </div>
+                <div class="counter-digit-slot">
+                    <div class="counter-digit-roll" id="digitTens">
+                        <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                    </div>
+                </div>
+                <div class="counter-digit-slot">
+                    <div class="counter-digit-roll" id="digitOnes">
+                        <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="preloader-embers"></div>
     </div>
 
 
     <!-- ═══ MAIN CONTENT ═══ -->
     <div id="mainContent">
 
-
-
-        <nav>
-            <div class="logo">
-                <a href="#" data-text="Archive">Atlantis</a>
-            </div>
-
-            <div class="menu-toggle">
-                <p id="menu-open">Menu</p>
-                <p id="menu-close">Fermer</p>
-            </div>
-        </nav>
-
-        <div class="menu-overlay">
-            <div class="menu-content">
-
-                <!-- Image preview : panel pleine hauteur à gauche -->
-                <div class="menu-preview-img">
-                    <img src="assets/images/loader/img1.jpg" alt="">
-                </div>
-
-                <!-- Panel droit : container commun pour liens + footer -->
-                <div class="menu-right">
-
-                    <!-- Liens principaux : deux colonnes style Elementis -->
-                    <div class="menu-links">
-                        <p class="menu-discover-label">Discover Pages</p>
-                        <div class="menu-links-grid">
-
-                            <!-- Colonne gauche -->
-                            <div class="menu-col">
-                                <div class="link active"><span class="link-icon"><img
-                                            src="assets/images/icon/elementis-arrow.svg" alt=""></span><a href="#"
-                                        data-img="assets/images/loader/img1.jpg">Home</a></div>
-                                <div class="link"><span class="link-icon"><img
-                                            src="assets/images/icon/elementis-arrow.svg" alt=""></span><a href="#"
-                                        data-img="assets/images/loader/img2.jpg">About</a></div>
-                                <div class="link"><span class="link-icon"><img
-                                            src="assets/images/icon/elementis-arrow.svg" alt=""></span><a href="#"
-                                        data-img="assets/images/loader/img3.jpg">Projects</a></div>
-                                <div class="link"><span class="link-icon"><img
-                                            src="assets/images/icon/elementis-arrow.svg" alt=""></span><a href="#"
-                                        data-img="assets/images/loader/img4.jpg">Services</a></div>
-                                <div class="link"><span class="link-icon"><img
-                                            src="assets/images/icon/elementis-arrow.svg" alt=""></span><a href="#"
-                                        data-img="assets/images/loader/img5.jpg">Contact</a></div>
-                            </div>
-
-                            <!-- Colonne droite -->
-                            <div class="menu-col">
-                                <div class="link"><span class="link-icon"><img
-                                            src="assets/images/icon/elementis-arrow.svg" alt=""></span><a href="#"
-                                        data-img="assets/images/loader/img6.jpg">Community</a></div>
-                                <div class="link"><span class="link-icon"><img
-                                            src="assets/images/icon/elementis-arrow.svg" alt=""></span><a href="#"
-                                        data-img="assets/images/loader/img1.jpg">The Story</a></div>
-                                <div class="link"><span class="link-icon"><img
-                                            src="assets/images/icon/elementis-arrow.svg" alt=""></span><a href="#"
-                                        data-img="assets/images/loader/img2.jpg">Lab</a></div>
-                                <div class="link"><span class="link-icon"><img
-                                            src="assets/images/icon/elementis-arrow.svg" alt=""></span><a href="#"
-                                        data-img="assets/images/loader/img3.jpg">Careers</a></div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <!-- Footer du menu -->
-                    <div class="menu-footer">
-                        <div class="menu-socials">
-                            <div class="social"><a href="#">Instagram</a></div>
-                            <div class="social"><a href="#">Facebook</a></div>
-                            <div class="social"><a href="#">Twitter</a></div>
-                            <div class="social"><a href="#">Linkedin</a></div>
-                        </div>
-                        <div class="menu-footer-links">
-                            <a href="#">Run Sequence</a>
-                            <a href="#">Origin</a>
-                            <a href="#">Join Signal</a>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
+        <!-- Main Navigation will be dynamically handled by souls-nav moving to top right -->
         <main class="container">
-            <section class="hero">
-                <div class="hero-img"><img src="assets/images/hero/maison.jpg" alt=""></div>
-                <div class="header">
-                    <h1 class="hero-title">Creative Studio</h1>
+
+            <!-- ═══ HERO — SOULS MENU SCREEN ═══ -->
+            <section class="hero souls-menu" id="hero">
+                <!-- Three.js Canvas -->
+                <canvas id="souls-canvas"></canvas>
+
+                <!-- Hero Background Image (parallax layer) -->
+                <div class="hero-bg-image">
+                    <img src="assets/images/hero/hero-bg.jpg" alt="">
                 </div>
 
-                <div class="hero-footer">
-                    <p>Performance</p>
-                    <p>Visual Design</p>
-                    <p>Web Design</p>
+                <!-- Fog Layers (CSS animated) -->
+                <div class="fog-layer fog-1"></div>
+                <div class="fog-layer fog-2"></div>
+                <div class="fog-layer fog-3"></div>
+
+                <!-- Dark overlay gradient -->
+                <div class="hero-overlay"></div>
+
+                <!-- Embers container (JS generated) -->
+                <div class="embers-container" id="embersContainer"></div>
+
+                <!-- Hero Side Markers (Centre Gauche & Droite) -->
+                <div class="hero-side hero-side--left">
+                    <h4 class="hero-side-title">Brand</h4>
+                </div>
+
+                <div class="hero-side hero-side--right">
+                    <h4 class="hero-side-title">Technologie</h4>
+                </div>
+
+                <!-- Souls Menu Content -->
+                <div class="souls-menu-content">
+                    <div class="souls-title-wrap">
+                        <div class="title-horizon-line">
+                            <div class="horizon-flare"></div>
+                            <div class="darksign-ring"></div>
+                            <div class="horizon-beam"></div>
+                        </div>
+                        <h1 class="souls-title">
+                            <span class="title-line">ARTORIAS</span>
+                        </h1>
+                    </div>
+
+                    <nav class="souls-nav" id="soulsNav">
+                        <a href="#the-chronicle" class="souls-link active" data-index="0">
+                            <span class="link-glow"></span>
+                            <span class="link-text">The Chronicle</span>
+                        </a>
+                        <a href="#the-forge" class="souls-link" data-index="1">
+                            <span class="link-glow"></span>
+                            <span class="link-text">The Forge</span>
+                        </a>
+                        <a href="#the-arsenal" class="souls-link" data-index="2">
+                            <span class="link-glow"></span>
+                            <span class="link-text">The Arsenal</span>
+                        </a>
+                        <a href="#contact" class="souls-link" data-index="3">
+                            <span class="link-glow"></span>
+                            <span class="link-text">Contact</span>
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Bottom Left Copyright -->
+                <div class="hero-copyright">
+                    <h4 class="hero-side-title">Design</h4>
+                    <span>©2026</span>
+                </div>
+
+                <!-- Scroll indicator -->
+                <div class="scroll-indicator">
+                    <span class="scroll-prompt">Scroll down to begin the story</span>
+                    <span class="scroll-text">Scroll</span>
+                    <div class="scroll-line"></div>
                 </div>
             </section>
 
+            <!-- ═══ THE CHRONICLE (About) ═══ -->
+            <section id="the-chronicle" class="section-chronicle">
+                <div class="chronicle-content">
+                    <!-- User will code their own content here -->
 
-            <!-- Wrapper qui fournit l'espace de scroll pour l'animation sticky -->
-            <div class="about-wrapper">
-                <section class="about-teaser">
+                    <div class="projets-grid">
+                        <ul class="projets-list">
+                            <!-- Card 1 (Row 1, Col 1) -->
+                            <li class="projets-card card-1" data-col="1">
+                                <div class="projets-card-head">
+                                    <div class="num-mask">
+                                        <p class="projets-card-num">001</p>
+                                    </div>
+                                    <h4 class="projets-card-title">
+                                        <span>The Elden</span>
+                                        <span>Lord</span>
+                                    </h4>
+                                </div>
+                                <a href="#" rel="noopener noreferrer" target="_blank" class="projets-card-link">
+                                    <figure class="projets-card-fig">
+                                        <div class="base-image base-image--parallax">
+                                            <img src="/assets/images/druins.jpg" alt="" class="projets-card-img">
+                                        </div>
+                                    </figure>
+                                </a>
+                            </li>
 
-                    <!-- Fond image (zoom out au scroll) -->
-                    <div class="about-bg">
-                        <img src="assets/images/loader/img3.jpg" alt="">
-                    </div>
+                            <!-- Text Card 1 (Row 1, Col 2) -->
+                            <li class="about-text-card card-text-1" data-col="2">
+                                <div class="about-text-content">
+                                    <span class="text-tag" data-split="line">CHRONICLE // 01</span>
+                                    <h3 class="text-title" data-split="line">Forged in shadows & code.</h3>
+                                    <p class="text-desc" data-split="line">Exploring avant-garde digital craftsmanship through visceral dark fantasy realms.</p>
+                                </div>
+                            </li>
 
-                    
+                            <!-- Card 2 (Row 1, Col 3) -->
+                            <li class="projets-card card-2" data-col="3">
+                                <div class="projets-card-head">
+                                    <div class="num-mask">
+                                        <p class="projets-card-num">002</p>
+                                    </div>
+                                    <h4 class="projets-card-title">
+                                        <span>The Elden</span>
+                                        <span>Lord</span>
+                                    </h4>
+                                </div>
+                                <a href="#" rel="noopener noreferrer" target="_blank" class="projets-card-link">
+                                    <figure class="projets-card-fig">
+                                        <div class="base-image base-image--parallax">
+                                            <img src="/assets/images/sword.jpg" alt="" class="projets-card-img">
+                                        </div>
+                                    </figure>
+                                </a>
+                            </li>
 
-                    <!-- Voile rouge — clip-path animé par GSAP -->
-                    <div class="about-revealer"></div>
+                            <!-- Card 3 (Row 2, Col 1) -->
+                            <li class="projets-card card-3" data-col="1">
+                                <div class="projets-card-head">
+                                    <div class="num-mask">
+                                        <p class="projets-card-num">003</p>
+                                    </div>
+                                    <h4 class="projets-card-title">
+                                        <span>The Elden</span>
+                                        <span>Lord</span>
+                                    </h4>
+                                </div>
+                                <a href="#" rel="noopener noreferrer" target="_blank" class="projets-card-link">
+                                    <figure class="projets-card-fig">
+                                        <div class="base-image base-image--parallax">
+                                            <img src="/assets/images/knight.jpg" alt="" class="projets-card-img">
+                                        </div>
+                                    </figure>
+                                </a>
+                            </li>
 
-                    <!-- Images qui poppent en clip-path au centre -->
-                    <div class="about-img"><img src="assets/images/loader/img2.jpg" alt=""></div>
-                    <div class="about-img"><img src="assets/images/loader/img4.jpg" alt=""></div>
-                    <div class="about-img"><img src="assets/images/loader/img5.jpg" alt=""></div>
+                            <!-- Card 4 (Row 2, Col 2) -->
+                            <li class="projets-card card-4" data-col="2">
+                                <div class="projets-card-head">
+                                    <div class="num-mask">
+                                        <p class="projets-card-num">004</p>
+                                    </div>
+                                    <h4 class="projets-card-title">
+                                        <span>The Elden</span>
+                                        <span>Lord</span>
+                                    </h4>
+                                </div>
+                                <a href="#" rel="noopener noreferrer" target="_blank" class="projets-card-link">
+                                    <figure class="projets-card-fig">
+                                        <div class="base-image base-image--parallax">
+                                            <img src="/assets/images/moon.jpg" alt="" class="projets-card-img">
+                                        </div>
+                                    </figure>
+                                </a>
+                            </li>
 
-                    <!-- Bloc rouge final avec texte qui arrive en scale, puis se split -->
-                    <div class="about-final-block">
-                        <div class="about-final-half left">
-                            <div class="about-final-content">
-                                <h3>WE CRAFT VISUAL IDENTITIES THAT EVOKE EMOTIONS.<br>WE GIVE A NEW SENSE OF SELF.</h3>
-                                <p class="about-final-desc">EXCLUSIVE REAL ESTATE AGENCY SPECIALIZING IN LUXURY RESIDENTIAL AND COMMERCIAL PROPERTIES. SEAMLESSLY CONNECTING BUYERS AND SELLERS WITH PREMIER INVESTMENTS TAILORED TO ELEGANCE, COMFORT, AND SUCCESS.</p>
-                            </div>
-                        </div>
-                        <div class="about-final-half right">
-                            <div class="about-final-content">
-                                <h3>WE CRAFT VISUAL IDENTITIES THAT EVOKE EMOTIONS.<br>WE GIVE A NEW SENSE OF SELF.</h3>
-                                <p class="about-final-desc">EXCLUSIVE REAL ESTATE AGENCY SPECIALIZING IN LUXURY RESIDENTIAL AND COMMERCIAL PROPERTIES. SEAMLESSLY CONNECTING BUYERS AND SELLERS WITH PREMIER INVESTMENTS TAILORED TO ELEGANCE, COMFORT, AND SUCCESS.</p>
-                            </div>
-                        </div>
-                    </div>
+                            <!-- Text Card 2 (Row 2, Col 3) -->
+                            <li class="about-text-card card-text-2" data-col="3">
+                                <div class="about-text-content">
+                                    <span class="text-tag" data-split="line">PHILOSOPHY // 02</span>
+                                    <h3 class="text-title" data-split="line">Beyond the veil of reality.</h3>
+                                    <p class="text-desc" data-split="line">Every piece is an interactive relic crafted with precision, motion, and deep mythic atmosphere.</p>
+                                </div>
+                            </li>
 
-                </section>
-            </div>
+                            <!-- Card 5 (Row 2, Col 4) -->
+                            <li class="projets-card card-5" data-col="4">
+                                <div class="projets-card-head">
+                                    <div class="num-mask">
+                                        <p class="projets-card-num">005</p>
+                                    </div>
+                                    <h4 class="projets-card-title">
+                                        <span>The Elden</span>
+                                        <span>Lord</span>
+                                    </h4>
+                                </div>
+                                <a href="#" rel="noopener noreferrer" target="_blank" class="projets-card-link">
+                                    <figure class="projets-card-fig">
+                                        <div class="base-image base-image--parallax">
+                                            <img src="/assets/images/dragon.jpg" alt="" class="projets-card-img">
+                                        </div>
+                                    </figure>
+                                </a>
+                            </li>
 
-            <!-- Section blanche qui scroll normalement derrière le rideau -->
-            <section class="about-content-section">
-                <div class="about-white-content">
-                    <h2 class="about-white-title">Exclusive real estate agency specializing in luxury residential and commercial properties. Seamlessly connecting buyers and sellers with premier investments tailored to elegance, comfort, and success.</h2>
-                    
-                    <div class="about-white-grid">
-                        <div class="grid-item">
-                            <h3>MBA</h3>
-                            <p>BROKERS WITH ECONOMIC AND FINANCIAL<br>EDUCATION, MBA, TAKING WEEKLY<br>TRAININGS</p>
-                        </div>
-                        <div class="grid-item">
-                            <h3>TOP-3</h3>
-                            <p>WE ARE AMONG THE TOP THREE LEADERS<br>AMONG DAMAC, LUXE DEVELOPMENT AND<br>NAKHEEL</p>
-                        </div>
-                        <div class="grid-item">
-                            <h3>Forbes</h3>
-                            <p>DIRECT CONTACTS WITH FORBES<br>BILLIONAIRES AND TOP MANAGERS</p>
-                        </div>
+                            <!-- Text Card 3 (Row 3, Col 1) -->
+                            <li class="about-text-card card-text-3" data-col="1">
+                                <div class="about-text-content">
+                                    <span class="text-tag" data-split="line">ARSENAL // 03</span>
+                                    <h3 class="text-title" data-split="line">Interactive Alchemy.</h3>
+                                    <p class="text-desc" data-split="line">Three.js & GLSL · Kinetic Motion Systems · Editorial Grid Layouts · Micro-interactions.</p>
+                                </div>
+                            </li>
+
+                            <!-- Card 6 (Row 3, Col 2) -->
+                            <li class="projets-card card-6" data-col="2">
+                                <div class="projets-card-head">
+                                    <div class="num-mask">
+                                        <p class="projets-card-num">006</p>
+                                    </div>
+                                    <h4 class="projets-card-title">
+                                        <span>The Elden</span>
+                                        <span>Lord</span>
+                                    </h4>
+                                </div>
+                                <a href="#" rel="noopener noreferrer" target="_blank" class="projets-card-link">
+                                    <figure class="projets-card-fig">
+                                        <div class="base-image base-image--parallax">
+                                            <img src="/assets/images/runes.jpg" alt="" class="projets-card-img">
+                                        </div>
+                                    </figure>
+                                </a>
+                            </li>
+
+                            <!-- Card 7 (Row 4, Col 1) -->
+                            <li class="projets-card card-7" data-col="1">
+                                <div class="projets-card-head">
+                                    <div class="num-mask">
+                                        <p class="projets-card-num">007</p>
+                                    </div>
+                                    <h4 class="projets-card-title">
+                                        <span>The Elden</span>
+                                        <span>Lord</span>
+                                    </h4>
+                                </div>
+                                <a href="#" rel="noopener noreferrer" target="_blank" class="projets-card-link">
+                                    <figure class="projets-card-fig">
+                                        <div class="base-image base-image--parallax">
+                                            <img src="/assets/images/moon.jpg" alt="" class="projets-card-img">
+                                        </div>
+                                    </figure>
+                                </a>
+                            </li>
+
+                            <!-- Card 8 (Row 4, Col 3) -->
+                            <li class="projets-card card-8" data-col="3">
+                                <div class="projets-card-head">
+                                    <div class="num-mask">
+                                        <p class="projets-card-num">008</p>
+                                    </div>
+                                    <h4 class="projets-card-title">
+                                        <span>The Elden</span>
+                                        <span>Lord</span>
+                                    </h4>
+                                </div>
+                                <a href="#" rel="noopener noreferrer" target="_blank" class="projets-card-link">
+                                    <figure class="projets-card-fig">
+                                        <div class="base-image base-image--parallax">
+                                            <img src="/assets/images/sword.jpg" alt="" class="projets-card-img">
+                                        </div>
+                                    </figure>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </section>
 
-            <!-- <section class="projets">
-                <div class="projets-content">
-                    <h2 class="title">Nos Projets</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, earum.</p>
+            <!-- ═══ THE FORGE (Projects) ═══ -->
+            <section id="the-forge" class="section-forge">
+                <!-- Parallax background layers -->
+                <div class="forge-bg">
+                    <div class="forge-glow"></div>
+                    <div class="forge-fog fog-layer fog-ember"></div>
                 </div>
-            </section> -->
+                <div class="section-embers"></div>
 
+                <div class="forge-content">
+                    <!-- User will code their own content here -->
+                </div>
+            </section>
 
         </main>
+    </div>
+
+    <!-- ═══ DRAGONS (fixed, traverse all pages) ═══ -->
+    <div class="dragons-container" id="dragonsContainer">
+        <!-- Dragons are injected by dragons.js -->
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     <script type="module" src="js/main.js"></script>
 

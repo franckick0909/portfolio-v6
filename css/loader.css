@@ -1,21 +1,4 @@
-@import url("https://fonts.cdnfonts.com/css/pp-neue-montreal");
-
-/* ══ LOADER PAGE ══ */
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-:root {
-    --base-100: #fff;
-    --base-200: #e0e2db;
-    --base-300: #141414;
-    --base-400: #acacac;
-    --base-500: #000;
-}
-
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-
-
-
+/* ══ DARK FANTASY PRELOADER ══ */
 
 .preloader {
     position: fixed;
@@ -23,78 +6,130 @@
     left: 0;
     width: 100%;
     height: 100svh;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-    background: var(--base-500);
-    color: var(--base-100);
+    background: #050505;
+    background: radial-gradient(ellipse at center, #1a0f05 0%, #0a0500 40%, #050505 100%);
+    color: #c9a84c;
     will-change: clip-path;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
     overflow: hidden;
-    z-index: 10;   /* au-dessus du nav (2) et du menu-overlay (1) */
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.preloader-img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 250px;
-    height: 300px;
-    clip-path: polygon(20% 20%, 80% 20%, 80% 80%, 20% 80%);
-    will-change: transform, clip-path;
-}
-
-.preloader-header {
+/* ── Image Gallery (Outfit Style) ── */
+.preloader-gallery {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    mix-blend-mode: difference;
+    width: clamp(250px, 30vw, 600px);
+    aspect-ratio: 16 / 9;
+    z-index: 5;
+    will-change: transform;
+}
+
+.gallery-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: visible; /* To allow rotated images to overflow slightly */
+}
+
+.preloader-img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    transform: scale(1.05); /* Slight default zoom */
+    will-change: transform, opacity;
+}
+
+.preloader-img.active {
+    opacity: 1;
+}
+
+/* ── Preloader Header Container ── */
+.preloader-header-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: flex-end; /* Align title and counter */
+    gap: 1.5rem;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.preloader-header {
+    text-align: center;
+    white-space: nowrap;
 }
 
 .preloader-header h1 {
-    font-size: clamp(2rem, 10vw, 15rem);
-    line-height: 0.85;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1;
     text-transform: uppercase;
-    font-weight: 500;
-}   
+    font-weight: 900;
+    color: var(--ivory); /* Pure white */
+    letter-spacing: -0.01em;
+}
 
+/* ── Minimalist Counter (Next to Title) ── */
 .preloader-counter {
-    position: absolute;
-    top: -1.5rem;
-    left: calc(100% + 1.5rem);
+    position: relative; /* override absolute */
+    display: flex;
+    align-items: flex-start;
+    gap: 2px;
+    opacity: 0;
+    margin-bottom: 0.5rem; /* Optical alignment */
+}
+
+.counter-digit-slot {
+    height: 1.2rem;
     overflow: hidden;
+    line-height: 1.2rem;
 }
 
-.preloader-counter p {
-    font-size: clamp(1rem, 1.5vw, 2rem);
-    line-height: 0.85;
+.counter-digit-roll {
+    display: flex;
+    flex-direction: column;
+    will-change: transform;
 }
 
+.counter-digit-roll span {
+    display: block;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    min-width: 0.8rem;
+}
+
+/* ── Char Mask ── */
 .char-mask {
     display: inline-block;
-    overflow: hidden;   /* masque le .char quand il est hors de sa boîte */
+    overflow: hidden; /* Restored for the Outfit slide-up effect */
+    padding: 0;
 }
 
 .char {
-    display: inline-block;   /* obligatoire pour transform sur <span> */
-    will-change: transform;
-}
-
-.word-mask {
-    display: inline-block;
-    overflow: hidden;   /* masque le .word quand il est hors de sa boîte */
-}
-
-.word {
     display: inline-block;
     will-change: transform;
 }
 
-.preloader-counter p {
-    will-change: transform;
-}
-
-@media (max-width: 1000px) {
-    .preloader-counter {
-        top: -1.5rem;
-        left: calc(100% + 0.5rem);
-    }
+/* ── Preloader Embers ── */
+.preloader-embers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
 }

@@ -1,29 +1,60 @@
-@import url("https://fonts.cdnfonts.com/css/pp-neue-montreal");
-
-/* ══ MAIN PAGE ══ */
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+/* ══ DARK FANTASY — GLOBAL STYLES ══ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-    --base-100: #fff;
-    --base-200: #f0f0e6;
-    --base-300: #0f0f0f;
-    --base-400: #acacac;
-    --base-500: #000;
-    --base-600: #7a0c07;
+    /* ── Dark Fantasy Palette ── */
+    --dark-bg: #0a0a0a;
+    --dark-surface: #111111;
+    --dark-deep: #050505;
+    --gold: #c9a84c;
+    --gold-dim: #8b6914;
+    --gold-glow: rgba(201, 168, 76, 0.4);
+    --blood: #8b1a1a;
+    --ember: #ff6b35;
+    --ember-dim: #cc4400;
+    --stone: #3a3a3a;
+    --stone-light: #555;
+    --ivory: #e8dcc8;
+    --ivory-dim: rgba(232, 220, 200, 0.6);
+    --fog-color: rgba(200, 200, 200, 0.03);
+    --white: #d4e8e8;
+    --grey: rgba(212, 232, 232, .6);
+    --black: rgba(0, 0, 0, 1);
+
+    /* ── Typography ── */
+    --font-display: 'EB Garamond', serif;
+    --font-heading: 'EB Garamond', serif;
+    --font-body: 'Cormorant Garamond', serif;
+}
+
+html {
+    scroll-behavior: auto !important;
+}
+
+html.lenis, html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
 }
 
 body {
-    background: var(--base-100);
-    color: #dde4f0;
-    font-family: 'PP Neue Montreal', sans-serif;
-    overflow-x: hidden; /* Prevent horizontal scroll with 100vw */
-}
-
-main#mainContent {
-    position: relative;
-    width: 100vw;
-    min-height: 100vh;
-    display: block; /* changed from flex so sections stack vertically */
+    background: var(--dark-bg);
+    color: var(--ivory);
+    font-family: var(--font-body);
+    font-weight: 400;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -36,326 +67,118 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
-nav {
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ══ FIXED NAV (appears on scroll past hero) ══ */
+.main-nav {
     position: fixed;
-    width: 100vw;
     top: 0;
+    right: 0;
     left: 0;
-    padding: 2.5em;
+    padding: 1.5rem 2.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 2;
-}
-
-a, p {
-    position: relative;
-    text-decoration: none;
-    color: var(--base-100);
-    font-size: 1rem;
-    font-weight: 300;
-    user-select: none;
-    mix-blend-mode: difference;
-}
-
-.logo a {
-    font-weight: 400;
-    letter-spacing: 1ch;
-    mix-blend-mode: difference;
-}
-
-.menu-toggle {
-    position: relative;
-    width: 3rem;
-    height: 1.5rem;
-    cursor: pointer;
-    mix-blend-mode: difference;
-}
-
-.menu-toggle p {
-    position: absolute;
-    transform: top left;
-    font-weight: 400;
-    letter-spacing: 1px;
-    will-change: transform, opacity;
-}
-
-/* ══ MENU OVERLAY ══ */
-.menu-overlay {
-    position: fixed;
-    width: 100vw;
-    min-height: 100svh;
-    background-color: var(--base-500);
-    z-index: 1;
-    clip-path: polygon(0 0%, 100% 0%, 100% 0%, 0% 0%);
-}
-
-.menu-content {
-    position: relative;
-    width: 100%;
-    height: 100svh;
-    transform: translateX(-80px) scale(1.04) rotate(-2deg);
+    z-index: 50;
     opacity: 0;
-    will-change: transform, opacity;
+    transform: translateY(-100%);
+    pointer-events: none;
+    transition: none; /* GSAP handles transitions */
 }
 
-/* ── Image preview : pleine hauteur à gauche (style Elementis) ── */
-.menu-preview-img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 42%;
-    height: 100svh;
-    overflow: hidden;
-    clip-path: inset(100% 0% 0% 0%);
-    transform: rotate(-3deg) scale(1.1);
-    transform-origin: bottom center;
-    will-change: clip-path, transform;
+.main-nav.nav-visible {
+    pointer-events: all;
 }
 
-.menu-preview-img img {
+/* Nav background blur */
+.main-nav::before {
+    content: '';
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    will-change: transform, clip-path;
+    background: rgba(5, 5, 5, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+    z-index: -1;
 }
 
-/* ── Panel droit : container commun pour liens + footer ── */
-.menu-right {
-    position: absolute;
-    left: 48%;           /* commence après le panel image */
-    right: 0;
-    top: 0;
-    bottom: 0;
+.nav-logo a {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-shadow: 0 0 15px var(--gold-glow);
+}
+
+.nav-links {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    justify-content: space-between;
-    padding: 3rem 3.5rem;
+    gap: 2.5rem;
 }
 
-/* ── Liens principaux ── */
-.menu-links {
-    /* Flex item dans .menu-right : centré verticalement */
-    margin: auto 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.menu-discover-label {
-    font-size: clamp(0.78rem, 2.6vw, 1.5rem);
-    color: var(--base-400);
-    letter-spacing: 0.08em;
-    text-transform: none;
-    font-weight: 300;
-}
-
-.menu-links-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;   /* colonnes égales — alignement garanti */
-    column-gap: clamp(1rem, 2.5vw, 4rem);               /* plus d'espace entre les deux colonnes */
-}
-
-.menu-col {
-    display: flex;
-    flex-direction: column;
-}
-
-.link {
-    position: relative;
-    display: flex;
-    align-items: baseline;
-    padding: 0.3rem 0;
-    cursor: pointer;
-    /* Bordures supprimées sur desktop — visible seulement sur responsive */
-}
-
-/* Numéro d'index : caché sur desktop (style Elementis sans numéros) */
-.link::before {
-    display: none;
-}
-
-.link a {
-    /* Taille Elementis : plus lisible, moins massive */
-    font-size: clamp(1rem, 2.8vw, 2.2rem);
-    font-weight: 400;
-    letter-spacing: 0.03em;
-    line-height: 1.15;
-    /* Slide vers la droite au hover */
-    transition: transform 0.5s cubic-bezier(.24, .43, .15, .97);
-    will-change: transform;
-    color: var(--base-200);
-}
-
-.link:hover a {
-    /* transform: translateX(1.5rem); */
-    /* Le décalage est 
-    créé naturellement par l'expansion de .link-icon */
-    /* Plus besoin de translateX ici */
-}
-
-/* ── Icon du lien : flèche ↗ entrée en diagonale (Elementis-style) ── */
-.link-icon {
-    display: flex;
-    align-items: center;
-    overflow: hidden;          /* clip : masque la flèche hors du container */
-    width: 0;                  /* pas d'espace au repos */
-    height: 1.4em;             /* légèrement plus haut que le texte = marge de clipping */
-    flex-shrink: 0;
-    align-self: center;
-    margin-right: 0;
-}
-
-.link-icon img {
-    width: clamp(17px, 3vw, 20px);
-    height: clamp(17px, 3vw, 20px);
-    object-fit: contain;       /* SVG : contain, pas cover */
-    filter: invert(1);         /* noir → blanc sur fond sombre */
-    flex-shrink: 0;
-    /* rotate + x + y gérés entièrement par GSAP */
-}
-
-/* Underline sur les gros liens : scaleX directionnel (Elementis-style) */
-.link a::after {
-    position: absolute;
-    content: "";
-    bottom: 12px;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: rgba(255,255,255,0.5);
-    transform: scaleX(0);
-    transform-origin: right;    /* ← hover-OUT : se referme de gauche à droite */
-    transition: transform 0.5s cubic-bezier(.24, .43, .15, .97);
-}
-
-/* .link:hover a::after, */
-.link.active a::after {
-    transform: scaleX(1);
-    transform-origin: left;     /* ← hover-IN  : s'ouvre de gauche à droite */
-}
-
-/* ── Liens sociaux ── */
-.menu-socials {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.social a {
-    color: var(--base-400);
+.nav-link {
+    font-family: var(--font-heading);
     font-size: 0.85rem;
-    letter-spacing: 0.03em;
-    transition: color 0.3s ease;
-}
-
-.social a:hover {
-    color: var(--base-100);
-}
-
-/* Underline socials : même trick directionnel que les footer-links */
-.social a::after {
-    position: absolute;
-    content: "";
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: var(--base-100);
-    transform: scaleX(0);
-    transform-origin: right;       /* hover-OUT : se referme de droite à gauche */
-    transition: transform 0.5s cubic-bezier(.24, .43, .15, .97);
-}
-
-.social a:hover::after {
-    transform: scaleX(1);
-    transform-origin: left;        /* hover-IN  : s'ouvre de gauche à droite */
-}
-
-/* ── Footer du menu ── */
-.menu-footer {
-    /* Flex item dans .menu-right : collé au bas via space-between */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    flex-shrink: 0;
-    gap: 2rem;
-}
-
-.menu-footer-links {
-    display: flex;
-    gap: clamp(0.5rem, 2.5vw, 2rem)
-}
-
-/* ── Menu toggle ── */
-.menu-toggle p#menu-close {
-    opacity: 0;
-    transform: translateX(-5px) translateY(10px) rotate(5deg);
-}
-
-/* ── Footer links : underline directionnel ── */
-.menu-footer-links a {
+    color: var(--ivory-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     position: relative;
-    font-size: 0.85rem;
-    color: var(--base-400);
-    letter-spacing: 0.03em;
-    transition: color 0.3s ease;
+    transition: color 0.4s ease;
 }
 
-.menu-footer-links a::after {
+.nav-link:hover {
+    color: var(--gold);
+}
+
+.nav-link::after {
+    content: '';
     position: absolute;
-    content: "";
-    bottom: 0;
+    bottom: -4px;
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: var(--base-100);
+    background: var(--gold);
     transform: scaleX(0);
-    transform-origin: right;    /* hover-OUT : se referme de droite à gauche */
-    transition: transform 0.5s cubic-bezier(.24, .43, .15, .97);
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-.menu-footer-links a:hover::after {
+.nav-link:hover::after {
     transform: scaleX(1);
-    transform-origin: left;     /* hover-IN  : s'ouvre de gauche à droite */
+    transform-origin: left;
 }
 
-.menu-footer-links a:hover {
-    color: var(--base-100);
+/* ══ SECTION EMBERS (shared) ══ */
+.section-embers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
 }
 
-/* ──── RESPONSIVE ──── */
-@media (max-width: 1000px) {
-    /* Panel image caché → le panel droit prend toute la largeur */
-    .menu-preview-img { display: none; }
-    .menu-right {
-        left: 0;
-        padding: 2rem;
+/* ══ RESPONSIVE ══ */
+@media (max-width: 768px) {
+    .main-nav {
+        padding: 1rem 1.5rem;
     }
 
-    /* Colonnes empilées en une seule colonne */
-    .menu-links-grid { grid-template-columns: 1fr; column-gap: 0;}
+    .nav-links {
+        gap: 1.5rem;
+    }
 
-    /* Bordures entre les liens — seulement sur tablette/smartphone */
-    .link {
-        padding: 0.75rem 0;
-        border-top: 1px solid rgba(255,255,255,0.12);
-    }
-    .link:last-child {
-        border-bottom: 1px solid rgba(255,255,255,0.12);
-    }
-    .link a { font-size: clamp(1rem, 4vw, 2rem); }
-    .link-icon {
-        display: none;
+    .nav-link {
+        font-size: 0.75rem;
     }
 }
 
-@media (max-width: 600px) {
-    .link a { font-size: clamp(1rem, 5vw, 2.2rem); }
-    .menu-discover-label { display: none; }
+@media (max-width: 480px) {
+    .nav-links {
+        display: none; /* hamburger menu for mobile — future */
+    }
 }
