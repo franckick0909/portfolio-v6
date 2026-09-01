@@ -108,7 +108,7 @@
 }
 
 .text-title {
-    font-family: var(--font-display);
+    font-family: 'OptimusPrinceps', serif;
     font-size: clamp(0.5rem, 1vw, 2rem);
     font-weight: 500;
     line-height: 1.15;
@@ -118,9 +118,10 @@
 }
 
 .text-desc {
-    font-family: var(--font-body);
-    font-size: 1.05rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: clamp(0.75rem, 1vw, 1rem);
     line-height: 1;
+    font-weight: 400;
     color: var(--grey);
 }
 

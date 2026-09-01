@@ -78,7 +78,33 @@
     <!-- ═══ MAIN CONTENT ═══ -->
     <div id="mainContent">
 
-        <!-- Main Navigation will be dynamically handled by souls-nav moving to top right -->
+        <!-- ═══ FIXED SITE HEADER (Logo central + Nav haut-droite au scroll) ═══ -->
+        <header class="site-header" id="siteHeader">
+            <div class="header-logo">
+                <a href="#hero" class="header-logo-link">
+                    <span class="header-logo-text">ARTORIAS</span>
+                </a>
+            </div>
+            <nav class="header-nav" id="headerNav">
+                <a href="#the-chronicle" class="header-nav-link active" data-index="0">
+                    <span class="header-nav-helmet"><img src="assets/images/icon/casque.png" alt="" class="helmet-icon-mini"></span>
+                    <span class="header-nav-text">The Chronicle</span>
+                </a>
+                <a href="#the-forge" class="header-nav-link" data-index="1">
+                    <span class="header-nav-helmet"><img src="assets/images/icon/casque.png" alt="" class="helmet-icon-mini"></span>
+                    <span class="header-nav-text">The Forge</span>
+                </a>
+                <a href="#the-arsenal" class="header-nav-link" data-index="2">
+                    <span class="header-nav-helmet"><img src="assets/images/icon/casque.png" alt="" class="helmet-icon-mini"></span>
+                    <span class="header-nav-text">The Arsenal</span>
+                </a>
+                <a href="#contact" class="header-nav-link" data-index="3">
+                    <span class="header-nav-helmet"><img src="assets/images/icon/casque.png" alt="" class="helmet-icon-mini"></span>
+                    <span class="header-nav-text">Contact</span>
+                </a>
+            </nav>
+        </header>
+
         <main class="container">
 
             <!-- ═══ HERO — SOULS MENU SCREEN ═══ -->
@@ -125,22 +151,30 @@
                     </div>
 
                     <nav class="souls-nav" id="soulsNav">
-                        <a href="#the-chronicle" class="souls-link active" data-index="0">
-                            <span class="link-glow"></span>
-                            <span class="link-text">The Chronicle</span>
-                        </a>
-                        <a href="#the-forge" class="souls-link" data-index="1">
-                            <span class="link-glow"></span>
-                            <span class="link-text">The Forge</span>
-                        </a>
-                        <a href="#the-arsenal" class="souls-link" data-index="2">
-                            <span class="link-glow"></span>
-                            <span class="link-text">The Arsenal</span>
-                        </a>
-                        <a href="#contact" class="souls-link" data-index="3">
-                            <span class="link-glow"></span>
-                            <span class="link-text">Contact</span>
-                        </a>
+                        <div class="souls-link-mask">
+                            <a href="#the-chronicle" class="souls-link active" data-index="0">
+                                <span class="link-helmet"><img src="assets/images/icon/casque.png" alt="" class="helmet-icon"></span>
+                                <span class="roll-text" data-text="The Chronicle">The Chronicle</span>
+                            </a>
+                        </div>
+                        <div class="souls-link-mask">
+                            <a href="#the-forge" class="souls-link" data-index="1">
+                                <span class="link-helmet"><img src="assets/images/icon/casque.png" alt="" class="helmet-icon"></span>
+                                <span class="roll-text" data-text="The Forge">The Forge</span>
+                            </a>
+                        </div>
+                        <div class="souls-link-mask">
+                            <a href="#the-arsenal" class="souls-link" data-index="2">
+                                <span class="link-helmet"><img src="assets/images/icon/casque.png" alt="" class="helmet-icon"></span>
+                                <span class="roll-text" data-text="The Arsenal">The Arsenal</span>
+                            </a>
+                        </div>
+                        <div class="souls-link-mask">
+                            <a href="#contact" class="souls-link" data-index="3">
+                                <span class="link-helmet"><img src="assets/images/icon/casque.png" alt="" class="helmet-icon"></span>
+                                <span class="roll-text" data-text="Contact">Contact</span>
+                            </a>
+                        </div>
                     </nav>
                 </div>
 

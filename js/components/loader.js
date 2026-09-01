@@ -302,42 +302,45 @@ export function initLoader() {
         ease: 'power2.out',
     }, 5.7);
 
-    /* Menu links appear with Dark Souls mystical focus:
-       Emerge from haze (blur 8px -> 0px) and opacity 0 -> 1 directly in place, sans aucun mouvement Y */
+    /* Menu links appear smoothly with yPercent from the bottom of their mask */
     tl.fromTo('.souls-link', {
+        yPercent: 105,
         opacity: 0,
-        filter: 'blur(8px)',
     }, {
+        yPercent: 0,
         opacity: 1,
-        filter: 'blur(0px)',
         duration: 0.9,
-        stagger: 0.1,
-        ease: 'power2.out',
-        clearProps: 'filter',
-    }, 6.0);
+        stagger: 0.08,
+        ease: 'power3.out',
+    }, 5.9);
 
-    /* Active link's golden ambient glow softly ignites */
-    tl.fromTo('.souls-link.active .link-glow', {
+    /* Active link's helmet emblem appears */
+    tl.fromTo('.souls-link.active .link-helmet', {
+        scale: 0.4,
         opacity: 0,
-        scale: 0.6,
     }, {
-        opacity: 1,
         scale: 1,
-        duration: 1.1,
-        ease: 'power2.out',
-    }, 6.5);
+        opacity: 1,
+        duration: 0.75,
+        ease: 'power3.out',
+    }, 6.4);
 
     /* Side markers & copyright fade in */
     tl.to('.hero-side, .hero-copyright', {
         opacity: 1,
         duration: 1.2,
         ease: 'power2.out',
-    }, 6.5);
+    }, 6.3);
 
     /* Scroll indicator */
     tl.to('.scroll-indicator', {
         opacity: 0.75,
         duration: 1.1,
         ease: 'power2.out',
+    }, 6.6);
+
+    /* Dispatch heroRevealed event so scroll transitions only initialize after hero is fully unveiled */
+    tl.add(() => {
+        window.dispatchEvent(new CustomEvent('heroRevealed'));
     }, 6.8);
 }

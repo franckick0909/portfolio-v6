@@ -76,12 +76,12 @@ function initTextCards() {
         if (allLines.length) {
             gsap.fromTo(allLines,
                 {
-                    yPercent: 115,
+                    yPercent: 110,
                 },
                 {
                     yPercent: 0,
-                    duration: 0.85,
-                    stagger: 0.08,
+                    duration: 0.75,
+                    stagger: 0.25,
                     ease: 'power3.out',
                     scrollTrigger: {
                         trigger: card,

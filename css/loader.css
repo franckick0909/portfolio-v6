@@ -71,13 +71,13 @@
 }
 
 .preloader-header h1 {
-    font-family: 'Outfit', sans-serif;
-    font-size: clamp(3rem, 8vw, 6rem);
-    line-height: 1;
-    text-transform: uppercase;
+    font-family: 'OptimusPrinceps', serif;
+    font-size: clamp(6rem, 13vw, 12rem);
     font-weight: 900;
-    color: var(--ivory); /* Pure white */
-    letter-spacing: -0.01em;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    text-shadow: 0 0 25px rgba(255, 240, 210, 0.35), 0 0 50px rgba(201, 168, 76, 0.2);
 }
 
 /* ── Minimalist Counter (Next to Title) ── */

@@ -188,7 +188,7 @@
     align-items: center;
     justify-content: center;
     width: auto;
-    margin-bottom: 3.5rem;
+    margin-bottom: 2rem;
 }
 
 /* ── Dark Souls III Horizon Line & Darksign Eclipse ── */
@@ -236,13 +236,13 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
+    width: 100%;
     height: 18px;
     background: radial-gradient(ellipse at center, 
-        rgba(255, 220, 150, 0.2) 0%, 
-        rgba(220, 130, 30, 0.1) 45%, 
-        transparent 95%);
-    filter: blur(5px);
+        rgba(255, 220, 150, 0.2) 0%,
+        rgba(46, 26, 3, 0.1) 45%, 
+        transparent 100%);
+    filter: blur(2px);
 }
 
 /* Cercle de l'éclipse / Marque sombre (Darksign) au centre */
@@ -251,14 +251,14 @@
     top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: clamp(40px, 6.5vw, 70px);
-    height: clamp(40px, 6.5vw, 70px);
+    width: clamp(50px, 7vw, 80px);
+    height: clamp(50px, 7vw, 80px);
     border-radius: 50%;
-    border: 1.5px solid var(--grey);
+    border: 1.5px solid var(--gold-dim);
     box-shadow: 
-        0 0 25px rgba(210, 120, 20, 0.28),
-        inset 0 0 18px rgba(230, 140, 30, 0.4);
-    background: radial-gradient(circle, rgba(5, 5, 5, 0.9) 0%, rgba(10, 8, 5, 0.7) 65%, transparent 100%);
+        0 0 45px rgba(255, 176, 27, 0.418),
+        inset 0 0 18px rgba(223, 92, 16, 0.4);
+    background: radial-gradient(circle, rgba(5, 5, 5, 1) 0%, rgba(10, 8, 5, 0.7) 65%, transparent 100%);
     opacity: 0.9;
 }
 
@@ -267,7 +267,7 @@
     position: relative;
     z-index: 2;
     font-family: 'OptimusPrinceps', serif;
-    font-size: clamp(3.6rem, 9.5vw, 8.5rem);
+    font-size: clamp(6rem, 13vw, 12rem);
     font-weight: 900;
     color: var(--white);
     letter-spacing: -0.02em;
@@ -280,14 +280,123 @@
     display: inline-block;
 }
 
+/* ═══ FIXED SITE HEADER (Logo central + Nav haut-droite au scroll) ═══ */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 3.5rem 0 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.header-logo {
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: auto;
+    opacity: 0;
+    visibility: hidden;
+    will-change: transform, opacity;
+}
+
+.header-logo-link {
+    text-decoration: none;
+    color: var(--white, #d4e8e8);
+    font-family: 'OptimusPrinceps', serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 15px rgba(255, 235, 190, 0.4), 0 0 30px rgba(201, 168, 76, 0.25);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.header-logo-link:hover {
+    color: #f7dba0;
+    text-shadow: 0 0 20px rgba(245, 185, 75, 0.7);
+}
+
+.header-nav {
+    top: 1.5rem;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column; /* Menu en colonne en haut à droite */
+    align-items: flex-end; /* Alignement strict à droite */
+    gap: 0.55rem;
+    pointer-events: auto;
+    opacity: 0;
+    transform: translateY(-20px);
+    visibility: hidden;
+    will-change: transform, opacity;
+}
+
+.header-nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    text-decoration: none;
+    font-family: 'OptimusPrinceps', serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(212, 232, 232, 0.45);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.header-nav-link:hover,
+.header-nav-link.active {
+    color: #f7dba0;
+    text-shadow: 0 0 12px rgba(245, 185, 75, 0.5);
+}
+
+.header-nav-helmet {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 15px;
+    height: 15px;
+    margin-right: 0.35rem;
+    opacity: 0;
+    transform: scale(0.65);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.helmet-icon-mini {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(245, 185, 75, 0.6));
+}
+
+.header-nav-link.active .header-nav-helmet,
+.header-nav-link:hover .header-nav-helmet {
+    opacity: 1;
+    transform: scale(1);
+}
+
 /* ── Souls Navigation (Menu centré en dessous façon Dark Souls 3) ── */
 .souls-nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.65rem;
     position: relative;
     z-index: 10;
+}
+
+/* Masque de chaque lien (overflow hidden pour entrée et sortie en yPercent) */
+.souls-link-mask {
+    display: block;
+    overflow: hidden;
+    padding: 0.15rem 0;
 }
 
 .souls-link {
@@ -295,48 +404,78 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.45rem 2.5rem;
-    color: rgba(190, 200, 200, 0.52);
+    padding: 0.35rem 1.8rem;
+    color: rgba(190, 200, 200, 0.55);
     text-decoration: none;
     font-family: 'OptimusPrinceps', serif;
-    font-size: clamp(1.15rem, 1.5vw, 1.5rem);
+    font-size: clamp(1.15rem, 1.5vw, 1.45rem);
     letter-spacing: 0.08em;
-    transition: color 0.45s ease, text-shadow 0.45s ease, transform 0.45s ease;
-    will-change: transform, opacity, filter;
-    cursor: pointer;
-}
-
-/* Halo doré / ambré en arrière-plan comme sur l'option sélectionnée dans Dark Souls 3 */
-.souls-link .link-glow {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scaleX(0.75);
-    width: 130%;
-    height: 220%;
-    background: radial-gradient(ellipse at center, 
-        rgba(235, 155, 30, 0.45) 0%, 
-        rgba(195, 110, 15, 0.28) 35%, 
-        rgba(140, 70, 5, 0.12) 58%, 
-        transparent 75%);
     opacity: 0;
-    filter: blur(10px);
-    pointer-events: none;
-    z-index: -1;
-    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.souls-link:hover .link-glow,
-.souls-link.active .link-glow {
-    opacity: 1;
-    transform: translate(-50%, -50%) scaleX(1);
+    transition: color 0.4s ease, text-shadow 0.4s ease;
+    will-change: transform, opacity;
+    cursor: pointer;
 }
 
 .souls-link:hover,
 .souls-link.active {
     color: #f7dba0;
-    text-shadow: 0 0 16px rgba(245, 185, 75, 0.6), 0 0 32px rgba(215, 130, 25, 0.35);
-    transform: scale(1.03);
+}
+
+/* Icône Casque pour le lien actif et survolé */
+.link-helmet {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    margin-right: 0.75rem;
+    vertical-align: middle;
+    opacity: 0;
+    transform: scale(0.65) translateX(-4px);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.helmet-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(245, 185, 75, 0.55));
+}
+
+.souls-link.active .link-helmet,
+.souls-link:hover .link-helmet {
+    opacity: 1;
+    transform: scale(1) translateX(0);
+}
+
+/* ── Text Roll (Défilement Awwwards avec Clone & Stagger) ── */
+.roll-text {
+    position: relative;
+    display: inline-flex;
+    overflow: hidden;
+    vertical-align: middle;
+    line-height: 1.25;
+}
+
+.roll-line {
+    display: inline-flex;
+    white-space: nowrap;
+    will-change: transform;
+}
+
+.roll-line--clone {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #f7dba0;
+}
+
+.roll-char {
+    display: inline-block;
+    will-change: transform;
 }
 
 /* ── Scroll Indicator ── */
