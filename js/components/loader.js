@@ -103,14 +103,18 @@ export function initLoader() {
     console.log('⏳ Dark Fantasy Loader initialisé');
 
     /* ── Split titles into chars ── */
-    splitChars('.title-line'); // Only split once
+    splitChars('.preloader-header .logo-text');
 
     /* ── Initial states ── */
     // Titre arrive du bas avec un blur
     gsap.set('.preloader-header .char', { 
         yPercent: 120, 
         filter: 'blur(10px)',
-        opacity: 0 // Optional fallback
+        opacity: 0
+    });
+    gsap.set('.preloader-header .logo-svg', { 
+        yPercent: 120, 
+        opacity: 0
     });
     
     // Compteur arrive du bas
@@ -185,13 +189,17 @@ export function initLoader() {
     }, 0);
 
     /* ② Title chars reveal (Arrive du bas avec blur) */
-    tl.to('.preloader-header .char', {
+    tl.to('.preloader-header .char, .preloader-header .logo-svg', {
         yPercent: 0,
-        filter: 'blur(0px)',
         opacity: 1,
         duration: 1.2,
         ease: 'power4.out',
         stagger: { each: 0.05, from: 'start' },
+    }, 0.5);
+    tl.to('.preloader-header .char', {
+        filter: 'blur(0px)',
+        duration: 1.2,
+        ease: 'power4.out',
     }, 0.5);
 
     /* ② Counter appears (Arrive du bas) + rolling animation */
@@ -205,9 +213,13 @@ export function initLoader() {
         },
     }, 0.8);
 
-    /* ③ EXIT — Images : "Aspiration" / Implosion */
-    // Le cadre se referme sur le centre et scale de 1 à 0 (Aspiration)
-    tl.to(wrappers, {
+    /* ③ EXIT — All images EXCEPT the last one collapse inward */
+    const lastIndex = wrappers.length - 1;
+    const otherWrappers = Array.from(wrappers).filter((_, i) => i !== lastIndex);
+    const otherInners = Array.from(inners).filter((_, i) => i !== lastIndex);
+
+    // Other images: aspiration (collapse)
+    tl.to(otherWrappers, {
         clipPath: 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)',
         scale: 0,
         duration: 0.8,
@@ -215,132 +227,128 @@ export function initLoader() {
         stagger: { each: 0.08, from: 'end' },
     }, 3.5);
 
-    // L'image à l'intérieur continue de dézoomer (1 -> 0.5) pour la sensation d'aspiration
-    tl.to(inners, {
+    tl.to(otherInners, {
         scale: 0.5,
         duration: 0.8,
         ease: 'power3.in',
         stagger: { each: 0.08, from: 'end' },
     }, 3.5);
 
-    /* EXIT — 1. Counter part en premier vers le haut */
+    /* Last image: stays visible, holds for a beat */
+    // (It's already at scale: 1 and full clip-path from the entrance)
+
+    /* EXIT — Counter leaves */
     tl.to('.preloader-counter', {
         yPercent: -120,
         opacity: 0,
         duration: 0.5,
         ease: 'power3.in',
-    }, 3.8); // Part juste avant le titre
+    }, 3.8);
 
-    /* EXIT — 2. Titre part ensuite vers le haut avec un blur-out */
-    tl.to('.preloader-header .char', {
+    /* EXIT — Title leaves */
+    tl.to('.preloader-header .char, .preloader-header .logo-svg', {
         yPercent: -120,
-        filter: 'blur(10px)',
         opacity: 0,
         duration: 0.5,
         ease: 'power3.in',
         stagger: { each: 0.02, from: 'start' },
-    }, 4.0); // Le titre part après le compteur
+    }, 4.0);
+    tl.to('.preloader-header .char', {
+        filter: 'blur(10px)',
+        duration: 0.5,
+        ease: 'power3.in',
+    }, 4.0);
 
-    /* ④ Le preloader se referme vers le haut (Wipe final) */
-    tl.to('.preloader', {
-        clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)',
-        duration: 1.5, // Plus lent
-        ease: 'hop',
-    }, 4.35);
+    /* ④ Last image morphs to match .navbar-background position */
+    // Get the navbar-background's position/size (the 16:9 centered block)
+    const navbarBg = document.querySelector('.navbar-background');
+    if (navbarBg) {
+        const navRect = navbarBg.getBoundingClientRect();
+        const gallery = document.querySelector('.preloader-gallery');
+        const galleryRect = gallery.getBoundingClientRect();
 
-    /* Preloader background fades out to reveal Hero */
+        // Calculate the transform needed to move the last image
+        // from its current gallery position to the navbar-background position
+        const scaleX = navRect.width / galleryRect.width;
+        const scaleY = navRect.height / galleryRect.height;
+        const moveX = (navRect.left + navRect.width / 2) - (galleryRect.left + galleryRect.width / 2);
+        const moveY = (navRect.top + navRect.height / 2) - (galleryRect.top + galleryRect.height / 2);
+
+        // Animate the last wrapper to match navbar-background exactly
+        tl.to(wrappers[lastIndex], {
+            x: moveX,
+            y: moveY,
+            scaleX: scaleX,
+            scaleY: scaleY,
+            duration: 1.2,
+            ease: 'power3.inOut',
+        }, 4.2);
+
+        // Inner image counter-scales to maintain appearance
+        tl.to(inners[lastIndex], {
+            scale: 1,
+            duration: 1.2,
+            ease: 'power3.inOut',
+        }, 4.2);
+    }
+
+    /* ⑤ Reveal the real navbar-background (same image, seamless handoff) */
+    tl.to('.navbar-background', {
+        opacity: 1,
+        duration: 0.3,
+        ease: 'none',
+    }, 5.2);
+
+    /* Preloader fades out — the navbar-background is now visible behind it */
     tl.to('.preloader', {
         opacity: 0,
-        duration: 0.8,
+        duration: 0.6,
         ease: 'power2.inOut',
-    }, 5.0); // Décalé pour correspondre à la nouvelle durée du wipe
+    }, 5.3);
 
     tl.set('.preloader', { display: 'none' });
 
-    /* ⑤ Hero content enters — Fire inscription animation */
+    /* ⑥ Hero elements enter — menu links, logo, side markers */
 
-    /* Title: each letter inscribed by fire (scale + glow + blur) */
-    tl.fromTo('.souls-title .char', {
-        opacity: 0,
-        scale: 1.4,
-        filter: 'blur(8px)',
-        textShadow: '0 0 50px rgba(255, 150, 50, 1)',
-    }, {
-        opacity: 1,
-        scale: 1,
-        filter: 'blur(0px)',
-        textShadow: '0 0 30px rgba(201, 168, 76, 0.3)',
-        duration: 0.7,
-        stagger: { each: 0.06, from: 'center' },
-        ease: 'power3.out',
-    }, 5.5);
-
-    /* Title container fade in */
-    tl.to('.souls-title', {
-        opacity: 1,
-        duration: 0.01,
-    }, 5.49);
-
-    /* Horizon line & Darksign expand with golden flare across the title */
-    tl.fromTo('.title-horizon-line', {
-        scaleX: 0,
-        opacity: 1,
-    }, {
-        scaleX: 1,
-        opacity: 1,
-        duration: 1.3,
-        ease: 'power3.out',
-    }, 6.2);
-
-    tl.fromTo('.darksign-ring', {
-        scale: 0.4,
-        opacity: 0,
-    }, {
-        scale: 1,
-        opacity: 0.85,
-        duration: 1.4,
-        ease: 'power2.out',
-    }, 5.7);
-
-    /* Menu links appear smoothly with yPercent from the bottom of their mask */
-    tl.fromTo('.souls-link', {
-        yPercent: 105,
+    /* Menu links fade in with stagger */
+    tl.fromTo('.navbar-links a', {
+        yPercent: 40,
         opacity: 0,
     }, {
         yPercent: 0,
         opacity: 1,
-        duration: 0.9,
+        duration: 0.8,
         stagger: 0.08,
         ease: 'power3.out',
-    }, 5.9);
+    }, 5.5);
 
-    /* Active link's helmet emblem appears */
-    tl.fromTo('.souls-link.active .link-helmet', {
-        scale: 0.4,
+    /* Logo enters */
+    tl.fromTo('.navbar-logo', {
         opacity: 0,
+        y: 20,
     }, {
-        scale: 1,
         opacity: 1,
-        duration: 0.75,
+        y: 0,
+        duration: 0.8,
         ease: 'power3.out',
-    }, 6.4);
+    }, 5.6);
 
-    /* Side markers & copyright fade in */
+    /* Side markers & copyright */
     tl.to('.hero-side, .hero-copyright', {
         opacity: 1,
-        duration: 1.2,
+        duration: 1.3,
         ease: 'power2.out',
-    }, 6.3);
+    }, 5.8);
 
-    /* Scroll indicator */
+    /* Scroll indicator — arrives last */
     tl.to('.scroll-indicator', {
         opacity: 0.75,
-        duration: 1.1,
+        duration: 1.2,
         ease: 'power2.out',
-    }, 6.6);
+    }, 6.0);
 
-    /* Dispatch heroRevealed event so scroll transitions only initialize after hero is fully unveiled */
+    /* Dispatch heroRevealed event */
     tl.add(() => {
         window.dispatchEvent(new CustomEvent('heroRevealed'));
-    }, 6.8);
+    }, 6.5);
 }

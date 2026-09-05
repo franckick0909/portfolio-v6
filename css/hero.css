@@ -1,108 +1,147 @@
 /* ══ DARK SOULS TYPOGRAPHY ══ */
 @font-face {
-    font-family: 'OptimusPrinceps';
-    src: url('../fonts/OptimusPrinceps.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+  font-family: "OptimusPrinceps";
+  src: url("../fonts/OptimusPrinceps.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'OptimusPrinceps';
-    src: url('../fonts/OptimusPrincepsSemiBold.ttf') format('truetype');
-    font-weight: 600;
-    font-style: normal;
-    font-display: swap;
+  font-family: "OptimusPrinceps";
+  src: url("../fonts/OptimusPrincepsSemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
-/* ══ HERO — SOULS MENU SCREEN ══ */
+section {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  z-index: 10;
+}
 
-.hero.souls-menu {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--dark-bg);
+.hero {
+  padding: 2.5rem 0;
+  margin-top: 200svh;
+  mix-blend-mode: difference;
 }
 
 /* Three.js Canvas */
 #souls-canvas {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
 /* Background image layer (parallax) */
 .hero-bg-image {
-    position: absolute;
-    inset: -10%;
-    width: 120%;
-    height: 120%;
-    z-index: 1;
-    opacity: 0.7;
-    will-change: transform;
+  position: absolute;
+  inset: -10%;
+  width: 120%;
+  height: 120%;
+  z-index: 1;
+  opacity: 0.7;
+  will-change: transform;
 }
 
 .hero-bg-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.5) contrast(1.2) saturate(0.8) grayscale(0.8);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6) contrast(1.1) saturate(0.9);
 }
 
 /* ── Fog Layers (CSS animated) ── */
 .fog-layer {
-    position: absolute;
-    width: 200%;
-    height: 100%;
-    top: 0;
-    left: -50%;
-    z-index: 3;
-    pointer-events: none;
-    opacity: 0.6;
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  top: 0;
+  left: -50%;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0.6;
 }
 
 .fog-1 {
-    background:
-        radial-gradient(ellipse 600px 200px at 20% 80%, rgba(180, 160, 130, 0.12) 0%, transparent 70%),
-        radial-gradient(ellipse 800px 300px at 60% 70%, rgba(150, 140, 120, 0.08) 0%, transparent 70%),
-        radial-gradient(ellipse 500px 250px at 80% 90%, rgba(180, 160, 130, 0.1) 0%, transparent 70%);
-    animation: fogDrift1 25s ease-in-out infinite alternate;
+  background:
+    radial-gradient(
+      ellipse 600px 200px at 20% 80%,
+      rgba(180, 160, 130, 0.12) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 800px 300px at 60% 70%,
+      rgba(150, 140, 120, 0.08) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 500px 250px at 80% 90%,
+      rgba(180, 160, 130, 0.1) 0%,
+      transparent 70%
+    );
+  animation: fogDrift1 25s ease-in-out infinite alternate;
 }
 
 .fog-2 {
-    background:
-        radial-gradient(ellipse 700px 250px at 30% 85%, rgba(201, 168, 76, 0.04) 0%, transparent 70%),
-        radial-gradient(ellipse 900px 200px at 70% 75%, rgba(140, 130, 110, 0.06) 0%, transparent 70%);
-    animation: fogDrift2 35s ease-in-out infinite alternate;
-    opacity: 0.4;
+  background:
+    radial-gradient(
+      ellipse 700px 250px at 30% 85%,
+      rgba(201, 168, 76, 0.04) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 900px 200px at 70% 75%,
+      rgba(140, 130, 110, 0.06) 0%,
+      transparent 70%
+    );
+  animation: fogDrift2 35s ease-in-out infinite alternate;
+  opacity: 0.4;
 }
 
 .fog-3 {
-    background:
-        radial-gradient(ellipse 1000px 150px at 50% 90%, rgba(200, 180, 150, 0.05) 0%, transparent 60%);
-    animation: fogDrift3 20s ease-in-out infinite alternate;
-    opacity: 0.3;
+  background: radial-gradient(
+    ellipse 1000px 150px at 50% 90%,
+    rgba(200, 180, 150, 0.05) 0%,
+    transparent 60%
+  );
+  animation: fogDrift3 20s ease-in-out infinite alternate;
+  opacity: 0.3;
 }
 
 @keyframes fogDrift1 {
-    0% { transform: translateX(0%) translateY(0); }
-    100% { transform: translateX(15%) translateY(-2%); }
+  0% {
+    transform: translateX(0%) translateY(0);
+  }
+  100% {
+    transform: translateX(15%) translateY(-2%);
+  }
 }
 
 @keyframes fogDrift2 {
-    0% { transform: translateX(5%) translateY(0); }
-    100% { transform: translateX(-10%) translateY(-1%); }
+  0% {
+    transform: translateX(5%) translateY(0);
+  }
+  100% {
+    transform: translateX(-10%) translateY(-1%);
+  }
 }
 
 @keyframes fogDrift3 {
-    0% { transform: translateX(-5%); }
-    100% { transform: translateX(10%); }
+  0% {
+    transform: translateX(-5%);
+  }
+  100% {
+    transform: translateX(10%);
+  }
 }
 
 /* Dark overlay */
@@ -117,434 +156,188 @@
 
 /* Embers container */
 .embers-container {
-    position: absolute;
-    inset: 0;
-    z-index: 5;
-    pointer-events: none;
-    overflow: hidden;
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-/* ── Souls Menu Content ── */
+/* ── hero H2 et H3 ── */
+.hero-flex{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  padding: 2.5rem;
+  align-items: flex-end;
+  text-align: start;
+}
+
+.hero-flex--left {
+    flex: 1;
+}
+
+.hero-flex--right {
+    flex: 1;
+}
+
+.hero h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 2vw, 3rem);
+  font-weight: 900;
+  line-height: 1;
+  z-index: 5;
+}
+
+.hero h3 {
+    font-family: 'OptimusPrinceps', serif;
+    font-size: clamp(0.5rem, 1vw, 2rem);
+    font-weight: 500;
+    line-height: 1.15;
+    color: var(--white);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
 /* ── Hero Side Markers (Centre Gauche & Droite) ── */
 .hero-side {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    gap: 1.6rem;
-    pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  color: var(--white);
 }
 
 .hero-side--left {
-    left: 3.5rem;
-    text-align: left;
+  left: 3.5rem;
+  text-align: left;
 }
 
 .hero-side--right {
-    right: 3.5rem;
-    text-align: right;
+  right: 3.5rem;
+  text-align: right;
 }
 
 .hero-side-title {
-    font-family: var(--font-mono, 'DM Mono', monospace);
-    font-size: 0.76rem;
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--grey, rgba(212, 232, 232, 0.6));
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  mix-blend-mode: difference;
 }
 
 /* ── Hero Copyright (En bas à gauche) ── */
 .hero-copyright {
-    position: absolute;
-    bottom: 2.6rem;
-    left: 3.5rem;
-    z-index: 10;
-    font-family: var(--font-mono, 'DM Mono', monospace);
-    font-size: 0.75rem;
-    color: var(--grey, rgba(212, 232, 232, 0.6));
-    letter-spacing: 0.16em;
-}
-
-/* ── Souls Menu Content (Centré) ── */
-.souls-menu-content {
-    position: relative;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 2rem;
-    width: 100%;
-    max-width: 1200px;
-}
-
-/* Title Wrap & Dark Souls Horizon Line */
-.souls-title-wrap {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    margin-bottom: 2rem;
-}
-
-/* ── Dark Souls III Horizon Line & Darksign Eclipse ── */
-.title-horizon-line {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 126%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* Lame incandescente blanche et dorée qui traverse le centre */
-.horizon-beam {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 1.5px;
-    transform: translateY(-50%);
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(215, 160, 60, 0) 3%, 
-        rgba(215, 170, 80, 0.4) 15%, 
-        rgba(255, 235, 190, 0.85) 36%, 
-        #ffffff 50%, 
-        rgba(255, 235, 190, 0.85) 64%, 
-        rgba(215, 170, 80, 0.4) 85%, 
-        rgba(215, 160, 60, 0) 97%, 
-        transparent 100%);
-    box-shadow: 
-        0 0 6px rgba(255, 240, 200, 0.9),
-        0 0 16px rgba(230, 160, 40, 0.35),
-        0 0 35px rgba(200, 110, 15, 0);
-}
-
-/* Halo diffus étiré horizontalement */
-.horizon-flare {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 18px;
-    background: radial-gradient(ellipse at center, 
-        rgba(255, 220, 150, 0.2) 0%,
-        rgba(46, 26, 3, 0.1) 45%, 
-        transparent 100%);
-    filter: blur(2px);
-}
-
-/* Cercle de l'éclipse / Marque sombre (Darksign) au centre */
-.darksign-ring {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: clamp(50px, 7vw, 80px);
-    height: clamp(50px, 7vw, 80px);
-    border-radius: 50%;
-    border: 1.5px solid var(--gold-dim);
-    box-shadow: 
-        0 0 45px rgba(255, 176, 27, 0.418),
-        inset 0 0 18px rgba(223, 92, 16, 0.4);
-    background: radial-gradient(circle, rgba(5, 5, 5, 1) 0%, rgba(10, 8, 5, 0.7) 65%, transparent 100%);
-    opacity: 0.9;
-}
-
-/* Title */
-.souls-title {
-    position: relative;
-    z-index: 2;
-    font-family: 'OptimusPrinceps', serif;
-    font-size: clamp(6rem, 13vw, 12rem);
-    font-weight: 900;
-    color: var(--white);
-    letter-spacing: -0.02em;
-    line-height: 1;
-    text-shadow: 0 0 25px rgba(255, 240, 210, 0.35), 0 0 50px rgba(201, 168, 76, 0.2);
-    will-change: transform, opacity;
-}
-
-.title-line {
-    display: inline-block;
-}
-
-/* ═══ FIXED SITE HEADER (Logo central + Nav haut-droite au scroll) ═══ */
-.site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 2rem 3.5rem 0 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 100;
-    pointer-events: none;
-}
-
-.header-logo {
-    position: absolute;
-    top: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    pointer-events: auto;
-    opacity: 0;
-    visibility: hidden;
-    will-change: transform, opacity;
-}
-
-.header-logo-link {
-    text-decoration: none;
-    color: var(--white, #d4e8e8);
-    font-family: 'OptimusPrinceps', serif;
-    font-size: 1.8rem;
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    text-shadow: 0 0 15px rgba(255, 235, 190, 0.4), 0 0 30px rgba(201, 168, 76, 0.25);
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.header-logo-link:hover {
-    color: #f7dba0;
-    text-shadow: 0 0 20px rgba(245, 185, 75, 0.7);
-}
-
-.header-nav {
-    top: 1.5rem;
-    margin-left: auto;
-    display: flex;
-    flex-direction: column; /* Menu en colonne en haut à droite */
-    align-items: flex-end; /* Alignement strict à droite */
-    gap: 0.55rem;
-    pointer-events: auto;
-    opacity: 0;
-    transform: translateY(-20px);
-    visibility: hidden;
-    will-change: transform, opacity;
-}
-
-.header-nav-link {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 0.5rem;
-    text-decoration: none;
-    font-family: 'OptimusPrinceps', serif;
-    font-size: 0.95rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(212, 232, 232, 0.45);
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.header-nav-link:hover,
-.header-nav-link.active {
-    color: #f7dba0;
-    text-shadow: 0 0 12px rgba(245, 185, 75, 0.5);
-}
-
-.header-nav-helmet {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 15px;
-    height: 15px;
-    margin-right: 0.35rem;
-    opacity: 0;
-    transform: scale(0.65);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    pointer-events: none;
-}
-
-.helmet-icon-mini {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 0 5px rgba(245, 185, 75, 0.6));
-}
-
-.header-nav-link.active .header-nav-helmet,
-.header-nav-link:hover .header-nav-helmet {
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* ── Souls Navigation (Menu centré en dessous façon Dark Souls 3) ── */
-.souls-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.65rem;
-    position: relative;
-    z-index: 10;
-}
-
-/* Masque de chaque lien (overflow hidden pour entrée et sortie en yPercent) */
-.souls-link-mask {
-    display: block;
-    overflow: hidden;
-    padding: 0.15rem 0;
-}
-
-.souls-link {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.35rem 1.8rem;
-    color: rgba(190, 200, 200, 0.55);
-    text-decoration: none;
-    font-family: 'OptimusPrinceps', serif;
-    font-size: clamp(1.15rem, 1.5vw, 1.45rem);
-    letter-spacing: 0.08em;
-    opacity: 0;
-    transition: color 0.4s ease, text-shadow 0.4s ease;
-    will-change: transform, opacity;
-    cursor: pointer;
-}
-
-.souls-link:hover,
-.souls-link.active {
-    color: #f7dba0;
-}
-
-/* Icône Casque pour le lien actif et survolé */
-.link-helmet {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px;
-    height: 22px;
-    margin-right: 0.75rem;
-    vertical-align: middle;
-    opacity: 0;
-    transform: scale(0.65) translateX(-4px);
-    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
-}
-
-.helmet-icon {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 0 8px rgba(245, 185, 75, 0.55));
-}
-
-.souls-link.active .link-helmet,
-.souls-link:hover .link-helmet {
-    opacity: 1;
-    transform: scale(1) translateX(0);
-}
-
-/* ── Text Roll (Défilement Awwwards avec Clone & Stagger) ── */
-.roll-text {
-    position: relative;
-    display: inline-flex;
-    overflow: hidden;
-    vertical-align: middle;
-    line-height: 1.25;
-}
-
-.roll-line {
-    display: inline-flex;
-    white-space: nowrap;
-    will-change: transform;
-}
-
-.roll-line--clone {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    color: #f7dba0;
-}
-
-.roll-char {
-    display: inline-block;
-    will-change: transform;
+  position: absolute;
+  bottom: 2.6rem;
+  left: 3.5rem;
+  z-index: 10;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.75rem;
+  mix-blend-mode: difference;
+  letter-spacing: 0.16em;
 }
 
 /* ── Scroll Indicator ── */
 .scroll-indicator {
-    position: absolute;
-    bottom: 2.2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.65rem;
-    z-index: 10;
-    opacity: 0;
-    will-change: opacity;
+  position: absolute;
+  bottom: 2.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  z-index: 10;
+  opacity: 0;
+  will-change: opacity;
 }
 
 .scroll-prompt {
-    font-family: var(--font-mono, 'DM Mono', monospace);
-    font-size: 0.72rem;
-    color: var(--grey, rgba(212, 232, 232, 0.6));
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    white-space: nowrap;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.72rem;
+  color: var(--grey, rgba(212, 232, 232, 0.6));
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .scroll-text {
-    display: none;
+  display: none;
 }
 
 .scroll-line {
-    width: 1px;
-    height: 35px;
-    background: linear-gradient(to bottom, var(--white, #d4e8e8), transparent);
-    animation: scrollLinePulse 2.2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  width: 1px;
+  height: 35px;
+  background: linear-gradient(to bottom, var(--white, #d4e8e8), transparent);
+  animation: scrollLinePulse 2.2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
 }
 
 @keyframes scrollLinePulse {
-    0% { transform: scaleY(0); transform-origin: top; opacity: 0; }
-    45% { transform: scaleY(1); transform-origin: top; opacity: 0.85; }
-    70% { transform: scaleY(1); transform-origin: bottom; opacity: 0.85; }
-    100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+    opacity: 0;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 0.85;
+  }
+  70% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+    opacity: 0.85;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+    opacity: 0;
+  }
 }
 
 /* ══ RESPONSIVE ══ */
 @media (max-width: 900px) {
-    .hero-side {
-        display: none;
-    }
-    .hero-copyright {
-        left: 1.5rem;
-        bottom: 1.5rem;
-    }
-    .scroll-indicator {
-        bottom: 1.5rem;
-    }
+  .hero-side {
+    display: none;
+  }
+  .hero-copyright {
+    left: 1.5rem;
+    bottom: 1.5rem;
+  }
+  .scroll-indicator {
+    bottom: 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
-    .souls-title {
-        letter-spacing: 0.12em;
-    }
+  .souls-title {
+    letter-spacing: 0.12em;
+  }
 
-    .souls-subtitle {
-        letter-spacing: 0.2em;
-        margin-bottom: 2rem;
-    }
+  .souls-subtitle {
+    letter-spacing: 0.2em;
+    margin-bottom: 2rem;
+  }
 
-    .souls-link {
-        font-size: 1rem;
-    }
+  .souls-link {
+    font-size: 1rem;
+  }
+
+  .hero {
+    height: 100svh;
+    margin-top: 0;
+  }
+
+  .hero h1 {
+    padding: 2.5rem;
+    width: 100%;
+    font-size: 2rem;
+  }
 }
