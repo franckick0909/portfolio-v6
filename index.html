@@ -20,12 +20,13 @@
     <link rel="stylesheet" href="css/about.css" />
     <link rel="stylesheet" href="css/projects.css" />
     <link rel="stylesheet" href="css/dragons.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+    <link rel="stylesheet" href="css/text-reveal.css" />
+    <script src="libs/three.min.js"></script>
     <script type="importmap">
       {
         "imports": {
-          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+          "three": "./libs/three-module/three.module.js",
+          "three/addons/": "./libs/three-module/examples/jsm/"
         }
       }
     </script>
@@ -33,63 +34,90 @@
 
   <body>
     <!-- ═══════════════════════════════════════════════════
-         PRELOADER
+         PRELOADER — AWWWARDS-CLASS DARK FANTASY
          ═══════════════════════════════════════════════════ -->
 
-    <div class="preloader">
-      <!-- Image Gallery Sequence (Outfit Style) -->
-      <div class="preloader-gallery">
-        <div class="gallery-wrapper">
-          <img
-            src="assets/images/druins.jpg"
-            alt=""
-            class="preloader-img active"
-          />
-          <img src="assets/images/sword.jpg" alt="" class="preloader-img" />
-          <img src="assets/images/dragon.jpg" alt="" class="preloader-img" />
-          <img src="assets/images/runes.jpg" alt="" class="preloader-img" />
-          <img src="assets/images/moon.jpg" alt="" class="preloader-img" />
-          <img
-            src="assets/images/hero/hero-bg.jpg"
-            alt=""
-            class="preloader-img last"
-          />
+    <div class="preloader" id="preloader">
+
+      <!-- Top Half Shutter -->
+      <div class="preloader-panel preloader-panel-top" id="preloaderPanelTop">
+        <div class="preloader-panel-bg"></div>
+        
+        <!-- Top Right Brand & Subtitle -->
+        <div class="preloader-brand">
+          <div class="brand-mask">
+            <span class="preloader-brand-title">ARTORIAS</span>
+          </div>
+          <div class="brand-mask">
+            <span class="preloader-brand-sub">ABYSS WALKER • MMXXVI</span>
+          </div>
+        </div>
+
+
+      </div>
+
+      <!-- Center Split Axis (Fiery Line + Dragon Runner) -->
+      <div class="preloader-center-axis" id="preloaderCenterAxis">
+        <div class="split-line-track">
+          <div class="split-line-fill" id="splitLineFill"></div>
+          <div class="split-line-glow" id="splitLineGlow"></div>
+        </div>
+
+        <!-- Spark Runner that progresses along the line -->
+        <div class="split-spark-runner" id="splitSparkRunner">
+          <div class="runner-flame-halo"></div>
         </div>
       </div>
 
-      <div class="preloader-header-container">
-        <div class="preloader-header">
-            <a href="/" class="navbar-logo-title">
-              <span class="logo-text">ARTO</span>
-              <img src="/assets/images/svg/3009174.svg" alt="logo" class="logo-svg" />
-              <span class="logo-text">RIAS</span>
-            </a>
-        </div>
+      <!-- Bottom Half Shutter -->
+      <div class="preloader-panel preloader-panel-bottom" id="preloaderPanelBottom">
+        <div class="preloader-panel-bg"></div>
 
-        <!-- Minimalist Counter next to title -->
-        <div class="preloader-counter">
-          <div class="counter-digit-slot">
-            <div class="counter-digit-roll" id="digitHundreds">
-              <span>0</span><span>1</span>
-            </div>
-          </div>
-          <div class="counter-digit-slot">
-            <div class="counter-digit-roll" id="digitTens">
-              <span>0</span><span>1</span><span>2</span><span>3</span
-              ><span>4</span><span>5</span><span>6</span><span>7</span
-              ><span>8</span><span>9</span>
-            </div>
-          </div>
-          <div class="counter-digit-slot">
-            <div class="counter-digit-roll" id="digitOnes">
-              <span>0</span><span>1</span><span>2</span><span>3</span
-              ><span>4</span><span>5</span><span>6</span><span>7</span
-              ><span>8</span><span>9</span>
-            </div>
-          </div>
+
+        
+        
+        <!--  Counter -->
+
+      <div class="counter">
+        <div class="digit-1">
+          <div class="num">0</div>
+          <div class="num">1</div>
+        </div>
+        <div class="digit-2">
+          <div class="num">0</div>
+          <div class="num">1</div>
+          <div class="num">2</div>
+          <div class="num">3</div>
+          <div class="num">4</div>
+          <div class="num">5</div>
+          <div class="num">6</div>
+          <div class="num">7</div>
+          <div class="num">8</div>
+          <div class="num">9</div>
+          <div class="num">0</div>
+        </div>
+        <div class="digit-3">
+          <div class="num">0</div>
+          <div class="num">1</div>
+          <div class="num">2</div>
+          <div class="num">3</div>
+          <div class="num">4</div>
+          <div class="num">5</div>
+          <div class="num">6</div>
+          <div class="num">7</div>
+          <div class="num">8</div>
+          <div class="num">9</div>
+        </div>
+        <div class="digit-4">
+          <div class="num">%</div>
         </div>
       </div>
+      </div>
 
+      <!-- Screen Flash for Lantern Ignition -->
+      <div class="preloader-screen-flash" id="preloaderScreenFlash"></div>
+
+      <!-- Floating Micro Embers -->
       <div class="preloader-embers"></div>
     </div>
 
@@ -98,392 +126,536 @@
       <!-- ═══ SOULS MENU CONTENT is scroll-driven: same elements transform from hero to fixed header ═══ -->
 
       <main class="container">
-        <div class="navbar-backdrop">
-          <div class="navbar-img">
-            <!-- Hero Background Image (parallax layer) -->
-            <div class="hero-bg-image">
-              <img src="assets/images/hero/stone-texture.jpg" alt="" />
+        <!-- ═══ HERO — THE AWAKENING (3D Sanctuary & Perspective Vista) ═══ -->
+        <section class="hero hero-awakening" id="hero">
+          <!-- Three.js Canvas: Sanctuary Colonnade, Perspective 3D Vista & Living Lantern -->
+          <canvas id="souls-canvas"></canvas>
+
+          <!-- Dark overlay gradient -->
+          <div class="hero-overlay"></div>
+
+          <!-- Embers container (JS generated) -->
+          <div class="embers-container" id="embersContainer"></div>
+
+          <!-- Hero Side Markers -->
+          <div class="hero-side hero-side--left">
+            <h4 class="hero-side-title">ABYSS WALKER</h4>
+          </div>
+
+          <div class="hero-side hero-side--right">
+            <h4 class="hero-side-title">FOLIO MMXXVI</h4>
+          </div>
+
+          <!-- Bottom Left Copyright -->
+          <div class="hero-copyright">
+            <h4 class="hero-side-title">ARTORIAS</h4>
+            <span>©2026</span>
+          </div>
+
+          <!-- Scroll indicator -->
+          <div class="scroll-indicator">
+            <span class="scroll-prompt">Défiler pour avancer</span>
+            <div class="scroll-line"></div>
+          </div>
+
+          <!-- Refined Hero Title Container (non-intrusive) -->
+          <div class="hero-title-container">
+            <span class="hero-tag">DIGITAL CRAFTSMAN</span>
+            <p class="hero-subtitle">WEBGL ARTIST & CREATIVE DEVELOPER</p>
+          </div>
+        </section>
+
+        <!-- ═══ NAVBAR — Modern Minimal Top Bar ═══ -->
+        <nav class="navbar" id="navbar">
+          <a href="/" class="navbar-logo">
+            <span class="logo-text">ARTO</span>
+            <img src="/assets/images/svg/3009174.svg" alt="logo" class="logo-svg" />
+            <span class="logo-text">RIAS</span>
+          </a>
+
+          <div class="navbar-menu-wrap">
+            <span class="navbar-menu-label">Menu</span>
+            <div class="navbar-links">
+              <a href="#projets" class="nav-link">
+                <span class="nav-link-bg"></span>
+                <span class="nav-label-text">Projets</span>
+              </a>
+              <a href="#a-propos" class="nav-link">
+                <span class="nav-link-bg"></span>
+                <span class="nav-label-text">À propos</span>
+              </a>
+              <a href="#archives" class="nav-link">
+                <span class="nav-link-bg"></span>
+                <span class="nav-label-text">Archives</span>
+              </a>
+              <a href="#contact" class="nav-link">
+                <span class="nav-link-bg"></span>
+                <span class="nav-label-text">Contact</span>
+              </a>
             </div>
           </div>
-          <div class="navbar-background"></div>
+        </nav>
 
-          <!-- Three.js Canvas -->
-                <canvas id="souls-canvas"></canvas>
-
-                
-
-                <!-- Fog Layers (CSS animated) -->
-                <div class="fog-layer fog-1"></div>
-                <div class="fog-layer fog-2"></div>
-                <div class="fog-layer fog-3"></div>
-
-                <!-- Dark overlay gradient -->
-                <div class="hero-overlay"></div>
-
-                <!-- Embers container (JS generated) -->
-                <div class="embers-container" id="embersContainer"></div>
-
-                
-
-                <!-- Hero Side Markers (Centre Gauche & Droite) -->
-                <div class="hero-side hero-side--left">
-                    <h4 class="hero-side-title">Brand</h4>
-                </div>
-
-                <div class="hero-side hero-side--right">
-                    <h4 class="hero-side-title">Technologie</h4>
-                </div>
-
-                
-                <!-- Bottom Left Copyright -->
-                <div class="hero-copyright">
-                    <h4 class="hero-side-title">Design</h4>
-                    <span>©2026</span>
-                </div>
-
-                <!-- Scroll indicator -->
-                <div class="scroll-indicator">
-                    <span class="scroll-prompt">Scroll down to begin the story</span>
-                    <span class="scroll-text">Scroll</span>
-                    <div class="scroll-line"></div>
-                </div>
-        </div>
-
-        <div class="navbar-items">
-          <div class="navbar-links">
-            <a href="#the-chronicle">The Chronicle</a>
-            <a href="#the-workshop">The Workshop</a>
-          </div>
-          <div class="navbar-links">
-            <a href="#the-archives">The Archives</a>
-            <a href="#the-forge">The Forge</a>
-          </div>
-
-          <div class="navbar-logo">
-            <a href="/" class="navbar-logo-title">
-              <span class="logo-text">ARTO</span>
-              <img src="/assets/images/svg/3009174.svg" alt="logo" class="logo-svg" />
-              <span class="logo-text">RIAS</span>
-            </a>
-          </div>
-        </div>
-
-        <!-- ═══ HERO — SOULS MENU SCREEN ═══ -->
-        <section class="hero souls-menu" id="hero">
-          <div class="hero-flex">
-            <div class="hero-flex--left">
-              <h3>Smart stories. Bold execution. No shortcuts.</h3>
+        <!-- ═══ NARRATIVE THRESHOLD (Le Seuil du Sanctuaire — Transition Extérieur -> Intérieur) ═══ -->
+        <section id="seuil" class="section-threshold">
+          <div class="threshold-container">
+            <div class="threshold-header">
+              <span class="threshold-act">[ CHRONIQUE • ACTE I ]</span>
+              <span class="threshold-sigils">ᚱ • ᛏ • ᛞ • ᛟ • ᛉ</span>
             </div>
-            <div class="hero-flex--right">
-              <h2>We're Naked City — a New York director-ledproduction company. Built forcollaboration andpartnership.<br><br>
-                Inspired by Jules Dassin's Naked City, we know acity of eight million holds endless stories. Our job istocut through the noiseand get to the naked truth.</h2>
+
+            <div class="threshold-main">
+              <h2 class="threshold-title">FRANCHIR LE SEUIL</h2>
+              <p class="threshold-desc">
+                Les voûtes de pierre millénaire s'ouvrent dans la brume. Vous pénétrez au bord des eaux calmes où reposent les reliques forgées dans l'abysse.
+              </p>
+            </div>
+
+            <div class="threshold-footer">
+              <div class="threshold-divider"></div>
+              <div class="threshold-indicator">
+                <span class="indicator-rune">✦</span>
+                <span class="indicator-text">LA NEF DES RELIQUES</span>
+                <span class="indicator-rune">✦</span>
+              </div>
             </div>
           </div>
+        </section>
+
+        <!-- ═══ THE CHRONICLE / PROJECTS (LaCrapule Style: Liens à Gauche, Aperçu Image & Texte à Droite) ═══ -->
+        <section id="projets" class="section-projects">
+          <!-- ARRIÈRE-PLAN DYNAMIQUE : BASSIN D'OBSIDIENNE / RIPPLES INTERACTIFS SHUBNIGGURATH -->
+          <div class="projects-chamber-bg">
+            <img class="chamber-bg-image" src="assets/images/water-cavern.jpg" alt="La Nef des Reliques" />
+            <!-- Canvas WebGL de l'eau liquide avec réfraction et vaguelettes au curseur -->
+            <canvas id="chamber-water-canvas" class="chamber-water-canvas"></canvas>
+            <div class="chamber-mist-overlay"></div>
+            <canvas id="chamber-ambient-canvas" class="chamber-ambient-canvas"></canvas>
+            <div class="chamber-vignette-overlay"></div>
+          </div>
+
+          <div class="projects-container">
             
-        </section>
-
-        <!-- ═══ THE CHRONICLE (About) ═══ -->
-        <section id="the-chronicle" class="section-chronicle">
-          <div class="chronicle-content">
-            <!-- User will code their own content here -->
-
-            <div class="projets-grid">
-              <ul class="projets-list">
-                <!-- Card 1 (Row 1, Col 1) -->
-                <li class="projets-card card-1" data-col="1">
-                  <div class="projets-card-head">
-                    <div class="num-mask">
-                      <p class="projets-card-num">001</p>
-                    </div>
-                    <h4 class="projets-card-title">
-                      <span>The Elden</span>
-                      <span>Lord</span>
-                    </h4>
-                  </div>
-                  <a
-                    href="#"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    class="projets-card-link"
-                  >
-                    <figure class="projets-card-fig">
-                      <div class="base-image base-image--parallax">
-                        <img
-                          src="/assets/images/druins.jpg"
-                          alt=""
-                          class="projets-card-img"
-                        />
-                      </div>
-                    </figure>
-                  </a>
-                </li>
-
-                <!-- Text Card 1 (Row 1, Col 2) -->
-                <li class="about-text-card card-text-1" data-col="2">
-                  <div class="about-text-content">
-                    <span class="text-tag" data-split="line"
-                      >CHRONICLE // 01</span
-                    >
-                    <h3 class="text-title" data-split="line">
-                      Forged in shadows & code.
-                    </h3>
-                    <p class="text-desc" data-split="line">
-                      Exploring avant-garde digital craftsmanship through
-                      visceral dark fantasy realms.
-                    </p>
-                  </div>
-                </li>
-
-                <!-- Card 2 (Row 1, Col 3) -->
-                <li class="projets-card card-2" data-col="3">
-                  <div class="projets-card-head">
-                    <div class="num-mask">
-                      <p class="projets-card-num">002</p>
-                    </div>
-                    <h4 class="projets-card-title">
-                      <span>The Elden</span>
-                      <span>Lord</span>
-                    </h4>
-                  </div>
-                  <a
-                    href="#"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    class="projets-card-link"
-                  >
-                    <figure class="projets-card-fig">
-                      <div class="base-image base-image--parallax">
-                        <img
-                          src="/assets/images/sword.jpg"
-                          alt=""
-                          class="projets-card-img"
-                        />
-                      </div>
-                    </figure>
-                  </a>
-                </li>
-
-                <!-- Card 3 (Row 2, Col 1) -->
-                <li class="projets-card card-3" data-col="1">
-                  <div class="projets-card-head">
-                    <div class="num-mask">
-                      <p class="projets-card-num">003</p>
-                    </div>
-                    <h4 class="projets-card-title">
-                      <span>The Elden</span>
-                      <span>Lord</span>
-                    </h4>
-                  </div>
-                  <a
-                    href="#"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    class="projets-card-link"
-                  >
-                    <figure class="projets-card-fig">
-                      <div class="base-image base-image--parallax">
-                        <img
-                          src="/assets/images/knight.jpg"
-                          alt=""
-                          class="projets-card-img"
-                        />
-                      </div>
-                    </figure>
-                  </a>
-                </li>
-
-                <!-- Card 4 (Row 2, Col 2) -->
-                <li class="projets-card card-4" data-col="2">
-                  <div class="projets-card-head">
-                    <div class="num-mask">
-                      <p class="projets-card-num">004</p>
-                    </div>
-                    <h4 class="projets-card-title">
-                      <span>The Elden</span>
-                      <span>Lord</span>
-                    </h4>
-                  </div>
-                  <a
-                    href="#"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    class="projets-card-link"
-                  >
-                    <figure class="projets-card-fig">
-                      <div class="base-image base-image--parallax">
-                        <img
-                          src="/assets/images/moon.jpg"
-                          alt=""
-                          class="projets-card-img"
-                        />
-                      </div>
-                    </figure>
-                  </a>
-                </li>
-
-                <!-- Text Card 2 (Row 2, Col 3) -->
-                <li class="about-text-card card-text-2" data-col="3">
-                  <div class="about-text-content">
-                    <span class="text-tag" data-split="line"
-                      >PHILOSOPHY // 02</span
-                    >
-                    <h3 class="text-title" data-split="line">
-                      Beyond the veil of reality.
-                    </h3>
-                    <p class="text-desc" data-split="line">
-                      Every piece is an interactive relic crafted with
-                      precision, motion, and deep mythic atmosphere.
-                    </p>
-                  </div>
-                </li>
-
-                <!-- Card 5 (Row 2, Col 4) -->
-                <li class="projets-card card-5" data-col="4">
-                  <div class="projets-card-head">
-                    <div class="num-mask">
-                      <p class="projets-card-num">005</p>
-                    </div>
-                    <h4 class="projets-card-title">
-                      <span>The Elden</span>
-                      <span>Lord</span>
-                    </h4>
-                  </div>
-                  <a
-                    href="#"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    class="projets-card-link"
-                  >
-                    <figure class="projets-card-fig">
-                      <div class="base-image base-image--parallax">
-                        <img
-                          src="/assets/images/dragon.jpg"
-                          alt=""
-                          class="projets-card-img"
-                        />
-                      </div>
-                    </figure>
-                  </a>
-                </li>
-
-                <!-- Text Card 3 (Row 3, Col 1) -->
-                <li class="about-text-card card-text-3" data-col="1">
-                  <div class="about-text-content">
-                    <span class="text-tag" data-split="line"
-                      >ARSENAL // 03</span
-                    >
-                    <h3 class="text-title" data-split="line">
-                      Interactive Alchemy.
-                    </h3>
-                    <p class="text-desc" data-split="line">
-                      Three.js & GLSL · Kinetic Motion Systems · Editorial Grid
-                      Layouts · Micro-interactions.
-                    </p>
-                  </div>
-                </li>
-
-                <!-- Card 6 (Row 3, Col 2) -->
-                <li class="projets-card card-6" data-col="2">
-                  <div class="projets-card-head">
-                    <div class="num-mask">
-                      <p class="projets-card-num">006</p>
-                    </div>
-                    <h4 class="projets-card-title">
-                      <span>The Elden</span>
-                      <span>Lord</span>
-                    </h4>
-                  </div>
-                  <a
-                    href="#"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    class="projets-card-link"
-                  >
-                    <figure class="projets-card-fig">
-                      <div class="base-image base-image--parallax">
-                        <img
-                          src="/assets/images/runes.jpg"
-                          alt=""
-                          class="projets-card-img"
-                        />
-                      </div>
-                    </figure>
-                  </a>
-                </li>
-
-                <!-- Card 7 (Row 4, Col 1) -->
-                <li class="projets-card card-7" data-col="1">
-                  <div class="projets-card-head">
-                    <div class="num-mask">
-                      <p class="projets-card-num">007</p>
-                    </div>
-                    <h4 class="projets-card-title">
-                      <span>The Elden</span>
-                      <span>Lord</span>
-                    </h4>
-                  </div>
-                  <a
-                    href="#"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    class="projets-card-link"
-                  >
-                    <figure class="projets-card-fig">
-                      <div class="base-image base-image--parallax">
-                        <img
-                          src="/assets/images/moon.jpg"
-                          alt=""
-                          class="projets-card-img"
-                        />
-                      </div>
-                    </figure>
-                  </a>
-                </li>
-
-                <!-- Card 8 (Row 4, Col 3) -->
-                <li class="projets-card card-8" data-col="3">
-                  <div class="projets-card-head">
-                    <div class="num-mask">
-                      <p class="projets-card-num">008</p>
-                    </div>
-                    <h4 class="projets-card-title">
-                      <span>The Elden</span>
-                      <span>Lord</span>
-                    </h4>
-                  </div>
-                  <a
-                    href="#"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    class="projets-card-link"
-                  >
-                    <figure class="projets-card-fig">
-                      <div class="base-image base-image--parallax">
-                        <img
-                          src="/assets/images/sword.jpg"
-                          alt=""
-                          class="projets-card-img"
-                        />
-                      </div>
-                    </figure>
-                  </a>
-                </li>
-              </ul>
+            <div class="projects-header-simple">
+              <span class="projects-header-tag">[ RELIQUES DU SANCTUAIRE • MMXXVI ]</span>
             </div>
+
+            <div class="projects-split-layout">
+
+              <!-- COLONNE GAUCHE (35%) : LISTE DES LIENS SIMPLIFIÉE AVEC HOVER NAVBAR -->
+              <div class="projects-nav-col">
+                <ul class="projects-nav-list">
+                  <!-- Projet 01 -->
+                  <li class="project-nav-item is-active" data-project="0">
+                    <div class="project-nav-wrapper">
+                      <div class="project-slot slot-default">
+                        <div class="project-slot-main">
+                          <span class="project-nav-rune">ᚱ</span>
+                          <span class="project-nav-title">L'Abysse de Lordran</span>
+                          <span class="project-nav-arrow">→</span>
+                        </div>
+                        <div class="project-nav-sub">Direction Artistique & 3D WebGL</div>
+                      </div>
+                      <div class="project-slot slot-hover">
+                        <div class="project-slot-main">
+                          <span class="project-nav-rune">ᚱ</span>
+                          <span class="project-nav-title">L'Abysse de Lordran</span>
+                          <span class="project-nav-arrow is-shifted">→</span>
+                        </div>
+                        <div class="project-nav-sub">Direction Artistique & 3D WebGL</div>
+                      </div>
+                      <div class="project-slot slot-default">
+                        <div class="project-slot-main">
+                          <span class="project-nav-rune">ᚱ</span>
+                          <span class="project-nav-title">L'Abysse de Lordran</span>
+                          <span class="project-nav-arrow">→</span>
+                        </div>
+                        <div class="project-nav-sub">Direction Artistique & 3D WebGL</div>
+                      </div>
+                    </div>
+                  </li>
+
+                  <!-- Projet 02 -->
+                  <li class="project-nav-item" data-project="1">
+                    <div class="project-nav-wrapper">
+                      <div class="project-slot slot-default">
+                        <div class="project-slot-main">
+                          <span class="project-nav-rune">ᛏ</span>
+                          <span class="project-nav-title">La Lame des Ombres</span>
+                          <span class="project-nav-arrow">→</span>
+                        </div>
+                        <div class="project-nav-sub">Shaders GLSL & Motion System</div>
+                      </div>
+                      <div class="project-slot slot-hover">
+                        <div class="project-slot-main">
+                          <span class="project-nav-rune">ᛏ</span>
+                          <span class="project-nav-title">La Lame des Ombres</span>
+                          <span class="project-nav-arrow is-shifted">→</span>
+                        </div>
+                        <div class="project-nav-sub">Shaders GLSL & Motion System</div>
+                      </div>
+                      <div class="project-slot slot-default">
+                        <div class="project-slot-main">
+                          <span class="project-nav-rune">ᛏ</span>
+                          <span class="project-nav-title">La Lame des Ombres</span>
+                          <span class="project-nav-arrow">→</span>
+                        </div>
+                        <div class="project-nav-sub">Shaders GLSL & Motion System</div>
+                      </div>
+                    </div>
+                  </li>
+
+                  <!-- Projet 03 -->
+                  <li class="project-nav-item" data-project="2">
+                    <div class="project-nav-wrapper">
+                      <div class="project-slot slot-default">
+                        <div class="project-slot-main">
+                          <span class="project-nav-rune">ᛞ</span>
+                          <span class="project-nav-title">L'Éclipse Lunaire</span>
+                          <span class="project-nav-arrow">→</span>
+                        </div>
+                        <div class="project-nav-sub">Expérience Interactive • SOTD</div>
+                      </div>
+                      <div class="project-slot slot-hover">
+                        <div class="project-slot-main">
+                          <span class="project-nav-rune">ᛞ</span>
+                          <span class="project-nav-title">L'Éclipse Lunaire</span>
+                          <span class="project-nav-arrow is-shifted">→</span>
+                        </div>
+                        <div class="project-nav-sub">Expérience Interactive • SOTD</div>
+                      </div>
+                      <div class="project-slot slot-default">
+                        <div class="project-slot-main">
+                          <span class="project-nav-rune">ᛞ</span>
+                          <span class="project-nav-title">L'Éclipse Lunaire</span>
+                          <span class="project-nav-arrow">→</span>
+                        </div>
+                        <div class="project-nav-sub">Expérience Interactive • SOTD</div>
+                      </div>
+                    </div>
+                  </li>
+
+                  <!-- Projet 04 -->
+                  <li class="project-nav-item" data-project="3">
+                    <div class="project-nav-wrapper">
+                      <div class="project-slot slot-default">
+                        <div class="project-slot-main">
+                          <span class="project-nav-rune">ᛟ</span>
+                          <span class="project-nav-title">Le Serment du Dragon</span>
+                          <span class="project-nav-arrow">→</span>
+                        </div>
+                        <div class="project-nav-sub">Creative Coding • Particle System</div>
+                      </div>
+                      <div class="project-slot slot-hover">
+                        <div class="project-slot-main">
+                          <span class="project-nav-rune">ᛟ</span>
+                          <span class="project-nav-title">Le Serment du Dragon</span>
+                          <span class="project-nav-arrow is-shifted">→</span>
+                        </div>
+                        <div class="project-nav-sub">Creative Coding • Particle System</div>
+                      </div>
+                      <div class="project-slot slot-default">
+                        <div class="project-slot-main">
+                          <span class="project-nav-rune">ᛟ</span>
+                          <span class="project-nav-title">Le Serment du Dragon</span>
+                          <span class="project-nav-arrow">→</span>
+                        </div>
+                        <div class="project-nav-sub">Creative Coding • Particle System</div>
+                      </div>
+                    </div>
+                  </li>
+
+                  <!-- Projet 05 -->
+                  <li class="project-nav-item" data-project="4">
+                    <div class="project-nav-wrapper">
+                      <div class="project-slot slot-default">
+                        <div class="project-slot-main">
+                          <span class="project-nav-rune">ᛉ</span>
+                          <span class="project-nav-title">La Crypte des Runes</span>
+                          <span class="project-nav-arrow">→</span>
+                        </div>
+                        <div class="project-nav-sub">Editorial Design • Typography</div>
+                      </div>
+                      <div class="project-slot slot-hover">
+                        <div class="project-slot-main">
+                          <span class="project-nav-rune">ᛉ</span>
+                          <span class="project-nav-title">La Crypte des Runes</span>
+                          <span class="project-nav-arrow is-shifted">→</span>
+                        </div>
+                        <div class="project-nav-sub">Editorial Design • Typography</div>
+                      </div>
+                      <div class="project-slot slot-default">
+                        <div class="project-slot-main">
+                          <span class="project-nav-rune">ᛉ</span>
+                          <span class="project-nav-title">La Crypte des Runes</span>
+                          <span class="project-nav-arrow">→</span>
+                        </div>
+                        <div class="project-nav-sub">Editorial Design • Typography</div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- COLONNE DROITE (65%) : GRANDE IMAGE UNIQUE EN TRANSPARENCE DÉBORDANT SUR LES LIENS -->
+              <div class="projects-preview-col">
+                <div class="projects-preview-sticky">
+
+                  <!-- Grande image unique avec résumé intégré en surimpression / mix-blend-mode -->
+                  <div class="projects-single-image-stage">
+                    <div class="projects-image-viewport">
+                      <img class="project-hero-img is-active" data-index="0" src="assets/images/druins.jpg" alt="L'Abysse de Lordran" />
+                      <img class="project-hero-img" data-index="1" src="assets/images/sword.jpg" alt="La Lame des Ombres" />
+                      <img class="project-hero-img" data-index="2" src="assets/images/moon.jpg" alt="L'Éclipse Lunaire" />
+                      <img class="project-hero-img" data-index="3" src="assets/images/dragon.jpg" alt="Le Serment du Dragon" />
+                      <img class="project-hero-img" data-index="4" src="assets/images/runes.jpg" alt="La Crypte des Runes" />
+                    </div>
+
+                    <!-- Résumé textuel élégant directement incrusté en transparence avec mix-blend-mode: difference -->
+                    <div class="projects-caption-stage">
+                    <!-- Caption 0 -->
+                    <div class="project-caption-item is-active" data-caption="0">
+                      <div class="caption-header">
+                        <span class="caption-tag">CHRONIQUE // 01</span>
+                        <h3 class="caption-title">Le Sanctuaire Englouti</h3>
+                      </div>
+                      <p class="caption-desc">Exploration viscérale d'un sanctuaire gothique oublié. Rendu Three.js temps réel en perspective avec colonnade monumentale, illumination dynamique par lanterne oscillante et brouillard volumétrique.</p>
+                      <div class="caption-badges">
+                        <span>Three.js</span>
+                        <span>GLSL Shaders</span>
+                        <span>Physique Pendulaire</span>
+                        <span>Volumetric Fog</span>
+                      </div>
+                    </div>
+
+                    <!-- Caption 1 -->
+                    <div class="project-caption-item" data-caption="1">
+                      <div class="caption-header">
+                        <span class="caption-tag">CHRONIQUE // 02</span>
+                        <h3 class="caption-title">L'Arsenal Runic</h3>
+                      </div>
+                      <p class="caption-desc">Forge interactive d'armes ancestrales. Effets de distorsion thermique, lueurs spectrales réactives au passage du curseur et particules d'étincelles dorées forgées en WebGL.</p>
+                      <div class="caption-badges">
+                        <span>Fragment Shaders</span>
+                        <span>Particules d'Étincelles</span>
+                        <span>GSAP Scrub</span>
+                        <span>Post-Processing</span>
+                      </div>
+                    </div>
+
+                    <!-- Caption 2 -->
+                    <div class="project-caption-item" data-caption="2">
+                      <div class="caption-header">
+                        <span class="caption-tag">CHRONIQUE // 03</span>
+                        <h3 class="caption-title">La Nuit des Âmes</h3>
+                      </div>
+                      <p class="caption-desc">Voyage contemplatif au crépuscule d'un monde ancien. Défilement cinématique ultra-fluide avec inertie Lenis, texture de pierre millénaire et transitions d'ambiance lumineuse sans coupure.</p>
+                      <div class="caption-badges">
+                        <span>Lenis Smooth Scroll</span>
+                        <span>Atmosphère Dark Fantasy</span>
+                        <span>Color Grading</span>
+                        <span>Audio Ambiant</span>
+                      </div>
+                    </div>
+
+                    <!-- Caption 3 -->
+                    <div class="project-caption-item" data-caption="3">
+                      <div class="caption-header">
+                        <span class="caption-tag">CHRONIQUE // 04</span>
+                        <h3 class="caption-title">L'Envolée Spectrale</h3>
+                      </div>
+                      <p class="caption-desc">Bête mythique naviguant à travers toutes les strates de la page. Animation squelettique SVG et dynamique ondulatoire procédurale, avec traînée de braises ardentes réactive au pointeur.</p>
+                      <div class="caption-badges">
+                        <span>SVG Spine Rigging</span>
+                        <span>Mathématiques Vectorielles</span>
+                        <span>Collision Emitter</span>
+                        <span>Creative Dev</span>
+                      </div>
+                    </div>
+
+                    <!-- Caption 4 -->
+                    <div class="project-caption-item" data-caption="4">
+                      <div class="caption-header">
+                        <span class="caption-tag">CHRONIQUE // 05</span>
+                        <h3 class="caption-title">Glyphes & Reliques</h3>
+                      </div>
+                      <p class="caption-desc">Système de composition éditoriale inspiré des manuscrits enluminés. Découpage de texte par ligne, révélation cinétique progressive et typographie Dark Souls noble.</p>
+                      <div class="caption-badges">
+                        <span>Line-Split Masking</span>
+                        <span>OptimusPrinceps</span>
+                        <span>Micro-Interactions</span>
+                        <span>Kinetic Typography</span>
+                      </div>
+                    </div> <!-- Fin .projects-caption-stage -->
+                  </div> <!-- Fin .projects-single-image-stage -->
+
+                </div> <!-- Fin .projects-preview-sticky -->
+              </div> <!-- Fin .projects-preview-col -->
+
+            </div>
+
           </div>
         </section>
 
-        <!-- ═══ THE FORGE (Projects) ═══ -->
-        <section id="the-forge" class="section-forge">
-          <!-- Parallax background layers -->
-          <div class="forge-bg">
-            <div class="forge-glow"></div>
-            <div class="forge-fog fog-layer fog-ember"></div>
+        <!-- ═══ À PROPOS — LA TRAVERSÉE DES ABYSSES (Horizontal Scroll Pin) ═══ -->
+        <section id="a-propos" class="section-a-propos">
+          <!-- Arrière-plan cinématique des Abysses avec parallaxe -->
+          <div class="abyss-bg-wrap">
+            <img src="assets/images/abyss-depths.jpg" alt="Les Abysses de Lordran" class="abyss-bg-img" />
+            <canvas id="abyss-wisps-canvas" class="abyss-wisps-canvas"></canvas>
+            <div class="abyss-mist-overlay"></div>
+            <div class="abyss-vignette"></div>
           </div>
-          <div class="section-embers"></div>
 
-          <div class="forge-content">
-            <!-- User will code their own content here -->
+          <!-- Viewport & Track Horizontal -->
+          <div class="abyss-horizontal-viewport">
+            <div class="abyss-track">
+
+              <!-- ── STÈLE I : L'ORIGINE ── -->
+              <article class="abyss-stele stele-origin" data-stele="1">
+                <div class="stele-header">
+                  <span class="stele-tag">[ CHRONIQUE • ACTE II ]</span>
+                  <span class="stele-sigil">ᛟ • ᚱ • ᛁ • ᚷ</span>
+                </div>
+                <h2 class="stele-title">L'Artisan de l'Ombre</h2>
+                <div class="stele-subtitle">WEBGL ARTIST & CREATIVE DEVELOPER</div>
+                
+                <div class="stele-origin-body">
+                  <div class="stele-narrative">
+                    <p>
+                      Forgeron du web moderne naviguant entre rigueur architecturale et alchimie visuelle. J'explore les frontières du code pour concevoir des expériences interactives sombres, immersives et cinématiques.
+                    </p>
+                    <p>
+                      Inspiré par la grandeur mélancolique de la Dark Fantasy et le minimalisme éditorial suisse, je façonne des interfaces sur-mesure où chaque micro-animation sert le récit.
+                    </p>
+                  </div>
+                  <div class="stele-sigil-badge">
+                    <span class="badge-rune">ᛟ</span>
+                    <span class="badge-sub">ARTORIAS</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- ── STÈLE II : L'ARSENAL (Stats RPG) ── -->
+              <article class="abyss-stele stele-stats" data-stele="2">
+                <div class="stele-header">
+                  <span class="stele-tag">[ ATTRIBUTS DE L'ABYSSE ]</span>
+                  <span class="stele-sigil">ᛊ • ᛏ • ᚨ • ᛏ</span>
+                </div>
+                <h2 class="stele-title">L'Arsenal d'Obsidienne</h2>
+                <div class="stele-subtitle">MAÎTRISES TECHNIQUES & SORTILÈGES DU WEB</div>
+
+                <div class="stele-stats-grid">
+                  <!-- Stat 1 -->
+                  <div class="stat-card">
+                    <div class="stat-card-header">
+                      <div class="stat-name-wrap">
+                        <span class="stat-rune">✦</span>
+                        <span class="stat-title">Magie / Shaders GLSL & Three.js</span>
+                      </div>
+                      <span class="stat-val">LVL. 98</span>
+                    </div>
+                    <p class="stat-desc">Simulation de fluides, ondulations d'eau d'obsidienne, géométries procédurales et rendu 3D optimisé 60 FPS.</p>
+                    <div class="stat-bar-track">
+                      <div class="stat-bar-fill" data-width="98%" style="width: 0%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Stat 2 -->
+                  <div class="stat-card">
+                    <div class="stat-card-header">
+                      <div class="stat-name-wrap">
+                        <span class="stat-rune">✦</span>
+                        <span class="stat-title">Vigueur / Architecture Pure Vanilla</span>
+                      </div>
+                      <span class="stat-val">LVL. 96</span>
+                    </div>
+                    <p class="stat-desc">Zéro dépendance lourde inutile, JavaScript ES6+ / TypeScript, respect strict des Web Standards et accessibilité.</p>
+                    <div class="stat-bar-track">
+                      <div class="stat-bar-fill" data-width="96%" style="width: 0%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Stat 3 -->
+                  <div class="stat-card">
+                    <div class="stat-card-header">
+                      <div class="stat-name-wrap">
+                        <span class="stat-rune">✦</span>
+                        <span class="stat-title">Dextérité / GSAP & ScrollTrigger</span>
+                      </div>
+                      <span class="stat-val">LVL. 99</span>
+                    </div>
+                    <p class="stat-desc">Chorégraphies de scroll cinématiques, défilement horizontal fluide (Lenis), SplitText et micro-interactions.</p>
+                    <div class="stat-bar-track">
+                      <div class="stat-bar-fill" data-width="99%" style="width: 0%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- ── STÈLE III : LA FORGE (Philosophie) ── -->
+              <article class="abyss-stele stele-forge" data-stele="3">
+                <div class="stele-header">
+                  <span class="stele-tag">[ PHILOSOPHIE DE FORGE ]</span>
+                  <span class="stele-sigil">ᚠ • ᛟ • ᚱ • ᚷ</span>
+                </div>
+                <h2 class="stele-title">La Forge des Mondes</h2>
+                <div class="stele-subtitle">VISION ARTISTIQUE & ARTISANAT NUMÉRIQUE</div>
+
+                <blockquote class="stele-quote">
+                  « Dompter le code comme le métal noir, forger des univers où la technique s'efface pour laisser place au mystère et à l'émerveillement. »
+                </blockquote>
+
+                <div class="stele-pillars-grid">
+                  <div class="pillar-box">
+                    <span class="pillar-metric">60 FPS</span>
+                    <span class="pillar-label">Fluidité Absolue</span>
+                    <span class="pillar-detail">Optimisation GPU méticuleuse et allocation mémoire maîtrisée.</span>
+                  </div>
+                  <div class="pillar-box">
+                    <span class="pillar-metric">WebGL</span>
+                    <span class="pillar-label">Art Numérique</span>
+                    <span class="pillar-detail">Post-processing, réfractions et éclairages volumétriques réactifs.</span>
+                  </div>
+                  <div class="pillar-box">
+                    <span class="pillar-metric">MMXXVI</span>
+                    <span class="pillar-label">Créativité Pure</span>
+                    <span class="pillar-detail">Direction artistique sombre et storytelling interactif sans compromis.</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- ── STÈLE IV : LE BONFIRE (Sanctuaire & Action) ── -->
+              <article class="abyss-stele stele-bonfire" data-stele="4">
+                <div class="stele-header">
+                  <span class="stele-tag">[ LE SANCTUAIRE DU FEU ]</span>
+                  <span class="stele-sigil">ᛒ • ᛟ • ᚾ • ᚠ</span>
+                </div>
+                <h2 class="stele-title">Le Feu de Camp</h2>
+                <div class="stele-subtitle">REPOS DU VOYAGEUR & NOUVELLES ALLIANCES</div>
+
+                <div class="stele-bonfire-content">
+                  <div class="bonfire-visual">
+                    <div class="bonfire-flame-core"></div>
+                    <span class="bonfire-sword-icon">🗡</span>
+                  </div>
+
+                  <p class="stele-narrative" style="max-width: 520px; text-align: center;">
+                    Vous avez bravé les abysses. Une quête, un projet d'envergure ou une vision immersive à forger ? Rallumez la flamme et unissons nos forces.
+                  </p>
+
+                  <div class="bonfire-actions">
+                    <a href="#contact" class="bonfire-btn bonfire-btn--primary">
+                      <span>✦ Prêter Serment (Contact)</span>
+                    </a>
+                    <a href="#projets" class="bonfire-btn bonfire-btn--secondary">
+                      <span>← Revoir les Reliques</span>
+                    </a>
+                  </div>
+                </div>
+              </article>
+
+            </div>
           </div>
         </section>
       </main>
@@ -494,12 +666,12 @@
       <!-- Dragons are injected by dragons.js -->
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/Flip.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-    <script type="module" src="js/main.js"></script>
+    <script src="libs/gsap.min.js"></script>
+    <script src="libs/CustomEase.min.js"></script>
+    <script src="libs/ScrollTrigger.min.js"></script>
+    <script src="libs/Flip.min.js"></script>
+    <script src="libs/SplitText.min.js"></script>
+    <script src="libs/lenis.min.js"></script>
+    <script type="module" src="js/main.js?v=15"></script>
   </body>
 </html>

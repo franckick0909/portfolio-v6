@@ -2,12 +2,15 @@
  * main.js — Dark Fantasy Portfolio — Point d'entrée principal
  * GSAP, CustomEase, ScrollTrigger, Flip et Lenis chargés via CDN
  */
-import { initLoader } from "./components/loader.js";
-import { initScrollAnimations } from "./components/scroll.js";
-import { initHero } from "./components/hero.js";
-import { initAbout } from "./components/about.js";
-import { initProjects } from "./components/projects.js";
-import { initDragons } from "./components/dragons.js";
+import { initAbout } from "./components/about.js?v=15";
+import { initDragons } from "./components/dragons.js?v=15";
+import { initGateReveal } from "./components/gate-reveal.js?v=15";
+import { initHero } from "./components/hero.js?v=15";
+import { initLoader } from "./components/loader.js?v=15";
+import { initProjects } from "./components/projects.js?v=15";
+import { initScrollAnimations } from "./components/scroll.js?v=15";
+import { initWaterRipple } from "./components/water-ripple.js?v=15";
+import { initAllTextReveals } from "./utils/text-reveal.js?v=15";
 
 /* ── GSAP Plugins ── */
 gsap.registerPlugin(CustomEase, ScrollTrigger, Flip);
@@ -52,69 +55,13 @@ export function splitChars(selector) {
   });
 }
 
-/* ══════════════════════════════════════════════════
-   NAVBAR SCROLL ANIMATION — CodeGrid Flip approach
-   The navbar-background + navbar-items interpolate
-   from a centered 16:9 frame to fullscreen on scroll.
-   The logo flips from bottom-center to top via GSAP Flip.
-   ══════════════════════════════════════════════════ */
-const initNavbarAnimations = () => {
-  const navbarBg = document.querySelector(".navbar-background");
-  const navbarItems = document.querySelector(".navbar-items");
-  const navbarLogo = document.querySelector(".navbar-logo");
-
-  if (!navbarBg || !navbarItems || !navbarLogo) return;
-
-  const viewportWidth = window.innerWidth;
-  const viewportHeight = window.innerHeight;
-
-  // Set the logo to use top positioning for animation
-  // Start it at the bottom of the container
-  const containerHeight = navbarItems.offsetHeight;
-  const logoHeight = navbarLogo.offsetHeight;
-  const initialTop = containerHeight - logoHeight - 40; // 40px = ~2.5rem padding
-  const finalTop = 24; // ~1.5rem from top
-
-  gsap.set(navbarLogo, {
-    top: initialTop,
-    bottom: "auto",
-  });
-
-  // Create a timeline scrubbed by scroll
-  const scrollTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".navbar-backdrop",
-      start: "top top",
-      end: `+=${viewportHeight}px`,
-      scrub: 1,
-      invalidateOnRefresh: true,
-    },
-  });
-
-  // Expand background + items from centered 16:9 to full viewport
-  scrollTl.to([navbarBg, navbarItems], {
-    width: viewportWidth,
-    height: viewportHeight,
-    duration: 1,
-    ease: "none",
-  }, 0);
-
-  // Logo: animate from bottom to top with scale
-  scrollTl.to(navbarLogo, {
-    top: finalTop,
-    scale: 0.65,
-    duration: 1,
-    ease: "none",
-  }, 0);
-};
-
 /* ── Init Everything — Single DOMContentLoaded ── */
 document.addEventListener("DOMContentLoaded", () => {
   // Set initial states for elements that still exist in the DOM
   gsap.set(".scroll-indicator", { opacity: 0 });
   gsap.set(".hero-side, .hero-copyright", { opacity: 0 });
-  gsap.set(".navbar-links a", { opacity: 0, yPercent: 40 });
-  gsap.set(".navbar-logo", { opacity: 0, y: 20 });
+  gsap.set(".navbar .nav-link", { opacity: 0, yPercent: 30 });
+  gsap.set(".navbar-logo", { opacity: 0, y: -10 });
 
   // Init modules
   initLoader();
@@ -122,29 +69,23 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollAnimations();
   initAbout();
   initProjects();
+  initGateReveal();
+  initWaterRipple();
   initDragons();
+  initAllTextReveals();
 
-  // Init navbar Flip animation
-  initNavbarAnimations();
+  // Smooth scroll for anchor navigation links (e.g. navbar PROJETS)
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (e) => {
+      const targetId = anchor.getAttribute("href");
+      if (!targetId || targetId === "#") return;
+      if (anchor.classList.contains("project-nav-link")) return;
 
-  // Resize handler — recalculate on window resize
-  let timer;
-  window.addEventListener("resize", () => {
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-
-      const navbarBg = document.querySelector(".navbar-background");
-      const navbarItems = document.querySelector(".navbar-items");
-      const navbarLogo = document.querySelector(".navbar-logo");
-
-      if (navbarBg && navbarItems && navbarLogo) {
-        gsap.set([navbarBg, navbarItems, navbarLogo], {
-          clearProps: "all",
-        });
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        lenis.scrollTo(targetEl, { offset: 0, duration: 1.2 });
       }
-
-      initNavbarAnimations();
-    }, 250);
+    });
   });
 });

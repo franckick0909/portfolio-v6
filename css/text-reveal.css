@@ -1,0 +1,36 @@
+/* ══════════════════════════════════════════════════
+   TEXT REVEAL — La Crapule Studio Kinetic Mask System
+   • Clean text reveal masked with overflow: hidden
+   • Hardware-accelerated GPU transforms (translateY)
+   • Works on both inline elements and block paragraphs
+   ══════════════════════════════════════════════════ */
+
+.reveal-mask {
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  vertical-align: top;
+  padding-bottom: 0.08em; /* Évite de rogner les jambages inférieurs */
+  line-height: inherit;
+}
+
+.reveal-inner {
+  display: inline-block;
+  will-change: transform, opacity;
+  line-height: inherit;
+}
+
+/* Block paragraphs that span full container */
+.reveal-mask.is-block,
+p .reveal-mask,
+.caption-desc .reveal-mask {
+  display: block;
+  width: 100%;
+}
+
+.reveal-inner.is-block,
+p .reveal-inner,
+.caption-desc .reveal-inner {
+  display: block;
+  width: 100%;
+}

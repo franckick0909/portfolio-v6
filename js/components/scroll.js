@@ -19,21 +19,7 @@ export function initScrollAnimations() {
         });
     }
 
-    // ── Hero Content Parallax (title moves up faster) ──
-    const heroContent = document.querySelector('.souls-menu-content');
-    if (heroContent) {
-        gsap.to(heroContent, {
-            yPercent: -30,
-            opacity: 0,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '.hero',
-                start: 'top top',
-                end: '70% top',
-                scrub: true,
-            }
-        });
-    }
+
 
     // ── Scroll indicator fades out ──
     const scrollIndicator = document.querySelector('.scroll-indicator');

@@ -1,270 +1,491 @@
-/* ══ THE CHRONICLE (About) — Pure Black Minimalist (Amine Zegmou) ══ */
+/* ══════════════════════════════════════════════════
+   SECTION À PROPOS — LA TRAVERSÉE DES ABYSSES
+   • Dark Souls / Artorias the Abysswalker Vibe
+   • Horizontal Scrubbed Scroll via GSAP ScrollTrigger
+   • Parallax Abyss Background & Floating Ethereal Wisps
+   • 4 Narrative Stèles : Origine, Arsenal (Stats), Forge, Bonfire
+   ══════════════════════════════════════════════════ */
 
-.section-chronicle {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    background: var(--fog-color) !important;
-    background-image: none !important;
-    overflow: hidden;
+.section-a-propos {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: #020305;
+  overflow: hidden;
+  z-index: 20;
 }
 
-/* Content container */
-.chronicle-content {
-    position: relative;
-    z-index: 5;
-    width: 100%;
-    height: 100%;
+/* ── 1. Arrière-plan des Abysses avec Parallaxe ── */
+.abyss-bg-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.abyss-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 130vw;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.92) contrast(1.1);
+  will-change: transform;
+}
+
+.abyss-mist-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 40%, rgba(2, 3, 5, 0.7) 100%),
+    linear-gradient(to bottom, #050403 0%, transparent 15%, transparent 85%, #020305 100%),
+    linear-gradient(to right, rgba(2, 3, 5, 0.65) 0%, transparent 20%, transparent 80%, rgba(2, 3, 5, 0.65) 100%);
+}
+
+.abyss-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow: inset 0 0 160px rgba(0, 0, 0, 0.95);
+}
+
+/* Particules d'âmes / Wisps d'humanité flottantes */
+.abyss-wisps-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ── 2. Viewport & Track Horizontal ── */
+.abyss-horizontal-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.abyss-track {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  width: max-content;
+  padding: 0 10vw;
+  gap: 8vw;
+  list-style: none;
+  margin: 0;
+  will-change: transform;
+}
+
+/* ── 3. Stèles de Pierre & Verre d'Obsidienne ── */
+.abyss-stele {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: min(820px, 80vw);
+  max-height: 82vh;
+  padding: 3.2rem 3.6rem;
+  background: rgba(8, 11, 16, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: none;
+  border-radius: 4px;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.85),
+    inset 0 0 40px rgba(0, 0, 0, 0.6);
+  color: #e2e8f0;
+  overflow-y: auto;
+  scrollbar-width: none;
+  transition: box-shadow 0.4s ease;
+}
+
+.abyss-stele::-webkit-scrollbar {
+  display: none;
+}
+
+.abyss-stele:hover {
+  box-shadow:
+    0 35px 90px rgba(0, 0, 0, 0.92),
+    0 0 35px rgba(94, 197, 255, 0.08);
+}
+
+/* Header commun aux stèles */
+.stele-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stele-tag {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #5ec5ff;
+  text-shadow: 0 0 10px rgba(94, 197, 255, 0.4);
+}
+
+.stele-sigil {
+  font-size: 0.85rem;
+  letter-spacing: 0.4em;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.stele-title {
+  font-family: "OptimusPrinceps", serif;
+  font-size: clamp(2rem, 3.2vw, 2.9rem);
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 0.8rem;
+  line-height: 1.15;
+}
+
+.stele-subtitle {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.82rem;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+  margin: 0 0 1.8rem;
+}
+
+/* ══════════════════════════════════════════════════
+   STÈLE I : L'ORIGINE (Identité & Manifeste)
+   ══════════════════════════════════════════════════ */
+.stele-origin-body {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.stele-narrative {
+  font-family: var(--font-body, "EB Garamond", serif);
+  font-size: clamp(1.05rem, 1.3vw, 1.28rem);
+  line-height: 1.75;
+  color: rgba(230, 235, 245, 0.88);
+}
+
+.stele-narrative p {
+  margin: 0 0 1.2rem;
+}
+
+.stele-narrative p:last-child {
+  margin-bottom: 0;
+}
+
+.stele-sigil-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 1px dashed rgba(94, 197, 255, 0.35);
+  background: radial-gradient(circle, rgba(16, 24, 38, 0.8) 0%, rgba(4, 6, 10, 0.95) 75%);
+  box-shadow:
+    0 0 25px rgba(94, 197, 255, 0.15),
+    inset 0 0 20px rgba(0, 0, 0, 0.8);
+  position: relative;
+  text-align: center;
+  transition: transform 0.6s ease;
+}
+
+.abyss-stele:hover .stele-sigil-badge {
+  transform: rotate(45deg);
+  border-color: rgba(94, 197, 255, 0.6);
+  box-shadow: 0 0 35px rgba(94, 197, 255, 0.3);
+}
+
+.badge-rune {
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-shadow: 0 0 18px rgba(94, 197, 255, 0.8);
+  transition: transform 0.6s ease;
+}
+
+.abyss-stele:hover .badge-rune {
+  transform: rotate(-45deg);
+}
+
+.badge-sub {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 0.4rem;
+}
+
+/* ══════════════════════════════════════════════════
+   STÈLE II : L'ARSENAL (RPG Stats / Compétences)
+   ══════════════════════════════════════════════════ */
+.stele-stats-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  margin-top: 0.8rem;
+}
+
+.stat-card {
+  padding: 1rem 1.4rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.stat-card:hover {
+  background: rgba(94, 197, 255, 0.04);
+  border-color: rgba(94, 197, 255, 0.25);
+  transform: translateX(6px);
+}
+
+.stat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.45rem;
+}
+
+.stat-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.stat-rune {
+  font-size: 1.1rem;
+  color: #5ec5ff;
+}
+
+.stat-title {
+  font-family: "OptimusPrinceps", serif;
+  font-size: 1.18rem;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+}
+
+.stat-val {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  color: #5ec5ff;
+}
+
+.stat-desc {
+  font-family: var(--font-body, "EB Garamond", serif);
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: rgba(220, 225, 235, 0.75);
+  margin: 0 0 0.7rem;
+}
+
+.stat-bar-track {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  background: linear-gradient(to right, #2b709c, #5ec5ff);
+  box-shadow: 0 0 10px rgba(94, 197, 255, 0.6);
+  border-radius: 2px;
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ══════════════════════════════════════════════════
+   STÈLE III : LA FORGE DES MONDES (Philosophie)
+   ══════════════════════════════════════════════════ */
+.stele-quote {
+  font-family: var(--font-body, "EB Garamond", serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  line-height: 1.65;
+  color: #ffffff;
+  padding-left: 1.8rem;
+  border-left: 2px solid #5ec5ff;
+  margin: 0 0 2.4rem;
+  text-shadow: 0 0 20px rgba(94, 197, 255, 0.2);
+}
+
+.stele-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4rem;
+}
+
+.pillar-box {
+  padding: 1.4rem 1.2rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: border-color 0.3s ease;
+}
+
+.pillar-box:hover {
+  border-color: rgba(94, 197, 255, 0.25);
+}
+
+.pillar-metric {
+  font-family: "OptimusPrinceps", serif;
+  font-size: 1.8rem;
+  color: #5ec5ff;
+  line-height: 1;
+}
+
+.pillar-label {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.pillar-detail {
+  font-family: var(--font-body, "EB Garamond", serif);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ══════════════════════════════════════════════════
+   STÈLE IV : LE BONFIRE (Repos & Serments)
+   ══════════════════════════════════════════════════ */
+.stele-bonfire-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.6rem;
+}
+
+.bonfire-visual {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.bonfire-flame-core {
+  position: absolute;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(94, 197, 255, 0.8) 0%, rgba(43, 112, 156, 0.4) 50%, transparent 70%);
+  filter: blur(8px);
+  animation: bonfirePulse 3s infinite alternate ease-in-out;
+}
+
+.bonfire-sword-icon {
+  position: relative;
+  font-size: 3.2rem;
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(94, 197, 255, 0.9), 0 0 45px rgba(94, 197, 255, 0.4);
+  z-index: 2;
+  transform: rotate(15deg);
+}
+
+@keyframes bonfirePulse {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  100% { transform: scale(1.3); opacity: 1; }
+}
+
+.bonfire-actions {
+  display: flex;
+  gap: 1.4rem;
+  margin-top: 0.8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.bonfire-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 2rem;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.bonfire-btn--primary {
+  background: rgba(94, 197, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(94, 197, 255, 0.4);
+  box-shadow: 0 0 20px rgba(94, 197, 255, 0.15);
+}
+
+.bonfire-btn--primary:hover {
+  background: #5ec5ff;
+  color: #050403;
+  box-shadow: 0 0 35px rgba(94, 197, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.bonfire-btn--secondary {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.bonfire-btn--secondary:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .abyss-stele {
+    width: 85vw;
+    padding: 2.4rem 2.2rem;
+  }
+  .stele-origin-body {
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  }
+  .stele-sigil-badge {
     margin: 0 auto;
-    min-height: 100vh;
-}
-
-.projets-grid {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    padding: 6rem 2.5rem 10rem 2.5rem;
-    background: var(--black);
-    overflow: hidden;
-}
-
-/* ══════════════════════════════════════════════════
-   GRILLE 4X4 (Style Amine Zegmou — Épurée & Noire)
-   ══════════════════════════════════════════════════ */
-.projets-list {
-    position: relative;
-    z-index: 10;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: minmax(280px, auto);
-    column-gap: 1rem;
-    row-gap: 0.5rem;
-    width: 100%;
-    list-style: none;
-}
-
-/* ══════════════════════════════════════════════════
-   GRID POSITIONS (8 Cartes + 3 Textes Éditoriaux)
-   ══════════════════════════════════════════════════ */
-/* Row 1 */
-.card-1      { grid-column: 1; grid-row: 1; }
-.card-text-1 { grid-column: 2; grid-row: 1; }
-.card-2      { grid-column: 3; grid-row: 1; }
-
-/* Row 2 */
-.card-3      { grid-column: 1; grid-row: 2; }
-.card-4      { grid-column: 2; grid-row: 2; }
-.card-text-2 { grid-column: 3; grid-row: 2; }
-.card-5      { grid-column: 4; grid-row: 2; }
-
-/* Row 3 */
-.card-text-3 { grid-column: 1; grid-row: 3; }
-.card-6      { grid-column: 2; grid-row: 3; }
-
-/* Row 4 */
-.card-7      { grid-column: 1; grid-row: 4; }
-.card-8      { grid-column: 3; grid-row: 4; }
-
-/* ══════════════════════════════════════════════════
-   ABOUT TEXT CARDS (Animées par ligne avec SplitText & Masque)
-   ══════════════════════════════════════════════════ */
-.about-text-card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    padding: 1.5rem 1rem;
-    position: relative;
-}
-
-.about-text-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-}
-
-/* Masque de ligne strict avec overflow: hidden (Osmo SplitText) */
-.line-mask {
-    overflow: hidden !important;
-    display: block !important;
-    padding-bottom: 0.12em;
-    margin-bottom: -0.05em;
-}
-
-.line-inner,
-.line-child {
-    display: block !important;
-    will-change: transform;
-}
-
-.text-tag {
-    font-family: 'Outfit', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    color: var(--gold);
-    text-transform: uppercase;
-}
-
-.text-title {
-    font-family: 'OptimusPrinceps', serif;
-    font-size: clamp(0.5rem, 1vw, 2rem);
-    font-weight: 500;
-    line-height: 1.15;
-    color: var(--white);
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-}
-
-.text-desc {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: clamp(0.75rem, 1vw, 1rem);
-    line-height: 1;
-    font-weight: 400;
-    color: var(--grey);
-}
-
-/* ══════════════════════════════════════════════════
-   CARDS (Style Minimaliste & Typographique)
-   ══════════════════════════════════════════════════ */
-.projets-card {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    position: relative;
-    will-change: transform;
-}
-
-.projets-card-head {
-    display: flex;
-    align-items: flex-start;
-    padding: 0.85rem 0;
-    gap: 0.75rem;
-    position: relative;
-}
-
-.num-mask {
-    overflow: hidden;
-    display: inline-block;
-    line-height: 0.85;
-    vertical-align: top;
-}
-
-.projets-card-num {
-    font-family: 'Barlow Condensed', 'Antonio', sans-serif;
-    font-size: clamp(2rem, 3vw, 3.5rem);
-    font-weight: 600;
-    line-height: 0.85;
-    letter-spacing: -0.01em;
-    color: var(--white);
-    margin: 0;
-    padding: 0;
-    display: block;
-    padding-right: 0.02em;
-    will-change: transform, opacity;
-}
-
-.projets-card-title {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Barlow Condensed', 'Antonio', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-top: 0.2rem;
-    opacity: 0.92;
-}
-
-.projets-card-title span {
-    display: block;
-    white-space: nowrap;
-    will-change: transform, opacity, filter;
-}
-
-.projets-card-title span:last-child {
-    opacity: 0.65;
-    font-weight: 500;
-    color: var(--grey);
-}
-
-/* Image 16/9 animée façon Loader (center-out polygon + scale) */
-.projets-card-link {
-    position: relative;
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #000000;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-/* ── FIGURE & INNER IMAGE (Style exact Amine Zegmou) ── */
-.projets-card-fig {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-    clip-path: inset(0%);
-    will-change: clip-path;
-}
-
-.base-image--parallax {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    transform-origin: 50% 50%;
-    will-change: transform;
-}
-
-.projets-card-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transform-origin: center center;
-    will-change: transform;
-    filter: brightness(0.95);
-    transition: filter 0.6s ease;
-}
-
-.projets-card:hover .projets-card-img {
-    filter: brightness(1.06);
-}
-
-/* ══════════════════════════════════════════════════
-   RESPONSIVE
-   ══════════════════════════════════════════════════ */
-@media (max-width: 1100px) {
-    .projets-list {
-        grid-template-columns: repeat(2, 1fr);
-        column-gap: 0.5rem;
-    }
-
-    .projets-card {
-        grid-column: auto !important;
-        grid-row: auto !important;
-    }
-}
-
-@media (max-width: 640px) {
-    .projets-grid {
-        padding: 3rem 1.2rem;
-    }
-
-    .projets-list {
-        grid-template-columns: 1fr;
-        row-gap: 3rem;
-    }
-
-    .projets-card-num {
-        font-size: 2.6rem;
-    }
+    width: 120px;
+    height: 120px;
+  }
+  .stele-pillars-grid {
+    grid-template-columns: 1fr;
+  }
 }
