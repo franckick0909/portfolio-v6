@@ -29,11 +29,22 @@ export function init3DDragon() {
     camera.position.set(0, 0, 9);
 
     // 2. Renderer
-    const renderer = new THREE.WebGLRenderer({
-        alpha: true,
-        antialias: true,
-        powerPreference: 'high-performance',
-    });
+    let renderer;
+    try {
+        renderer = new THREE.WebGLRenderer({
+            alpha: true,
+            antialias: true,
+            powerPreference: 'high-performance',
+        });
+    } catch (e) {
+        console.warn('WebGL context creation failed in dragon3d — aborting 3D dragon effect.', e);
+        return;
+    }
+
+    if (!renderer.getContext()) {
+        console.warn('WebGL context is null in dragon3d — aborting 3D dragon effect.');
+        return;
+    }
     renderer.setSize(container.clientWidth, container.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;

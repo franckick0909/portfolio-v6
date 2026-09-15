@@ -27,13 +27,31 @@ export function initWaterRipple() {
   let height = container.offsetHeight || window.innerHeight;
 
   // Renderer WebGL ultra-léger
-  const renderer = new THREE.WebGLRenderer({
-    canvas: canvas,
-    antialias: false,
-    alpha: true,
-    powerPreference: "high-performance",
-    precision: "mediump",
-  });
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({
+      canvas: canvas,
+      antialias: false,
+      alpha: true,
+      powerPreference: "high-performance",
+      precision: "mediump",
+    });
+  } catch (e) {
+    console.warn("WebGL context creation failed in water-ripple — aborting water effect.", e);
+    // Masquer le canvas et afficher l'image statique directement
+    const staticImg = document.querySelector(".chamber-bg-image");
+    if (staticImg) staticImg.style.opacity = "1";
+    if (canvas) canvas.style.display = "none";
+    return;
+  }
+
+  if (!renderer.getContext()) {
+    console.warn("WebGL context is null in water-ripple — aborting water effect.");
+    const staticImg = document.querySelector(".chamber-bg-image");
+    if (staticImg) staticImg.style.opacity = "1";
+    if (canvas) canvas.style.display = "none";
+    return;
+  }
   renderer.setSize(width, height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
 
