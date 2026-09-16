@@ -81,9 +81,10 @@ export function initLoader() {
 
   if (!preloader || !panelTop || !panelBottom) return;
 
-  // Populate extra numbers in digit3 only once to allow 3 full rolling cycles (31 numbers)
-  if (digit3 && digit3.children.length <= 10) {
-    for (let i = 0; i < 2; i++) {
+  // Populate digit3 (units) with 10 full 0-9 cycles + final 0 (101 numbers total)
+  if (digit3 && digit3.children.length <= 1) {
+    digit3.innerHTML = "";
+    for (let cycle = 0; cycle < 10; cycle++) {
       for (let j = 0; j < 10; j++) {
         const div = document.createElement("div");
         div.className = "num";
@@ -91,10 +92,30 @@ export function initLoader() {
         digit3.appendChild(div);
       }
     }
-    const finalDigit = document.createElement("div");
-    finalDigit.className = "num";
-    finalDigit.textContent = "0";
-    digit3.appendChild(finalDigit);
+    const finalDiv = document.createElement("div");
+    finalDiv.className = "num";
+    finalDiv.textContent = "0";
+    digit3.appendChild(finalDiv);
+  }
+
+  // Populate digit2 (tens) with 0-9 + final 0 (11 numbers total)
+  if (digit2 && digit2.children.length <= 1) {
+    digit2.innerHTML = "";
+    for (let j = 0; j < 10; j++) {
+      const div = document.createElement("div");
+      div.className = "num";
+      div.textContent = j;
+      digit2.appendChild(div);
+    }
+    const finalDiv = document.createElement("div");
+    finalDiv.className = "num";
+    finalDiv.textContent = "0";
+    digit2.appendChild(finalDiv);
+  }
+
+  // Populate digit1 (hundreds) with 0 and 1
+  if (digit1 && digit1.children.length <= 1) {
+    digit1.innerHTML = '<div class="num">0</div><div class="num">1</div>';
   }
 
   /* ── Initial states ── */
@@ -103,7 +124,6 @@ export function initLoader() {
   // Texts and titles hidden beneath their individual line masks
   if (brandTitle)    gsap.set(brandTitle, { yPercent: 100, opacity: 1 });
   if (brandSub)      gsap.set(brandSub,   { yPercent: 100, opacity: 1 });
-
 
   // Progress line starts at 0 width (scaleX: 0) from left origin
   if (splitLineFill)  gsap.set(splitLineFill,  { scaleX: 0, xPercent: 0, transformOrigin: "left center" });
@@ -174,11 +194,15 @@ export function initLoader() {
        - Phase 2: 30% -> 100%, fast curve (duration: 1.3s, ease: power2.out) */
   const progressState = { val: 0 };
   const getScreenWidth = () => window.innerWidth;
-  const numStep = 120; // Matches 120px height of each .num
+  const getNumHeight = () => {
+    const sample = document.querySelector(".digit-mask .num");
+    return sample && sample.getBoundingClientRect().height > 0 ? sample.getBoundingClientRect().height : 120;
+  };
 
   function updateVisuals(v) {
     const clamped = Math.max(0, Math.min(100, v));
     const ratio = clamped / 100;
+    const numH = getNumHeight();
 
     // Progress bar scaleX from origin left
     if (splitLineFill)  gsap.set(splitLineFill,  { scaleX: ratio, transformOrigin: "left center" });
@@ -189,25 +213,19 @@ export function initLoader() {
       gsap.set(splitSparkRunner, { x: ratio * getScreenWidth() });
     }
 
-    // Synchronized rolling counter digits strictly bound to progress speed
+    // Units digit column (rolls 100 steps from 0 to 100)
     if (digit3) {
-      const d3Target = clamped <= 30
-        ? -(clamped / 30) * 10 * numStep
-        : -(10 + ((clamped - 30) / 70) * 20) * numStep;
-      gsap.set(digit3, { y: d3Target });
+      gsap.set(digit3, { y: -clamped * numH });
     }
 
+    // Tens digit column (rolls 10 steps from 0 to 10)
     if (digit2) {
-      const d2Target = clamped <= 30
-        ? -(clamped / 30) * 3 * numStep
-        : -(3 + ((clamped - 30) / 70) * 7) * numStep;
-      gsap.set(digit2, { y: d2Target });
+      gsap.set(digit2, { y: -(clamped / 10) * numH });
     }
 
+    // Hundreds digit column (rolls from 0 to 1 only between 90% and 100%)
     if (digit1) {
-      const d1Target = clamped < 90
-        ? 0
-        : -((clamped - 90) / 10) * numStep;
+      const d1Target = clamped < 90 ? 0 : -((clamped - 90) / 10) * numH;
       gsap.set(digit1, { y: d1Target });
     }
   }
@@ -308,6 +326,12 @@ export function initLoader() {
 
   /* ⑥ Hero navigation entrance (t = 5.9s) */
   const heroRevealStart = 5.9;
+
+  tl.to(".navbar", {
+    opacity: 1,
+    duration: 0.8,
+    ease: "power2.out",
+  }, heroRevealStart);
 
   tl.fromTo(".navbar .nav-link", {
     yPercent: 30,

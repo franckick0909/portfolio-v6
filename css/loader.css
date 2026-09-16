@@ -11,7 +11,7 @@
 .preloader {
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 9999;
   overflow: hidden;
   pointer-events: auto;
   background: transparent;
@@ -159,47 +159,73 @@
   pointer-events: none;
 }
 
-/* ── Bottom Right Counter ── */
+/* ── Rolling Slot Counter with Strict Line Masks ── */
 
 .counter {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 120px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'OptimusPrinceps', serif;
+  font-variant-numeric: tabular-nums;
   font-size: clamp(3.2rem, 5.5vw, 5.5rem);
-  font-weight: 400;
-  line-height: 120px;
-  clip-path: polygon(0 0, 100% 0, 100% 120px, 0 120px);
+  height: fit-content;
+  line-height: 0.95;
   color: var(--white);
   z-index: 25;
   pointer-events: none;
-  font-family: 'OptimusPrinceps', serif;
-  font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 25px rgba(255, 170, 60, 0.3);
 }
 
-.digit-1, 
-.digit-2,
-.digit-3,
-.digit-4 {
+/* THE MASK CONTAINER: Strict 1-line clipping window */
+.digit-mask {
+  position: relative;
+  height: 0.95em;
+  line-height: 0.95;
+  overflow: hidden;
+  clip-path: inset(0 0 0 0);
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.digit-col {
   position: relative;
   top: 0;
   will-change: transform;
-}
-
-.digit-4 .num {
-  font-size: clamp(1.2rem, 3.5vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
 }
 
 .num {
-  height: 120px;
-  line-height: 120px;
+  height: 0.95em;
+  line-height: 0.95;
+  font-size: inherit;
+  font-weight: 400;
   text-align: center;
-  /* min-width: 0.3em; */
+  min-width: 0.65ch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.digit-mask-unit {
+  height: 0.95em;
+  line-height: 0.95;
+  display: inline-flex;
+  align-items: center;
+}
 
+.digit-mask-unit .num {
+  font-size: 0.48em;
+  color: rgba(255, 200, 130, 0.85);
+  font-family: var(--font-mono, "DM Mono", monospace);
+  min-width: auto;
+  padding-left: 0.12em;
+}
 
 /* ── Screen Flash on Lantern Ignition (Adouci, Ambré & Chaleureux) ── */
 .preloader-screen-flash {
@@ -260,4 +286,28 @@
   .runner-dragon-svg {
     width: 44px;
   }
+
+  .counter {
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  }
 }
+
+@media (max-width: 480px) {
+  .preloader-brand {
+    top: 1.2rem;
+    right: 1.2rem;
+  }
+  .preloader-brand-title {
+    font-size: 1.4rem;
+    letter-spacing: 0.15em;
+  }
+  .preloader-brand-sub {
+    font-size: 0.48rem;
+    letter-spacing: 0.18em;
+  }
+
+  .counter {
+    font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+  }
+}
+
