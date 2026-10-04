@@ -74,7 +74,7 @@ export function initProjects() {
     // Bring this wrapper to the very top
     gsap.set(wrap, {
       zIndex: 4,
-      opacity: 0.62, // Transparence renforcée pour voir les liens dessous
+      opacity: 1, // Transparence renforcée pour voir les liens dessous
       rotation: initRotations[index] || 0,
       scale: 0,
       clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)",
@@ -162,7 +162,7 @@ export function initProjects() {
       enterImage(index);
     }
 
-    // D. Switch captions with line-by-line staggered reveal (Craig Roblewsky / CodePen style)
+    // D. Switch captions with line-by-line staggered reveal
     captionItems.forEach((cap, idx) => {
       if (idx === index) {
         cap.classList.add("is-active");
@@ -172,19 +172,28 @@ export function initProjects() {
 
         gsap.killTweensOf(lineChildren);
         gsap.killTweensOf(badges);
+        gsap.killTweensOf(cap);
 
-        // All lines (.lineChild) reveal sequentially from yPercent: 110 to 0 with stagger
-        gsap.fromTo(
-          lineChildren,
-          { yPercent: 110, opacity: 0 },
-          {
-            yPercent: 0,
-            opacity: 1,
-            duration: 0.75,
-            stagger: 0.08,
-            ease: "power4.out",
-          },
-        );
+        if (lineChildren.length > 0) {
+          gsap.fromTo(
+            lineChildren,
+            { yPercent: 110, opacity: 0 },
+            {
+              yPercent: 0,
+              opacity: 1,
+              duration: 0.7,
+              stagger: 0.07,
+              ease: "power3.out",
+            },
+          );
+        } else {
+          // Fallback if split lines not populated
+          gsap.fromTo(
+            cap,
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }
+          );
+        }
 
         if (badges.length) {
           gsap.fromTo(
@@ -195,7 +204,7 @@ export function initProjects() {
               y: 0,
               duration: 0.45,
               stagger: 0.03,
-              delay: 0.25,
+              delay: 0.2,
               ease: "power2.out",
             },
           );
@@ -215,65 +224,101 @@ export function initProjects() {
     }
   }
 
-  /* ── 6. CodeGrid Direction-Aware Continuous Rolling Engine (Henri Heymans Style) ── */
-  const POSITIONS = {
-    BOTTOM: 0,
-    MIDDLE: -62,
-    TOP: -124,
-  };
+  /* ── 6. Dynamic Slot-Aware Continuous Rolling Engine ── */
+  function getItemSlotHeight(item) {
+    const slot = item.querySelector(".project-slot");
+    return (slot && slot.offsetHeight > 0) ? slot.offsetHeight : (item.offsetHeight || 62);
+  }
 
   navItems.forEach((item, idx) => {
     const wrapper = item.querySelector(".project-nav-wrapper");
     if (!wrapper) return;
 
-    // État initial : le projet 0 est au milieu, les autres en haut
-    let currentPosition = idx === 0 ? POSITIONS.MIDDLE : POSITIONS.TOP;
+    const getPositions = () => {
+      const h = getItemSlotHeight(item);
+      return {
+        BOTTOM: 0,
+        MIDDLE: -h,
+        TOP: -h * 2,
+      };
+    };
+
+    // All items start at TOP position (no project active by default)
+    let currentPosition = getPositions().TOP;
     gsap.set(wrapper, { y: currentPosition });
+
+    function rollToMiddle() {
+      const pos = getPositions();
+      currentPosition = pos.MIDDLE;
+      gsap.to(wrapper, {
+        y: pos.MIDDLE,
+        duration: 0.38,
+        ease: "power2.out",
+      });
+    }
+
+    function rollToExit(leavingFromTop) {
+      const pos = getPositions();
+      currentPosition = leavingFromTop ? pos.TOP : pos.BOTTOM;
+      gsap.to(wrapper, {
+        y: currentPosition,
+        duration: 0.38,
+        ease: "power2.out",
+      });
+    }
 
     item.addEventListener("mouseenter", (e) => {
       clearLeaveTimeout();
       activateProject(idx);
 
+      const pos = getPositions();
       const rect = item.getBoundingClientRect();
       const enterFromTop = e.clientY < rect.top + rect.height / 2;
 
       // Si entrée par le haut et était en bas, on aligne en haut pour rouler vers le bas
-      if (enterFromTop && currentPosition === POSITIONS.BOTTOM) {
-        gsap.set(wrapper, { y: POSITIONS.TOP });
-      } else if (!enterFromTop && currentPosition === POSITIONS.TOP) {
+      if (enterFromTop && currentPosition === pos.BOTTOM) {
+        gsap.set(wrapper, { y: pos.TOP });
+      } else if (!enterFromTop && currentPosition === pos.TOP) {
         // Si entrée par le bas et était en haut, on aligne en bas pour rouler vers le haut
-        gsap.set(wrapper, { y: POSITIONS.BOTTOM });
+        gsap.set(wrapper, { y: pos.BOTTOM });
       }
 
-      currentPosition = POSITIONS.MIDDLE;
-      gsap.to(wrapper, {
-        y: POSITIONS.MIDDLE,
-        duration: 0.4,
-        ease: "power2.out",
-      });
+      rollToMiddle();
     });
 
     item.addEventListener("mouseleave", (e) => {
       const rect = item.getBoundingClientRect();
       const leavingFromTop = e.clientY < rect.top + rect.height / 2;
-
-      currentPosition = leavingFromTop ? POSITIONS.TOP : POSITIONS.BOTTOM;
-      gsap.to(wrapper, {
-        y: currentPosition,
-        duration: 0.4,
-        ease: "power2.out",
-      });
+      rollToExit(leavingFromTop);
     });
 
+    // Mobile / Touch click support
     item.addEventListener("click", (e) => {
       e.preventDefault();
-      e.stopPropagation();
       clearLeaveTimeout();
+
+      // Deactivate all other wrappers
+      navItems.forEach((otherItem, oIdx) => {
+        if (oIdx !== idx) {
+          otherItem.classList.remove("is-active");
+          const otherWrap = otherItem.querySelector(".project-nav-wrapper");
+          if (otherWrap) {
+            const otherH = getItemSlotHeight(otherItem);
+            gsap.to(otherWrap, {
+              y: -otherH * 2,
+              duration: 0.35,
+              ease: "power2.out",
+            });
+          }
+        }
+      });
+
+      rollToMiddle();
       activateProject(idx);
     });
   });
 
-  /* ── 7. Mouseleave on navigation list: ultra-smooth fluid exit like La Crapule ── */
+  /* ── 7. Mouseleave on navigation list: ultra-smooth fluid exit ── */
   if (navList) {
     navList.addEventListener("mouseleave", () => {
       clearLeaveTimeout();
@@ -286,8 +331,9 @@ export function initProjects() {
             item.classList.remove("is-active");
             const wrapper = item.querySelector(".project-nav-wrapper");
             if (wrapper) {
+              const h = getItemSlotHeight(item);
               gsap.to(wrapper, {
-                y: POSITIONS.TOP,
+                y: -h * 2,
                 duration: 0.4,
                 ease: "power2.out",
               });
@@ -300,33 +346,8 @@ export function initProjects() {
     });
   }
 
-  /* ── 8. Initial ScrollTrigger: reveal Project 0 when section enters ── */
-  function tryRevealFirst() {
-    if (!hasRevealedOnce && currentActiveIndex === -1) {
-      hasRevealedOnce = true;
-      activateProject(0);
-    }
-  }
-
-  // Check if section is already in viewport on page load/refresh
-  const sectionEl = document.querySelector(".section-projects");
-  if (sectionEl) {
-    const rect = sectionEl.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.8 && rect.bottom > 0) {
-      tryRevealFirst();
-    }
-  }
-
+  /* ── 8. ScrollTrigger animations (no auto-reveal of first project) ── */
   if (typeof ScrollTrigger !== "undefined" && typeof gsap !== "undefined") {
-    ScrollTrigger.create({
-      trigger: ".section-projects",
-      start: "top 75%",
-      once: true,
-      onEnter: () => {
-        tryRevealFirst();
-      },
-    });
-
     // Nav list entrance animation on scroll
     gsap.from(navItems, {
       opacity: 0,

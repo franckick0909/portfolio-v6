@@ -15,7 +15,7 @@
   --gold: #c9a84c;
   --gold-dim: #8b6914;
   --gold-glow: rgba(201, 168, 76, 0.4);
-  --blood: #8b1a1a;
+  --blood: #53000b;
   --ember: #ff6b35;
   --ember-dim: #cc4400;
   --stone: #3a3a3a;
@@ -40,6 +40,18 @@ html {
 
 html.lenis,
 html.lenis body {
+  background: var(--dark-bg);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 400;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  position: relative;
+  width: 100%;
   height: auto;
 }
 
@@ -56,18 +68,6 @@ html.lenis body {
 }
 
 body {
-  background: var(--dark-bg);
-  color: var(--white);
-  font-family: var(--font-body);
-  font-weight: 400;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.container {
-  position: relative;
-  width: 100%;
   height: auto;
 }
 
@@ -86,182 +86,4 @@ a {
   font-weight: 500;
   line-height: 0.9;
   white-space: nowrap;
-}
-
-/* ══════════════════════════════════════════════════
-   NAVBAR — Modern Minimal Top Bar (Mix Blend Mode)
-   ══════════════════════════════════════════════════ */
-
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 1.8rem 3rem;
-  z-index: 999;
-  pointer-events: none; /* pass-through until interactive links */
-  mix-blend-mode: difference;
-  background: transparent;
-  color: #ffffff;
-}
-
-/* Logo */
-.navbar-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
-  text-decoration: none;
-  color: #ffffff;
-  pointer-events: all;
-  white-space: nowrap;
-  margin: 0;
-}
-
-.logo-text {
-  font-family: "OptimusPrinceps", serif;
-  font-size: clamp(0.95rem, 1.1vw, 1.35rem);
-  text-transform: uppercase;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  color: #ffffff;
-}
-
-.logo-svg {
-  height: 1.4rem;
-  width: auto;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-}
-
-/* ═══ NAVBAR LINKS — Malvah.co Style ═══ */
-.navbar-menu-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar-menu-label {
-  font-family: var(--font-mono, "DM Mono", monospace);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
-  margin: 0 0 0.2rem 0;
-  padding-right: 0.35rem;
-  pointer-events: none;
-}
-
-/* Liens serrés entre eux, aucune marge parasite */
-.navbar-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin: 0;
-  padding: 0;
-  align-items: flex-end;
-}
-
-/* Lien individuel compact avec fond qui s'anime en scaleX */
-.nav-link {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0.1rem 0.45rem;
-  margin: 0;
-  line-height: 1.25;
-  pointer-events: all;
-  text-decoration: none;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-/* Fond bloc haute lisibilité — se retire vers la gauche au unhover */
-.nav-link-bg {
-  position: absolute;
-  inset: 0;
-  background: #ffffff;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.nav-label-text {
-  position: relative;
-  z-index: 1;
-  font-family: "OptimusPrinceps", serif;
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #ffffff;
-  transition: color 0.2s ease;
-}
-
-/* Hover: scaleX(1) */
-.nav-link:hover .nav-link-bg {
-  transform: scaleX(1);
-  transform-origin: left center;
-}
-
-/* Quand on ne le survole plus: se retire vers la gauche */
-.nav-link:not(:hover) .nav-link-bg {
-  transform: scaleX(0);
-  transform-origin: left center;
-}
-
-/* Inversion du texte sur le fond blanc, exactement comme Malvah Studio */
-.nav-link:hover .nav-label-text {
-  color: #000000;
-}
-
-
-/* ══ RESPONSIVE ══ */
-
-@media (max-width: 1150px) {
-  .navbar {
-    padding: 1.2rem 2rem;
-  }
-
-  .navbar-links {
-    gap: 1.8rem;
-  }
-}
-
-@media (max-width: 720px) {
-  .navbar {
-    padding: 1rem 1.5rem;
-  }
-
-  .navbar-links {
-    gap: 1.2rem;
-  }
-
-  .nav-label-text {
-    font-size: 0.65rem;
-    letter-spacing: 0.12em;
-  }
-
-  .hero {
-    height: 100svh;
-    margin-top: 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .navbar-links {
-    gap: 0.8rem;
-  }
-
-  .nav-label-text {
-    font-size: 0.6rem;
-  }
 }

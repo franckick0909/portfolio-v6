@@ -225,14 +225,14 @@ section {
 /* ══ RESPONSIVE ══ */
 @media (max-width: 900px) {
   .hero-side--left {
-  left: 1.5rem;
-  text-align: left;
-}
+    left: 1.5rem;
+    text-align: left;
+  }
 
-.hero-side--right {
-  right: 1.5rem;
-  text-align: right;
-}
+  .hero-side--right {
+    right: 1.5rem;
+    text-align: right;
+  }
 
   .hero-copyright {
     left: 1.5rem;
@@ -248,24 +248,11 @@ section {
 }
 
 @media (max-width: 768px) {
-  .souls-title {
-    letter-spacing: 0.12em;
-  }
-
-  .souls-subtitle {
-    letter-spacing: 0.2em;
-    margin-bottom: 2rem;
-  }
-
-  .souls-link {
-    font-size: 1rem;
-  }
-
   .hero {
-    height: auto;
+    height: 100svh;
     min-height: 100svh;
-    margin-top: 100svh;
-    padding: 4rem 0 2rem;
+    margin-top: 0;
+    padding: 0;
   }
 
   /* Hero text visible on mobile */
@@ -293,12 +280,7 @@ section {
     line-height: 1.4;
   }
 
-  .hero h1 {
-    padding: 1.5rem;
-    width: 100%;
-    font-size: 1.8rem;
-  }
-
+  /* Hide decorative side markers on mobile */
   .hero-side {
     display: none;
   }
@@ -306,6 +288,66 @@ section {
   .hero-copyright {
     left: 1.5rem;
     bottom: 1.2rem;
+    font-size: 0.65rem;
+  }
+
+  .scroll-indicator {
+    bottom: 1.2rem;
+  }
+
+  .scroll-prompt {
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+  }
+
+  /* Hero Awakening adjustments */
+  .hero-awakening {
+    padding-bottom: 4vh;
+  }
+
+  .hero-title-container {
+    margin-bottom: 3rem;
+    gap: 0.4rem;
+  }
+
+  .hero-tag {
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+  }
+
+  .hero-subtitle {
+    font-size: 0.52rem;
+    letter-spacing: 0.2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-awakening {
+    padding-bottom: 3vh;
+  }
+
+  .hero-title-container {
+    margin-bottom: 2.2rem;
+  }
+
+  .hero-tag {
+    font-size: 0.48rem;
+    letter-spacing: 0.2em;
+  }
+
+  .hero-subtitle {
+    font-size: 0.45rem;
+    letter-spacing: 0.15em;
+  }
+
+  .hero-copyright {
+    left: 1rem;
+    bottom: 1rem;
+    font-size: 0.6rem;
+  }
+
+  .scroll-indicator {
+    bottom: 1rem;
   }
 }
 
@@ -350,3 +392,4 @@ section {
   color: rgba(212, 232, 232, 0.65);
   margin-top: 0.2rem;
 }
+

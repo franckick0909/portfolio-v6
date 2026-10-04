@@ -594,36 +594,162 @@
     right: auto;
     width: 100%;
     max-width: 100%;
+    min-height: 140px;
     margin-top: 1.5rem;
     mix-blend-mode: normal;
   }
 
   .project-caption-item {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     max-width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .project-caption-item.is-active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  /* ── Hide water WebGL on mobile for performance ── */
+  .chamber-water-canvas,
+  .chamber-ambient-canvas {
+    display: none !important;
+  }
+
   .section-threshold {
-    padding: 4.5rem 1.5rem;
-    min-height: 45vh;
+    padding: 4rem 1.5rem;
+    min-height: auto;
+  }
+
+  .threshold-title {
+    font-size: clamp(1.4rem, 5vw, 2.2rem);
+    letter-spacing: 0.08em;
+  }
+
+  .threshold-desc {
+    font-size: clamp(0.95rem, 3vw, 1.15rem);
+  }
+
+  .threshold-act {
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
   }
 
   .section-projects {
-    padding: 3.5rem 1.2rem 4.5rem;
+    padding: 3rem 1.2rem 4rem;
+  }
+
+  .projects-header-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+  }
+
+  /* Project nav items */
+  .project-nav-item {
+    height: 56px;
+  }
+
+  .project-nav-wrapper {
+    height: 168px; /* 3 x 56px */
+  }
+
+  .project-slot {
+    height: 56px;
   }
 
   .project-nav-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    white-space: normal;
   }
 
   .project-nav-sub {
     padding-left: 0;
+    font-size: 0.6rem;
+  }
+
+  .project-nav-rune {
+    font-size: 0.95rem;
+    min-width: 1.4rem;
+  }
+
+  /* Image stage */
+  .projects-single-image-stage {
+    height: 35vh;
+    min-height: 240px;
+    max-height: 400px;
+  }
+
+  /* Captions */
+  .caption-title {
+    font-size: 1.15rem;
+  }
+
+  .caption-desc {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .caption-tag {
+    font-size: 0.62rem;
+  }
+
+  .caption-badges span {
+    font-size: 0.58rem;
+    padding: 0.15rem 0.45rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-threshold {
+    padding: 3rem 1rem;
+  }
+
+  .threshold-title {
+    font-size: clamp(1.2rem, 5.5vw, 1.8rem);
+  }
+
+  .section-projects {
+    padding: 2.5rem 0.8rem 3.5rem;
+  }
+
+  .project-nav-item {
+    height: 50px;
+  }
+
+  .project-nav-wrapper {
+    height: 150px; /* 3 x 50px */
+  }
+
+  .project-slot {
+    height: 50px;
+    padding: 0 0.8rem;
+  }
+
+  .project-nav-title {
+    font-size: 0.9rem;
   }
 
   .projects-single-image-stage {
-    height: 38vh;
-    min-height: 280px;
+    height: 30vh;
+    min-height: 200px;
+    max-height: 320px;
+  }
+
+  .caption-title {
+    font-size: 1rem;
+  }
+
+  .caption-desc {
+    font-size: 0.88rem;
   }
 }
+

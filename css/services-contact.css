@@ -1,0 +1,873 @@
+/* ══════════════════════════════════════════════════
+   SECTION SERVICES & CONTACT — L'ARSENAL & LE SERMENT
+   • Dark Fantasy / Luxury Awwwards Styling
+   • Les 3 Pactes de Création (Cartes de Services)
+   • Le Rituel de Forge (Processus de A à Z : Contact -> Livraison)
+   • Le Grimoire des Réponses (FAQ Interactive Accordéon)
+   • L'Autel du Serment (Formulaire de Contact & Coordonnées)
+   ══════════════════════════════════════════════════ */
+
+/* ── CONTENEUR PRINCIPAL SERVICES ── */
+.section-services {
+  position: relative;
+  width: 100%;
+  background: #040508;
+  color: var(--white, #d4e8e8);
+  padding: clamp(6rem, 12vh, 10rem) clamp(1.5rem, 5vw, 6rem);
+  overflow: hidden;
+  z-index: 21;
+}
+
+/* Arrière-plan subtil : lueurs et grille runique */
+.services-ambient-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.services-gradient-glow {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 900px;
+  height: 900px;
+  max-width: 90vw;
+  max-height: 90vw;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.07) 0%, rgba(94, 197, 255, 0.03) 45%, transparent 70%);
+  filter: blur(80px);
+}
+
+.services-ambient-bottom {
+  position: absolute;
+  bottom: 5%;
+  right: 10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(160, 30, 45, 0.06) 0%, transparent 65%);
+  filter: blur(70px);
+}
+
+.services-inner-container {
+  position: relative;
+  max-width: 1380px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+/* ── EN-TÊTE DE SECTION (ACTE III) ── */
+.section-header-ritual {
+  text-align: center;
+  margin-bottom: clamp(4rem, 8vh, 6.5rem);
+}
+
+.ritual-tag {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  text-shadow: 0 0 12px rgba(201, 168, 76, 0.45);
+  margin-bottom: 0.8rem;
+}
+
+.ritual-sigils {
+  font-size: 0.9rem;
+  letter-spacing: 0.5em;
+  color: rgba(255, 255, 255, 0.28);
+  margin-bottom: 1rem;
+}
+
+.ritual-title {
+  font-family: "OptimusPrinceps", "EB Garamond", serif;
+  font-size: clamp(2.4rem, 5.5vw, 4.8rem);
+  color: #ffffff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.ritual-subtitle {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: clamp(0.75rem, 1.2vw, 0.88rem);
+  letter-spacing: 0.22em;
+  color: rgba(212, 232, 232, 0.65);
+  text-transform: uppercase;
+  max-width: 680px;
+  margin: 0 auto 1.8rem;
+}
+
+.ritual-header-line {
+  width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+  margin: 0 auto;
+}
+
+/* ══════════════════════════════════════════════════
+   1. LES PACTES DE CRÉATION (Cartes Services)
+   ══════════════════════════════════════════════════ */
+.services-pacts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 2.5vw, 2.5rem);
+  margin-bottom: clamp(6rem, 12vh, 9rem);
+}
+
+.pact-card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(17, 20, 28, 0.75) 0%, rgba(9, 11, 16, 0.9) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  padding: clamp(2rem, 3.5vw, 3rem) clamp(1.5rem, 2.5vw, 2.2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.45s ease, box-shadow 0.45s ease;
+}
+
+.pact-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(201, 168, 76, 0.35);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 35px rgba(201, 168, 76, 0.12);
+}
+
+.pact-card-featured {
+  border-color: rgba(201, 168, 76, 0.28);
+  background: linear-gradient(180deg, rgba(24, 25, 34, 0.85) 0%, rgba(11, 13, 19, 0.95) 100%);
+}
+
+.pact-badge-featured {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: #c9a84c;
+  color: #050505;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border-radius: 2px;
+  box-shadow: 0 0 15px rgba(201, 168, 76, 0.6);
+}
+
+.pact-card-header {
+  margin-bottom: 1.5rem;
+}
+
+.pact-num {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.78rem;
+  letter-spacing: 0.25em;
+  color: #c9a84c;
+  margin-bottom: 0.6rem;
+}
+
+.pact-name {
+  font-family: "OptimusPrinceps", "EB Garamond", serif;
+  font-size: clamp(1.45rem, 2vw, 1.85rem);
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+}
+
+.pact-desc {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: rgba(212, 232, 232, 0.7);
+  margin-bottom: 1.8rem;
+}
+
+.pact-deliverables-title {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 0.8rem;
+}
+
+.pact-deliverables-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.pact-deliverables-list li {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.85rem;
+  color: rgba(212, 232, 232, 0.85);
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.pact-deliverables-list li::before {
+  content: "✦";
+  color: #c9a84c;
+  font-size: 0.75rem;
+}
+
+.pact-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pact-timing {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+}
+
+.pact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  color: #ffffff;
+  font-family: "OptimusPrinceps", serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.65rem 1.2rem;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pact-btn:hover {
+  background: rgba(201, 168, 76, 0.12);
+  border-color: #c9a84c;
+  box-shadow: 0 0 15px rgba(201, 168, 76, 0.25);
+  color: #c9a84c;
+}
+
+/* ══════════════════════════════════════════════════
+   2. LE RITUEL DE FORGE (Timeline Complète Contact -> Livraison)
+   ══════════════════════════════════════════════════ */
+.ritual-process-section {
+  position: relative;
+  margin-bottom: clamp(6rem, 12vh, 9rem);
+}
+
+.ritual-process-header {
+  text-align: center;
+  margin-bottom: clamp(3rem, 6vh, 4.5rem);
+}
+
+.ritual-process-title {
+  font-family: "OptimusPrinceps", serif;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.6rem;
+}
+
+.ritual-process-sub {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: rgba(212, 232, 232, 0.6);
+  text-transform: uppercase;
+}
+
+/* Timeline Track */
+.process-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.process-timeline::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  bottom: 30px;
+  left: 36px;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(201, 168, 76, 0.6) 0%, rgba(94, 197, 255, 0.5) 50%, rgba(201, 168, 76, 0.6) 100%);
+  box-shadow: 0 0 10px rgba(201, 168, 76, 0.4);
+}
+
+.process-step-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 74px 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+  transition: transform 0.4s ease;
+}
+
+.process-step-item:hover {
+  transform: translateX(6px);
+}
+
+.process-step-node {
+  position: relative;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  background: #0d0f14;
+  border: 1px solid rgba(201, 168, 76, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), inset 0 0 12px rgba(201, 168, 76, 0.15);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.process-step-item:hover .process-step-node {
+  border-color: #c9a84c;
+  box-shadow: 0 0 25px rgba(201, 168, 76, 0.4), inset 0 0 15px rgba(201, 168, 76, 0.3);
+}
+
+.node-rune {
+  font-size: 1.15rem;
+  color: #c9a84c;
+  line-height: 1;
+}
+
+.node-num {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 2px;
+}
+
+.process-step-content {
+  background: linear-gradient(135deg, rgba(14, 16, 23, 0.8) 0%, rgba(8, 10, 15, 0.85) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+  padding: 1.8rem 2.2rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.process-step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.6rem;
+}
+
+.step-phase-tag {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c9a84c;
+}
+
+.step-timing {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.step-title {
+  font-family: "OptimusPrinceps", serif;
+  font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.step-desc {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: rgba(212, 232, 232, 0.75);
+  margin-bottom: 1rem;
+}
+
+.step-deliverables {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.step-chip {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.25rem 0.65rem;
+  border-radius: 2px;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ══════════════════════════════════════════════════
+   3. LE GRIMOIRE DES RÉPONSES (FAQ Interactive)
+   ══════════════════════════════════════════════════ */
+.faq-section {
+  position: relative;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.faq-header {
+  text-align: center;
+  margin-bottom: clamp(3rem, 5vh, 4rem);
+}
+
+.faq-title {
+  font-family: "OptimusPrinceps", serif;
+  font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+}
+
+.faq-subtitle {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: rgba(212, 232, 232, 0.6);
+  text-transform: uppercase;
+}
+
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  background: linear-gradient(135deg, rgba(14, 16, 22, 0.75) 0%, rgba(8, 10, 14, 0.8) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.faq-item.is-open {
+  border-color: rgba(201, 168, 76, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(201, 168, 76, 0.08);
+}
+
+.faq-trigger {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 1.4rem 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.faq-question-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.faq-rune {
+  font-size: 0.85rem;
+  color: #c9a84c;
+  opacity: 0.8;
+}
+
+.faq-question {
+  font-family: "OptimusPrinceps", "EB Garamond", serif;
+  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  color: #ffffff;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.faq-item.is-open .faq-question,
+.faq-trigger:hover .faq-question {
+  color: #c9a84c;
+}
+
+.faq-icon-toggle {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c9a84c;
+  font-size: 1.3rem;
+  line-height: 1;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-item.is-open .faq-icon-toggle {
+  transform: rotate(45deg);
+}
+
+.faq-answer-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  opacity: 0;
+}
+
+.faq-item.is-open .faq-answer-panel {
+  max-height: 400px;
+  opacity: 1;
+}
+
+.faq-answer-content {
+  padding: 0 1.8rem 1.6rem 3.4rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: rgba(212, 232, 232, 0.78);
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding-top: 1rem;
+}
+
+/* ══════════════════════════════════════════════════
+   4. L'AUTEL DU SERMENT (Section Contact #contact)
+   ══════════════════════════════════════════════════ */
+.section-contact {
+  position: relative;
+  width: 100%;
+  background: #020305;
+  color: var(--white, #d4e8e8);
+  padding: clamp(6rem, 12vh, 10rem) clamp(1.5rem, 5vw, 6rem);
+  overflow: hidden;
+  z-index: 22;
+}
+
+.contact-inner-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: flex-start;
+}
+
+/* Colonne Gauche : Coordonnées & Statut */
+.contact-meta-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.contact-header {
+  margin-bottom: 1rem;
+}
+
+.contact-tag {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #ff6b35;
+  text-shadow: 0 0 10px rgba(255, 107, 53, 0.4);
+  margin-bottom: 0.8rem;
+}
+
+.contact-title {
+  font-family: "OptimusPrinceps", serif;
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  color: #ffffff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 1.2rem;
+}
+
+.contact-intro {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(212, 232, 232, 0.75);
+}
+
+/* Statut en direct */
+.contact-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(16, 24, 18, 0.8);
+  border: 1px solid rgba(46, 213, 115, 0.35);
+  border-radius: 20px;
+  padding: 0.5rem 1.1rem;
+  width: fit-content;
+  box-shadow: 0 0 15px rgba(46, 213, 115, 0.1);
+}
+
+.status-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2ed573;
+  box-shadow: 0 0 10px #2ed573;
+  animation: statusPulse 2s infinite ease-in-out;
+}
+
+@keyframes statusPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.5; }
+}
+
+.status-text {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: #2ed573;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Coordonnées directes */
+.contact-direct-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.contact-direct-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.contact-direct-label {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+}
+
+.contact-direct-value {
+  font-family: "OptimusPrinceps", serif;
+  font-size: 1.3rem;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+}
+
+.contact-direct-value:hover {
+  color: #c9a84c;
+}
+
+.contact-socials-row {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.contact-social-link {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: rgba(212, 232, 232, 0.6);
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 2px;
+  transition: all 0.3s ease;
+}
+
+.contact-social-link:hover {
+  color: #c9a84c;
+  border-color: #c9a84c;
+}
+
+/* Colonne Droite : Formulaire */
+.contact-form-box {
+  background: linear-gradient(135deg, rgba(14, 17, 24, 0.85) 0%, rgba(7, 9, 14, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 4px;
+  padding: clamp(2rem, 3.5vw, 3rem);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-label {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  background: rgba(3, 4, 7, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  padding: 0.9rem 1.1rem;
+  color: #ffffff;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: #c9a84c;
+  box-shadow: 0 0 15px rgba(201, 168, 76, 0.2);
+}
+
+.form-textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.form-select option {
+  background: #0d0f14;
+  color: #ffffff;
+}
+
+.form-submit-btn {
+  position: relative;
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.2) 0%, rgba(139, 105, 20, 0.3) 100%);
+  border: 1px solid #c9a84c;
+  color: #ffffff;
+  padding: 1.1rem 2rem;
+  font-family: "OptimusPrinceps", serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+.form-submit-btn:hover {
+  background: #c9a84c;
+  color: #050505;
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-sigil {
+  color: inherit;
+  font-size: 1rem;
+}
+
+.form-status-msg {
+  display: none;
+  padding: 0.8rem 1rem;
+  border-radius: 3px;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+.form-status-msg.is-success {
+  display: block;
+  background: rgba(46, 213, 115, 0.15);
+  border: 1px solid #2ed573;
+  color: #2ed573;
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE DESIGN
+   ══════════════════════════════════════════════════ */
+@media (max-width: 1080px) {
+  .services-pacts-grid {
+    grid-template-columns: 1fr;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .process-timeline::before {
+    left: 24px;
+  }
+
+  .process-step-item {
+    grid-template-columns: 50px 1fr;
+    gap: 1.2rem;
+  }
+
+  .process-step-node {
+    width: 50px;
+    height: 50px;
+  }
+
+  .node-rune {
+    font-size: 0.95rem;
+  }
+
+  .node-num {
+    display: none;
+  }
+
+  .process-step-content {
+    padding: 1.4rem 1.5rem;
+  }
+  
+  .faq-answer-content {
+    padding-left: 1.8rem;
+  }
+}

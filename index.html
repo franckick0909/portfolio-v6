@@ -9,18 +9,20 @@
       content="Artorias — A dark fantasy creative portfolio experience."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Outfit:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&amp;family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&amp;family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Outfit:wght@400;700;900&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/loader.css" />
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/loader.css?v=19" />
+    <link rel="stylesheet" href="css/main.css?v=36" />
     <link rel="stylesheet" href="css/hero.css" />
     <link rel="stylesheet" href="css/about.css" />
     <link rel="stylesheet" href="css/projects.css" />
     <link rel="stylesheet" href="css/dragons.css" />
     <link rel="stylesheet" href="css/text-reveal.css" />
+    <link rel="stylesheet" href="css/forge-menu.css?v=3" />
+    <link rel="stylesheet" href="css/services-contact.css?v=1" />
     <script src="libs/three.min.js"></script>
     <script type="importmap">
       {
@@ -38,11 +40,10 @@
          ═══════════════════════════════════════════════════ -->
 
     <div class="preloader" id="preloader">
-
       <!-- Top Half Shutter -->
       <div class="preloader-panel preloader-panel-top" id="preloaderPanelTop">
         <div class="preloader-panel-bg"></div>
-        
+
         <!-- Top Right Brand & Subtitle -->
         <div class="preloader-brand">
           <div class="brand-mask">
@@ -52,8 +53,6 @@
             <span class="preloader-brand-sub">ABYSS WALKER • MMXXVI</span>
           </div>
         </div>
-
-
       </div>
 
       <!-- Center Split Axis (Fiery Line + Dragon Runner) -->
@@ -70,48 +69,36 @@
       </div>
 
       <!-- Bottom Half Shutter -->
-      <div class="preloader-panel preloader-panel-bottom" id="preloaderPanelBottom">
+      <div
+        class="preloader-panel preloader-panel-bottom"
+        id="preloaderPanelBottom"
+      >
         <div class="preloader-panel-bg"></div>
 
-
-        
-        
-        <!--  Counter -->
-
-      <div class="counter">
-        <div class="digit-1">
-          <div class="num">0</div>
-          <div class="num">1</div>
+        <!-- Preloader Rolling Slot Counter with Masks -->
+        <div class="counter" id="preloaderCounter">
+          <div class="digit-mask digit-mask-1">
+            <div class="digit-col digit-1">
+              <div class="num">0</div>
+              <div class="num">1</div>
+            </div>
+          </div>
+          <div class="digit-mask digit-mask-2">
+            <div class="digit-col digit-2">
+              <div class="num">0</div>
+            </div>
+          </div>
+          <div class="digit-mask digit-mask-3">
+            <div class="digit-col digit-3">
+              <div class="num">0</div>
+            </div>
+          </div>
+          <div class="digit-mask digit-mask-unit">
+            <div class="digit-col digit-4">
+              <div class="num">%</div>
+            </div>
+          </div>
         </div>
-        <div class="digit-2">
-          <div class="num">0</div>
-          <div class="num">1</div>
-          <div class="num">2</div>
-          <div class="num">3</div>
-          <div class="num">4</div>
-          <div class="num">5</div>
-          <div class="num">6</div>
-          <div class="num">7</div>
-          <div class="num">8</div>
-          <div class="num">9</div>
-          <div class="num">0</div>
-        </div>
-        <div class="digit-3">
-          <div class="num">0</div>
-          <div class="num">1</div>
-          <div class="num">2</div>
-          <div class="num">3</div>
-          <div class="num">4</div>
-          <div class="num">5</div>
-          <div class="num">6</div>
-          <div class="num">7</div>
-          <div class="num">8</div>
-          <div class="num">9</div>
-        </div>
-        <div class="digit-4">
-          <div class="num">%</div>
-        </div>
-      </div>
       </div>
 
       <!-- Screen Flash for Lantern Ignition -->
@@ -122,10 +109,80 @@
     </div>
 
     <!-- ═══ MAIN CONTENT ═══ -->
-    <div id="mainContent">
+    <!-- ═══════════════════════════════════════════════════
+         FORGE AUTOMOTIVE-STYLE FULLSCREEN MENU
+         ═══════════════════════════════════════════════════ -->
+
+    <!-- ═══ NAVBAR — Forge Style: Socials Left | Logo Center | Navigate Right ═══ -->
+    <nav class="nav-menu">
+      <!-- Logo (Center) -->
+      <div class="nav-logo">
+        <a href="/" class="navbar-logo">
+          <span class="logo-text">ARTO</span>
+          <img
+            src="/assets/images/svg/3009174.svg"
+            alt="logo"
+            class="logo-svg"
+          />
+          <span class="logo-text">RIAS</span>
+        </a>
+      </div>
+
+      <div class="nav-toggler">
+        <p class="paragraphe">Menu</p>
+      </div>
+    </nav>
+
+    <div class="menu">
+      <div class="menu-content">
+        <div class="menu-links">
+          <div class="menu-link">
+            <a href="#projets" class="nav-link">Projets</a>
+          </div>
+          <div class="menu-link">
+            <a href="#services" class="nav-link">Services</a>
+          </div>
+          <div class="menu-link">
+            <a href="#a-propos" class="nav-link">À Propos</a>
+          </div>
+          <div class="menu-link">
+            <a href="#contact" class="nav-link">Contact</a>
+          </div>
+        </div>
+
+        <div class="menu-secondary-links">
+          <div class="menu-secondary-link">
+            <a href="/cookies">Cookies</a>
+          </div>
+          <div class="menu-secondary-link">
+            <a href="/privacy">Privacy</a>
+          </div>
+          <div class="menu-secondary-link">
+            <a href="/terms">Terms</a>
+          </div>
+        </div>
+
+        <div class="menu-footer">
+          <div class="menu-footer-copy">
+            <p class="paragraphe">
+              Copyright © 2026 — Artorias. All rights reserved.
+            </p>
+          </div>
+          <div class="menu-footer-copy">
+            <p class="paragraphe">Powered by</p>
+            <p>Franckick</p>
+          </div>
+          <div class="menu-footer-copy">
+            <p class="paragraphe">Developped by Franck</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-content page-container" id="mainContent">
       <!-- ═══ SOULS MENU CONTENT is scroll-driven: same elements transform from hero to fixed header ═══ -->
 
-      <main class="container">
+      <main class="container page-content">
         <!-- ═══ HERO — THE AWAKENING (3D Sanctuary & Perspective Vista) ═══ -->
         <section class="hero hero-awakening" id="hero">
           <!-- Three.js Canvas: Sanctuary Colonnade, Perspective 3D Vista & Living Lantern -->
@@ -161,40 +218,11 @@
           <!-- Refined Hero Title Container (non-intrusive) -->
           <div class="hero-title-container">
             <span class="hero-tag">DIGITAL CRAFTSMAN</span>
-            <p class="hero-subtitle">WEBGL ARTIST & CREATIVE DEVELOPER</p>
+            <p class="hero-subtitle">WEBGL ARTIST &amp; CREATIVE DEVELOPER</p>
           </div>
         </section>
 
         <!-- ═══ NAVBAR — Modern Minimal Top Bar ═══ -->
-        <nav class="navbar" id="navbar">
-          <a href="/" class="navbar-logo">
-            <span class="logo-text">ARTO</span>
-            <img src="/assets/images/svg/3009174.svg" alt="logo" class="logo-svg" />
-            <span class="logo-text">RIAS</span>
-          </a>
-
-          <div class="navbar-menu-wrap">
-            <span class="navbar-menu-label">Menu</span>
-            <div class="navbar-links">
-              <a href="#projets" class="nav-link">
-                <span class="nav-link-bg"></span>
-                <span class="nav-label-text">Projets</span>
-              </a>
-              <a href="#a-propos" class="nav-link">
-                <span class="nav-link-bg"></span>
-                <span class="nav-label-text">À propos</span>
-              </a>
-              <a href="#archives" class="nav-link">
-                <span class="nav-link-bg"></span>
-                <span class="nav-label-text">Archives</span>
-              </a>
-              <a href="#contact" class="nav-link">
-                <span class="nav-link-bg"></span>
-                <span class="nav-label-text">Contact</span>
-              </a>
-            </div>
-          </div>
-        </nav>
 
         <!-- ═══ NARRATIVE THRESHOLD (Le Seuil du Sanctuaire — Transition Extérieur -> Intérieur) ═══ -->
         <section id="seuil" class="section-threshold">
@@ -207,7 +235,9 @@
             <div class="threshold-main">
               <h2 class="threshold-title">FRANCHIR LE SEUIL</h2>
               <p class="threshold-desc">
-                Les voûtes de pierre millénaire s'ouvrent dans la brume. Vous pénétrez au bord des eaux calmes où reposent les reliques forgées dans l'abysse.
+                Les voûtes de pierre millénaire s'ouvrent dans la brume. Vous
+                pénétrez au bord des eaux calmes où reposent les reliques
+                forgées dans l'abysse.
               </p>
             </div>
 
@@ -226,51 +256,73 @@
         <section id="projets" class="section-projects">
           <!-- ARRIÈRE-PLAN DYNAMIQUE : BASSIN D'OBSIDIENNE / RIPPLES INTERACTIFS SHUBNIGGURATH -->
           <div class="projects-chamber-bg">
-            <img class="chamber-bg-image" src="assets/images/water-cavern.jpg" alt="La Nef des Reliques" />
+            <img
+              class="chamber-bg-image"
+              src="assets/images/water-cavern.jpg"
+              alt="La Nef des Reliques"
+            />
             <!-- Canvas WebGL de l'eau liquide avec réfraction et vaguelettes au curseur -->
-            <canvas id="chamber-water-canvas" class="chamber-water-canvas"></canvas>
+            <canvas
+              id="chamber-water-canvas"
+              class="chamber-water-canvas"
+            ></canvas>
             <div class="chamber-mist-overlay"></div>
-            <canvas id="chamber-ambient-canvas" class="chamber-ambient-canvas"></canvas>
+            <canvas
+              id="chamber-ambient-canvas"
+              class="chamber-ambient-canvas"
+            ></canvas>
             <div class="chamber-vignette-overlay"></div>
           </div>
 
           <div class="projects-container">
-            
             <div class="projects-header-simple">
-              <span class="projects-header-tag">[ RELIQUES DU SANCTUAIRE • MMXXVI ]</span>
+              <span class="projects-header-tag"
+                >[ RELIQUES DU SANCTUAIRE • MMXXVI ]</span
+              >
             </div>
 
             <div class="projects-split-layout">
-
               <!-- COLONNE GAUCHE (35%) : LISTE DES LIENS SIMPLIFIÉE AVEC HOVER NAVBAR -->
               <div class="projects-nav-col">
                 <ul class="projects-nav-list">
                   <!-- Projet 01 -->
-                  <li class="project-nav-item is-active" data-project="0">
+                  <li class="project-nav-item" data-project="0">
                     <div class="project-nav-wrapper">
                       <div class="project-slot slot-default">
                         <div class="project-slot-main">
                           <span class="project-nav-rune">ᚱ</span>
-                          <span class="project-nav-title">L'Abysse de Lordran</span>
+                          <span class="project-nav-title"
+                            >L'Abysse de Lordran</span
+                          >
                           <span class="project-nav-arrow">→</span>
                         </div>
-                        <div class="project-nav-sub">Direction Artistique & 3D WebGL</div>
+                        <div class="project-nav-sub">
+                          Direction Artistique &amp; 3D WebGL
+                        </div>
                       </div>
                       <div class="project-slot slot-hover">
                         <div class="project-slot-main">
                           <span class="project-nav-rune">ᚱ</span>
-                          <span class="project-nav-title">L'Abysse de Lordran</span>
+                          <span class="project-nav-title"
+                            >L'Abysse de Lordran</span
+                          >
                           <span class="project-nav-arrow is-shifted">→</span>
                         </div>
-                        <div class="project-nav-sub">Direction Artistique & 3D WebGL</div>
+                        <div class="project-nav-sub">
+                          Direction Artistique &amp; 3D WebGL
+                        </div>
                       </div>
                       <div class="project-slot slot-default">
                         <div class="project-slot-main">
                           <span class="project-nav-rune">ᚱ</span>
-                          <span class="project-nav-title">L'Abysse de Lordran</span>
+                          <span class="project-nav-title"
+                            >L'Abysse de Lordran</span
+                          >
                           <span class="project-nav-arrow">→</span>
                         </div>
-                        <div class="project-nav-sub">Direction Artistique & 3D WebGL</div>
+                        <div class="project-nav-sub">
+                          Direction Artistique &amp; 3D WebGL
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -281,26 +333,38 @@
                       <div class="project-slot slot-default">
                         <div class="project-slot-main">
                           <span class="project-nav-rune">ᛏ</span>
-                          <span class="project-nav-title">La Lame des Ombres</span>
+                          <span class="project-nav-title"
+                            >La Lame des Ombres</span
+                          >
                           <span class="project-nav-arrow">→</span>
                         </div>
-                        <div class="project-nav-sub">Shaders GLSL & Motion System</div>
+                        <div class="project-nav-sub">
+                          Shaders GLSL &amp; Motion System
+                        </div>
                       </div>
                       <div class="project-slot slot-hover">
                         <div class="project-slot-main">
                           <span class="project-nav-rune">ᛏ</span>
-                          <span class="project-nav-title">La Lame des Ombres</span>
+                          <span class="project-nav-title"
+                            >La Lame des Ombres</span
+                          >
                           <span class="project-nav-arrow is-shifted">→</span>
                         </div>
-                        <div class="project-nav-sub">Shaders GLSL & Motion System</div>
+                        <div class="project-nav-sub">
+                          Shaders GLSL &amp; Motion System
+                        </div>
                       </div>
                       <div class="project-slot slot-default">
                         <div class="project-slot-main">
                           <span class="project-nav-rune">ᛏ</span>
-                          <span class="project-nav-title">La Lame des Ombres</span>
+                          <span class="project-nav-title"
+                            >La Lame des Ombres</span
+                          >
                           <span class="project-nav-arrow">→</span>
                         </div>
-                        <div class="project-nav-sub">Shaders GLSL & Motion System</div>
+                        <div class="project-nav-sub">
+                          Shaders GLSL &amp; Motion System
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -311,26 +375,38 @@
                       <div class="project-slot slot-default">
                         <div class="project-slot-main">
                           <span class="project-nav-rune">ᛞ</span>
-                          <span class="project-nav-title">L'Éclipse Lunaire</span>
+                          <span class="project-nav-title"
+                            >L'Éclipse Lunaire</span
+                          >
                           <span class="project-nav-arrow">→</span>
                         </div>
-                        <div class="project-nav-sub">Expérience Interactive • SOTD</div>
+                        <div class="project-nav-sub">
+                          Expérience Interactive • SOTD
+                        </div>
                       </div>
                       <div class="project-slot slot-hover">
                         <div class="project-slot-main">
                           <span class="project-nav-rune">ᛞ</span>
-                          <span class="project-nav-title">L'Éclipse Lunaire</span>
+                          <span class="project-nav-title"
+                            >L'Éclipse Lunaire</span
+                          >
                           <span class="project-nav-arrow is-shifted">→</span>
                         </div>
-                        <div class="project-nav-sub">Expérience Interactive • SOTD</div>
+                        <div class="project-nav-sub">
+                          Expérience Interactive • SOTD
+                        </div>
                       </div>
                       <div class="project-slot slot-default">
                         <div class="project-slot-main">
                           <span class="project-nav-rune">ᛞ</span>
-                          <span class="project-nav-title">L'Éclipse Lunaire</span>
+                          <span class="project-nav-title"
+                            >L'Éclipse Lunaire</span
+                          >
                           <span class="project-nav-arrow">→</span>
                         </div>
-                        <div class="project-nav-sub">Expérience Interactive • SOTD</div>
+                        <div class="project-nav-sub">
+                          Expérience Interactive • SOTD
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -341,26 +417,38 @@
                       <div class="project-slot slot-default">
                         <div class="project-slot-main">
                           <span class="project-nav-rune">ᛟ</span>
-                          <span class="project-nav-title">Le Serment du Dragon</span>
+                          <span class="project-nav-title"
+                            >Le Serment du Dragon</span
+                          >
                           <span class="project-nav-arrow">→</span>
                         </div>
-                        <div class="project-nav-sub">Creative Coding • Particle System</div>
+                        <div class="project-nav-sub">
+                          Creative Coding • Particle System
+                        </div>
                       </div>
                       <div class="project-slot slot-hover">
                         <div class="project-slot-main">
                           <span class="project-nav-rune">ᛟ</span>
-                          <span class="project-nav-title">Le Serment du Dragon</span>
+                          <span class="project-nav-title"
+                            >Le Serment du Dragon</span
+                          >
                           <span class="project-nav-arrow is-shifted">→</span>
                         </div>
-                        <div class="project-nav-sub">Creative Coding • Particle System</div>
+                        <div class="project-nav-sub">
+                          Creative Coding • Particle System
+                        </div>
                       </div>
                       <div class="project-slot slot-default">
                         <div class="project-slot-main">
                           <span class="project-nav-rune">ᛟ</span>
-                          <span class="project-nav-title">Le Serment du Dragon</span>
+                          <span class="project-nav-title"
+                            >Le Serment du Dragon</span
+                          >
                           <span class="project-nav-arrow">→</span>
                         </div>
-                        <div class="project-nav-sub">Creative Coding • Particle System</div>
+                        <div class="project-nav-sub">
+                          Creative Coding • Particle System
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -371,26 +459,38 @@
                       <div class="project-slot slot-default">
                         <div class="project-slot-main">
                           <span class="project-nav-rune">ᛉ</span>
-                          <span class="project-nav-title">La Crypte des Runes</span>
+                          <span class="project-nav-title"
+                            >La Crypte des Runes</span
+                          >
                           <span class="project-nav-arrow">→</span>
                         </div>
-                        <div class="project-nav-sub">Editorial Design • Typography</div>
+                        <div class="project-nav-sub">
+                          Editorial Design • Typography
+                        </div>
                       </div>
                       <div class="project-slot slot-hover">
                         <div class="project-slot-main">
                           <span class="project-nav-rune">ᛉ</span>
-                          <span class="project-nav-title">La Crypte des Runes</span>
+                          <span class="project-nav-title"
+                            >La Crypte des Runes</span
+                          >
                           <span class="project-nav-arrow is-shifted">→</span>
                         </div>
-                        <div class="project-nav-sub">Editorial Design • Typography</div>
+                        <div class="project-nav-sub">
+                          Editorial Design • Typography
+                        </div>
                       </div>
                       <div class="project-slot slot-default">
                         <div class="project-slot-main">
                           <span class="project-nav-rune">ᛉ</span>
-                          <span class="project-nav-title">La Crypte des Runes</span>
+                          <span class="project-nav-title"
+                            >La Crypte des Runes</span
+                          >
                           <span class="project-nav-arrow">→</span>
                         </div>
-                        <div class="project-nav-sub">Editorial Design • Typography</div>
+                        <div class="project-nav-sub">
+                          Editorial Design • Typography
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -400,100 +500,151 @@
               <!-- COLONNE DROITE (65%) : GRANDE IMAGE UNIQUE EN TRANSPARENCE DÉBORDANT SUR LES LIENS -->
               <div class="projects-preview-col">
                 <div class="projects-preview-sticky">
-
                   <!-- Grande image unique avec résumé intégré en surimpression / mix-blend-mode -->
                   <div class="projects-single-image-stage">
                     <div class="projects-image-viewport">
-                      <img class="project-hero-img is-active" data-index="0" src="assets/images/druins.jpg" alt="L'Abysse de Lordran" />
-                      <img class="project-hero-img" data-index="1" src="assets/images/sword.jpg" alt="La Lame des Ombres" />
-                      <img class="project-hero-img" data-index="2" src="assets/images/moon.jpg" alt="L'Éclipse Lunaire" />
-                      <img class="project-hero-img" data-index="3" src="assets/images/dragon.jpg" alt="Le Serment du Dragon" />
-                      <img class="project-hero-img" data-index="4" src="assets/images/runes.jpg" alt="La Crypte des Runes" />
+                      <img
+                        class="project-hero-img is-active"
+                        data-index="0"
+                        src="assets/images/druins.jpg"
+                        alt="L'Abysse de Lordran"
+                      />
+                      <img
+                        class="project-hero-img"
+                        data-index="1"
+                        src="assets/images/sword.jpg"
+                        alt="La Lame des Ombres"
+                      />
+                      <img
+                        class="project-hero-img"
+                        data-index="2"
+                        src="assets/images/moon.jpg"
+                        alt="L'Éclipse Lunaire"
+                      />
+                      <img
+                        class="project-hero-img"
+                        data-index="3"
+                        src="assets/images/dragon.jpg"
+                        alt="Le Serment du Dragon"
+                      />
+                      <img
+                        class="project-hero-img"
+                        data-index="4"
+                        src="assets/images/runes.jpg"
+                        alt="La Crypte des Runes"
+                      />
                     </div>
 
                     <!-- Résumé textuel élégant directement incrusté en transparence avec mix-blend-mode: difference -->
                     <div class="projects-caption-stage">
-                    <!-- Caption 0 -->
-                    <div class="project-caption-item is-active" data-caption="0">
-                      <div class="caption-header">
-                        <span class="caption-tag">CHRONIQUE // 01</span>
-                        <h3 class="caption-title">Le Sanctuaire Englouti</h3>
+                      <!-- Caption 0 -->
+                      <div class="project-caption-item" data-caption="0">
+                        <div class="caption-header">
+                          <span class="caption-tag">CHRONIQUE // 01</span>
+                          <h3 class="caption-title">Le Sanctuaire Englouti</h3>
+                        </div>
+                        <p class="caption-desc">
+                          Exploration viscérale d'un sanctuaire gothique oublié.
+                          Rendu Three.js temps réel en perspective avec
+                          colonnade monumentale, illumination dynamique par
+                          lanterne oscillante et brouillard volumétrique.
+                        </p>
+                        <div class="caption-badges">
+                          <span>Three.js</span>
+                          <span>GLSL Shaders</span>
+                          <span>Physique Pendulaire</span>
+                          <span>Volumetric Fog</span>
+                        </div>
                       </div>
-                      <p class="caption-desc">Exploration viscérale d'un sanctuaire gothique oublié. Rendu Three.js temps réel en perspective avec colonnade monumentale, illumination dynamique par lanterne oscillante et brouillard volumétrique.</p>
-                      <div class="caption-badges">
-                        <span>Three.js</span>
-                        <span>GLSL Shaders</span>
-                        <span>Physique Pendulaire</span>
-                        <span>Volumetric Fog</span>
+
+                      <!-- Caption 1 -->
+                      <div class="project-caption-item" data-caption="1">
+                        <div class="caption-header">
+                          <span class="caption-tag">CHRONIQUE // 02</span>
+                          <h3 class="caption-title">L'Arsenal Runic</h3>
+                        </div>
+                        <p class="caption-desc">
+                          Forge interactive d'armes ancestrales. Effets de
+                          distorsion thermique, lueurs spectrales réactives au
+                          passage du curseur et particules d'étincelles dorées
+                          forgées en WebGL.
+                        </p>
+                        <div class="caption-badges">
+                          <span>Fragment Shaders</span>
+                          <span>Particules d'Étincelles</span>
+                          <span>GSAP Scrub</span>
+                          <span>Post-Processing</span>
+                        </div>
                       </div>
+
+                      <!-- Caption 2 -->
+                      <div class="project-caption-item" data-caption="2">
+                        <div class="caption-header">
+                          <span class="caption-tag">CHRONIQUE // 03</span>
+                          <h3 class="caption-title">La Nuit des Âmes</h3>
+                        </div>
+                        <p class="caption-desc">
+                          Voyage contemplatif au crépuscule d'un monde ancien.
+                          Défilement cinématique ultra-fluide avec inertie
+                          Lenis, texture de pierre millénaire et transitions
+                          d'ambiance lumineuse sans coupure.
+                        </p>
+                        <div class="caption-badges">
+                          <span>Lenis Smooth Scroll</span>
+                          <span>Atmosphère Dark Fantasy</span>
+                          <span>Color Grading</span>
+                          <span>Audio Ambiant</span>
+                        </div>
+                      </div>
+
+                      <!-- Caption 3 -->
+                      <div class="project-caption-item" data-caption="3">
+                        <div class="caption-header">
+                          <span class="caption-tag">CHRONIQUE // 04</span>
+                          <h3 class="caption-title">L'Envolée Spectrale</h3>
+                        </div>
+                        <p class="caption-desc">
+                          Bête mythique naviguant à travers toutes les strates
+                          de la page. Animation squelettique SVG et dynamique
+                          ondulatoire procédurale, avec traînée de braises
+                          ardentes réactive au pointeur.
+                        </p>
+                        <div class="caption-badges">
+                          <span>SVG Spine Rigging</span>
+                          <span>Mathématiques Vectorielles</span>
+                          <span>Collision Emitter</span>
+                          <span>Creative Dev</span>
+                        </div>
+                      </div>
+
+                      <!-- Caption 4 -->
+                      <div class="project-caption-item" data-caption="4">
+                        <div class="caption-header">
+                          <span class="caption-tag">CHRONIQUE // 05</span>
+                          <h3 class="caption-title">Glyphes &amp; Reliques</h3>
+                        </div>
+                        <p class="caption-desc">
+                          Système de composition éditoriale inspiré des
+                          manuscrits enluminés. Découpage de texte par ligne,
+                          révélation cinétique progressive et typographie Dark
+                          Souls noble.
+                        </p>
+                        <div class="caption-badges">
+                          <span>Line-Split Masking</span>
+                          <span>OptimusPrinceps</span>
+                          <span>Micro-Interactions</span>
+                          <span>Kinetic Typography</span>
+                        </div>
+                      </div>
+                      <!-- Fin .projects-caption-stage -->
                     </div>
-
-                    <!-- Caption 1 -->
-                    <div class="project-caption-item" data-caption="1">
-                      <div class="caption-header">
-                        <span class="caption-tag">CHRONIQUE // 02</span>
-                        <h3 class="caption-title">L'Arsenal Runic</h3>
-                      </div>
-                      <p class="caption-desc">Forge interactive d'armes ancestrales. Effets de distorsion thermique, lueurs spectrales réactives au passage du curseur et particules d'étincelles dorées forgées en WebGL.</p>
-                      <div class="caption-badges">
-                        <span>Fragment Shaders</span>
-                        <span>Particules d'Étincelles</span>
-                        <span>GSAP Scrub</span>
-                        <span>Post-Processing</span>
-                      </div>
-                    </div>
-
-                    <!-- Caption 2 -->
-                    <div class="project-caption-item" data-caption="2">
-                      <div class="caption-header">
-                        <span class="caption-tag">CHRONIQUE // 03</span>
-                        <h3 class="caption-title">La Nuit des Âmes</h3>
-                      </div>
-                      <p class="caption-desc">Voyage contemplatif au crépuscule d'un monde ancien. Défilement cinématique ultra-fluide avec inertie Lenis, texture de pierre millénaire et transitions d'ambiance lumineuse sans coupure.</p>
-                      <div class="caption-badges">
-                        <span>Lenis Smooth Scroll</span>
-                        <span>Atmosphère Dark Fantasy</span>
-                        <span>Color Grading</span>
-                        <span>Audio Ambiant</span>
-                      </div>
-                    </div>
-
-                    <!-- Caption 3 -->
-                    <div class="project-caption-item" data-caption="3">
-                      <div class="caption-header">
-                        <span class="caption-tag">CHRONIQUE // 04</span>
-                        <h3 class="caption-title">L'Envolée Spectrale</h3>
-                      </div>
-                      <p class="caption-desc">Bête mythique naviguant à travers toutes les strates de la page. Animation squelettique SVG et dynamique ondulatoire procédurale, avec traînée de braises ardentes réactive au pointeur.</p>
-                      <div class="caption-badges">
-                        <span>SVG Spine Rigging</span>
-                        <span>Mathématiques Vectorielles</span>
-                        <span>Collision Emitter</span>
-                        <span>Creative Dev</span>
-                      </div>
-                    </div>
-
-                    <!-- Caption 4 -->
-                    <div class="project-caption-item" data-caption="4">
-                      <div class="caption-header">
-                        <span class="caption-tag">CHRONIQUE // 05</span>
-                        <h3 class="caption-title">Glyphes & Reliques</h3>
-                      </div>
-                      <p class="caption-desc">Système de composition éditoriale inspiré des manuscrits enluminés. Découpage de texte par ligne, révélation cinétique progressive et typographie Dark Souls noble.</p>
-                      <div class="caption-badges">
-                        <span>Line-Split Masking</span>
-                        <span>OptimusPrinceps</span>
-                        <span>Micro-Interactions</span>
-                        <span>Kinetic Typography</span>
-                      </div>
-                    </div> <!-- Fin .projects-caption-stage -->
-                  </div> <!-- Fin .projects-single-image-stage -->
-
-                </div> <!-- Fin .projects-preview-sticky -->
-              </div> <!-- Fin .projects-preview-col -->
-
+                    <!-- Fin .projects-single-image-stage -->
+                  </div>
+                  <!-- Fin .projects-preview-sticky -->
+                </div>
+                <!-- Fin .projects-preview-col -->
+              </div>
             </div>
-
           </div>
         </section>
 
@@ -501,7 +652,11 @@
         <section id="a-propos" class="section-a-propos">
           <!-- Arrière-plan cinématique des Abysses avec parallaxe -->
           <div class="abyss-bg-wrap">
-            <img src="assets/images/abyss-depths.jpg" alt="Les Abysses de Lordran" class="abyss-bg-img" />
+            <img
+              src="assets/images/abyss-depths.jpg"
+              alt="Les Abysses de Lordran"
+              class="abyss-bg-img"
+            />
             <canvas id="abyss-wisps-canvas" class="abyss-wisps-canvas"></canvas>
             <div class="abyss-mist-overlay"></div>
             <div class="abyss-vignette"></div>
@@ -510,7 +665,6 @@
           <!-- Viewport & Track Horizontal -->
           <div class="abyss-horizontal-viewport">
             <div class="abyss-track">
-
               <!-- ── STÈLE I : L'ORIGINE ── -->
               <article class="abyss-stele stele-origin" data-stele="1">
                 <div class="stele-header">
@@ -518,15 +672,22 @@
                   <span class="stele-sigil">ᛟ • ᚱ • ᛁ • ᚷ</span>
                 </div>
                 <h2 class="stele-title">L'Artisan de l'Ombre</h2>
-                <div class="stele-subtitle">WEBGL ARTIST & CREATIVE DEVELOPER</div>
-                
+                <div class="stele-subtitle">
+                  WEBGL ARTIST &amp; CREATIVE DEVELOPER
+                </div>
+
                 <div class="stele-origin-body">
                   <div class="stele-narrative">
                     <p>
-                      Forgeron du web moderne naviguant entre rigueur architecturale et alchimie visuelle. J'explore les frontières du code pour concevoir des expériences interactives sombres, immersives et cinématiques.
+                      Forgeron du web moderne naviguant entre rigueur
+                      architecturale et alchimie visuelle. J'explore les
+                      frontières du code pour concevoir des expériences
+                      interactives sombres, immersives et cinématiques.
                     </p>
                     <p>
-                      Inspiré par la grandeur mélancolique de la Dark Fantasy et le minimalisme éditorial suisse, je façonne des interfaces sur-mesure où chaque micro-animation sert le récit.
+                      Inspiré par la grandeur mélancolique de la Dark Fantasy et
+                      le minimalisme éditorial suisse, je façonne des interfaces
+                      sur-mesure où chaque micro-animation sert le récit.
                     </p>
                   </div>
                   <div class="stele-sigil-badge">
@@ -543,7 +704,9 @@
                   <span class="stele-sigil">ᛊ • ᛏ • ᚨ • ᛏ</span>
                 </div>
                 <h2 class="stele-title">L'Arsenal d'Obsidienne</h2>
-                <div class="stele-subtitle">MAÎTRISES TECHNIQUES & SORTILÈGES DU WEB</div>
+                <div class="stele-subtitle">
+                  MAÎTRISES TECHNIQUES &amp; SORTILÈGES DU WEB
+                </div>
 
                 <div class="stele-stats-grid">
                   <!-- Stat 1 -->
@@ -551,13 +714,22 @@
                     <div class="stat-card-header">
                       <div class="stat-name-wrap">
                         <span class="stat-rune">✦</span>
-                        <span class="stat-title">Magie / Shaders GLSL & Three.js</span>
+                        <span class="stat-title"
+                          >Magie / Shaders GLSL &amp; Three.js</span
+                        >
                       </div>
                       <span class="stat-val">LVL. 98</span>
                     </div>
-                    <p class="stat-desc">Simulation de fluides, ondulations d'eau d'obsidienne, géométries procédurales et rendu 3D optimisé 60 FPS.</p>
+                    <p class="stat-desc">
+                      Simulation de fluides, ondulations d'eau d'obsidienne,
+                      géométries procédurales et rendu 3D optimisé 60 FPS.
+                    </p>
                     <div class="stat-bar-track">
-                      <div class="stat-bar-fill" data-width="98%" style="width: 0%;"></div>
+                      <div
+                        class="stat-bar-fill"
+                        data-width="98%"
+                        style="width: 0%"
+                      ></div>
                     </div>
                   </div>
 
@@ -566,13 +738,23 @@
                     <div class="stat-card-header">
                       <div class="stat-name-wrap">
                         <span class="stat-rune">✦</span>
-                        <span class="stat-title">Vigueur / Architecture Pure Vanilla</span>
+                        <span class="stat-title"
+                          >Vigueur / Architecture Pure Vanilla</span
+                        >
                       </div>
                       <span class="stat-val">LVL. 96</span>
                     </div>
-                    <p class="stat-desc">Zéro dépendance lourde inutile, JavaScript ES6+ / TypeScript, respect strict des Web Standards et accessibilité.</p>
+                    <p class="stat-desc">
+                      Zéro dépendance lourde inutile, JavaScript ES6+ /
+                      TypeScript, respect strict des Web Standards et
+                      accessibilité.
+                    </p>
                     <div class="stat-bar-track">
-                      <div class="stat-bar-fill" data-width="96%" style="width: 0%;"></div>
+                      <div
+                        class="stat-bar-fill"
+                        data-width="96%"
+                        style="width: 0%"
+                      ></div>
                     </div>
                   </div>
 
@@ -581,13 +763,23 @@
                     <div class="stat-card-header">
                       <div class="stat-name-wrap">
                         <span class="stat-rune">✦</span>
-                        <span class="stat-title">Dextérité / GSAP & ScrollTrigger</span>
+                        <span class="stat-title"
+                          >Dextérité / GSAP &amp; ScrollTrigger</span
+                        >
                       </div>
                       <span class="stat-val">LVL. 99</span>
                     </div>
-                    <p class="stat-desc">Chorégraphies de scroll cinématiques, défilement horizontal fluide (Lenis), SplitText et micro-interactions.</p>
+                    <p class="stat-desc">
+                      Chorégraphies de scroll cinématiques, défilement
+                      horizontal fluide (Lenis), SplitText et
+                      micro-interactions.
+                    </p>
                     <div class="stat-bar-track">
-                      <div class="stat-bar-fill" data-width="99%" style="width: 0%;"></div>
+                      <div
+                        class="stat-bar-fill"
+                        data-width="99%"
+                        style="width: 0%"
+                      ></div>
                     </div>
                   </div>
                 </div>
@@ -600,27 +792,40 @@
                   <span class="stele-sigil">ᚠ • ᛟ • ᚱ • ᚷ</span>
                 </div>
                 <h2 class="stele-title">La Forge des Mondes</h2>
-                <div class="stele-subtitle">VISION ARTISTIQUE & ARTISANAT NUMÉRIQUE</div>
+                <div class="stele-subtitle">
+                  VISION ARTISTIQUE &amp; ARTISANAT NUMÉRIQUE
+                </div>
 
                 <blockquote class="stele-quote">
-                  « Dompter le code comme le métal noir, forger des univers où la technique s'efface pour laisser place au mystère et à l'émerveillement. »
+                  « Dompter le code comme le métal noir, forger des univers où
+                  la technique s'efface pour laisser place au mystère et à
+                  l'émerveillement. »
                 </blockquote>
 
                 <div class="stele-pillars-grid">
                   <div class="pillar-box">
                     <span class="pillar-metric">60 FPS</span>
                     <span class="pillar-label">Fluidité Absolue</span>
-                    <span class="pillar-detail">Optimisation GPU méticuleuse et allocation mémoire maîtrisée.</span>
+                    <span class="pillar-detail"
+                      >Optimisation GPU méticuleuse et allocation mémoire
+                      maîtrisée.</span
+                    >
                   </div>
                   <div class="pillar-box">
                     <span class="pillar-metric">WebGL</span>
                     <span class="pillar-label">Art Numérique</span>
-                    <span class="pillar-detail">Post-processing, réfractions et éclairages volumétriques réactifs.</span>
+                    <span class="pillar-detail"
+                      >Post-processing, réfractions et éclairages volumétriques
+                      réactifs.</span
+                    >
                   </div>
                   <div class="pillar-box">
                     <span class="pillar-metric">MMXXVI</span>
                     <span class="pillar-label">Créativité Pure</span>
-                    <span class="pillar-detail">Direction artistique sombre et storytelling interactif sans compromis.</span>
+                    <span class="pillar-detail"
+                      >Direction artistique sombre et storytelling interactif
+                      sans compromis.</span
+                    >
                   </div>
                 </div>
               </article>
@@ -632,7 +837,9 @@
                   <span class="stele-sigil">ᛒ • ᛟ • ᚾ • ᚠ</span>
                 </div>
                 <h2 class="stele-title">Le Feu de Camp</h2>
-                <div class="stele-subtitle">REPOS DU VOYAGEUR & NOUVELLES ALLIANCES</div>
+                <div class="stele-subtitle">
+                  REPOS DU VOYAGEUR &amp; NOUVELLES ALLIANCES
+                </div>
 
                 <div class="stele-bonfire-content">
                   <div class="bonfire-visual">
@@ -640,21 +847,468 @@
                     <span class="bonfire-sword-icon">🗡</span>
                   </div>
 
-                  <p class="stele-narrative" style="max-width: 520px; text-align: center;">
-                    Vous avez bravé les abysses. Une quête, un projet d'envergure ou une vision immersive à forger ? Rallumez la flamme et unissons nos forces.
+                  <p
+                    class="stele-narrative"
+                    style="max-width: 520px; text-align: center"
+                  >
+                    Vous avez bravé les abysses. Une quête, un projet
+                    d'envergure ou une vision immersive à forger ? Rallumez la
+                    flamme et unissons nos forces.
                   </p>
 
                   <div class="bonfire-actions">
                     <a href="#contact" class="bonfire-btn bonfire-btn--primary">
                       <span>✦ Prêter Serment (Contact)</span>
                     </a>
-                    <a href="#projets" class="bonfire-btn bonfire-btn--secondary">
+                    <a
+                      href="#projets"
+                      class="bonfire-btn bonfire-btn--secondary"
+                    >
                       <span>← Revoir les Reliques</span>
                     </a>
                   </div>
                 </div>
               </article>
+            </div>
+          </div>
+        </section>
 
+        <!-- ═══ ACTE III : SERVICES, RITUEL DE FORGE & FAQ ═══ -->
+        <section id="services" class="section-services">
+          <div class="services-ambient-bg">
+            <div class="services-gradient-glow"></div>
+            <div class="services-ambient-bottom"></div>
+          </div>
+
+          <div class="services-inner-container">
+            <!-- En-tête Acte III -->
+            <div class="section-header-ritual">
+              <div class="ritual-tag">[ CHRONIQUE • ACTE III ]</div>
+              <div class="ritual-sigils">ᛋ • ᛖ • ᚱ • ᚢ • ᛁ • ᚲ • ᛖ • ᛋ</div>
+              <h2 class="ritual-title">La Voie du Forgeron</h2>
+              <p class="ritual-subtitle">
+                LES PACTES NUMÉRIQUES &amp; LE RITUEL DE CRÉATION SUR-MESURE
+              </p>
+              <div class="ritual-header-line"></div>
+            </div>
+
+            <!-- 1. Les 3 Pactes de Création (Cartes Services) -->
+            <div class="services-pacts-grid">
+              <!-- Pacte 01 : WebGL & 3D -->
+              <article class="pact-card">
+                <div class="pact-card-header">
+                  <div class="pact-num">[ PACTE 01 ]</div>
+                  <h3 class="pact-name">Expérience WebGL &amp; 3D Interactive</h3>
+                  <p class="pact-desc">
+                    Pour les créateurs, marques et studios qui refusent la banalité. Univers en temps réel, shaders GLSL sur-mesure, physiques interactives et storytelling cinématique taillés pour décrocher des distinctions (Awwwards / FWA).
+                  </p>
+                </div>
+
+                <div class="pact-card-body">
+                  <div class="pact-deliverables-title">Ce qui est forgé :</div>
+                  <ul class="pact-deliverables-list">
+                    <li>Scène Three.js fluide 60 FPS sans concessions</li>
+                    <li>Shaders de distorsion &amp; particules interactives</li>
+                    <li>Fallback GPU intelligent pour mobile</li>
+                    <li>Design audio spatial &amp; micro-interactions</li>
+                    <li>Dossier de candidature Awwwards / FWA</li>
+                  </ul>
+                </div>
+
+                <div class="pact-footer">
+                  <span class="pact-timing">3 à 5 semaines</span>
+                  <a href="#contact" class="pact-btn" data-service="webgl">
+                    <span>Invoquer ✦</span>
+                  </a>
+                </div>
+              </article>
+
+              <!-- Pacte 02 : Vitrine Haute-Couture (Featured) -->
+              <article class="pact-card pact-card-featured">
+                <div class="pact-badge-featured">Pacte Recommandé</div>
+                <div class="pact-card-header">
+                  <div class="pact-num">[ PACTE 02 ]</div>
+                  <h3 class="pact-name">Site Vitrine &amp; Direction Artistique</h3>
+                  <p class="pact-desc">
+                    Une présence numérique haute-couture, sombre et intemporelle. Typographie éditoriale noble, transitions de pages instantanées, défilement cinématique et zéro template réutilisé.
+                  </p>
+                </div>
+
+                <div class="pact-card-body">
+                  <div class="pact-deliverables-title">Ce qui est forgé :</div>
+                  <ul class="pact-deliverables-list">
+                    <li>Direction artistique &amp; maquettes UI/UX sur-mesure</li>
+                    <li>Code pur Vanilla ES6+ ultra-léger et pérenne</li>
+                    <li>Chorégraphies GSAP ScrollTrigger millimétrées</li>
+                    <li>Optimisation SEO sémantique &amp; Core Web Vitals 95+</li>
+                    <li>Hébergement haute disponibilité &amp; SSL sécurisé</li>
+                  </ul>
+                </div>
+
+                <div class="pact-footer">
+                  <span class="pact-timing">2 à 4 semaines</span>
+                  <a href="#contact" class="pact-btn" data-service="vitrine">
+                    <span>Invoquer ✦</span>
+                  </a>
+                </div>
+              </article>
+
+              <!-- Pacte 03 : Alchimie & Refonte -->
+              <article class="pact-card">
+                <div class="pact-card-header">
+                  <div class="pact-num">[ PACTE 03 ]</div>
+                  <h3 class="pact-name">Alchimie &amp; Refonte de Performance</h3>
+                  <p class="pact-desc">
+                    Votre site existant souffre de lenteurs, de dépendances obsolètes ou d'un design usé ? Nous purifions l'architecture, éliminons le superflu et réinventons l'expérience pour la rendre foudroyante.
+                  </p>
+                </div>
+
+                <div class="pact-card-body">
+                  <div class="pact-deliverables-title">Ce qui est forgé :</div>
+                  <ul class="pact-deliverables-list">
+                    <li>Audit approfondi de performance, UX et SEO</li>
+                    <li>Réécriture du code sans framework surchargé</li>
+                    <li>Intégration d'un smooth scroll fluide (Lenis)</li>
+                    <li>Temps de chargement réduit sous la barre d'1.2s</li>
+                    <li>Accompagnement et transfert de compétences</li>
+                  </ul>
+                </div>
+
+                <div class="pact-footer">
+                  <span class="pact-timing">2 à 3 semaines</span>
+                  <a href="#contact" class="pact-btn" data-service="refonte">
+                    <span>Invoquer ✦</span>
+                  </a>
+                </div>
+              </article>
+            </div>
+
+            <!-- 2. Le Rituel de Forge (Timeline complète Contact -> Livraison) -->
+            <div class="ritual-process-section">
+              <div class="ritual-process-header">
+                <h3 class="ritual-process-title">Le Rituel de Forge</h3>
+                <p class="ritual-process-sub">
+                  DÉROULEMENT COMPLET DE NOTRE ALLIANCE (DU PREMIER MESSAGE À LA LIVRAISON)
+                </p>
+              </div>
+
+              <div class="process-timeline">
+                <!-- Étape 01 -->
+                <div class="process-step-item">
+                  <div class="process-step-node">
+                    <span class="node-rune">ᚱ</span>
+                    <span class="node-num">01</span>
+                  </div>
+                  <div class="process-step-content">
+                    <div class="process-step-header">
+                      <span class="step-phase-tag">PHASE I • LE PREMIER CONTACT</span>
+                      <span class="step-timing">Jour 1 à 3</span>
+                    </div>
+                    <h4 class="step-title">L'Incantation Initiale &amp; Cadrage Stratégique</h4>
+                    <p class="step-desc">
+                      Tout commence par votre message transmis via le formulaire ci-dessous ou par corbeau électronique. Sous 24 heures, nous échangeons sur vos ambitions, votre audience, vos contraintes techniques et l'univers artistique souhaité. Nous formalisons un cahier des charges limpide, un devis transparent et un calendrier d'exécution sans zone d'ombre.
+                    </p>
+                    <div class="step-deliverables">
+                      <span class="step-chip">Échange stratégique (Visio / Mail)</span>
+                      <span class="step-chip">Cahier des charges validé</span>
+                      <span class="step-chip">Calendrier &amp; Devis scellés</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Étape 02 -->
+                <div class="process-step-item">
+                  <div class="process-step-node">
+                    <span class="node-rune">ᚨ</span>
+                    <span class="node-num">02</span>
+                  </div>
+                  <div class="process-step-content">
+                    <div class="process-step-header">
+                      <span class="step-phase-tag">PHASE II • CONCEPTION &amp; DIRECTION ARTISTIQUE</span>
+                      <span class="step-timing">Semaine 1</span>
+                    </div>
+                    <h4 class="step-title">L'Ébauche Astrale &amp; Prototypage UX</h4>
+                    <p class="step-desc">
+                      Avant de forger la moindre ligne de code, nous façonnons les fondations visuelles : moodboard sombre, recherche typographique, palette de teintes et wireframes interactifs. Vous visualisez l'architecture de navigation et l'ambiance esthétique. Vos retours sont intégrés jusqu'à validation complète de la direction artistique.
+                    </p>
+                    <div class="step-deliverables">
+                      <span class="step-chip">Moodboard artistique &amp; Grilles</span>
+                      <span class="step-chip">Architecture de contenu</span>
+                      <span class="step-chip">Prototypage des interactions clés</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Étape 03 -->
+                <div class="process-step-item">
+                  <div class="process-step-node">
+                    <span class="node-rune">ᚠ</span>
+                    <span class="node-num">03</span>
+                  </div>
+                  <div class="process-step-content">
+                    <div class="process-step-header">
+                      <span class="step-phase-tag">PHASE III • DÉVELOPPEMENT CRÉATIF</span>
+                      <span class="step-timing">Semaine 2 à 3</span>
+                    </div>
+                    <h4 class="step-title">La Forge du Code &amp; Alchimie WebGL</h4>
+                    <p class="step-desc">
+                      Le design s'anime dans la matière. Nous développons le site en code pur, sans framework superflu : Three.js, shaders GLSL pour les effets de réfraction et fluides, et GSAP ScrollTrigger pour la chorégraphie cinématique. Un lien secret de prévisualisation (Staging privé) vous est confié pour suivre et tester l'expérience en temps réel.
+                    </p>
+                    <div class="step-deliverables">
+                      <span class="step-chip">Lien de prévisualisation secret (Staging)</span>
+                      <span class="step-chip">Shaders &amp; 3D interactifs</span>
+                      <span class="step-chip">Défilement Lenis cinématique</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Étape 04 -->
+                <div class="process-step-item">
+                  <div class="process-step-node">
+                    <span class="node-rune">ᛏ</span>
+                    <span class="node-num">04</span>
+                  </div>
+                  <div class="process-step-content">
+                    <div class="process-step-header">
+                      <span class="step-phase-tag">PHASE IV • POLISSAGE &amp; PERFORMANCE</span>
+                      <span class="step-timing">Semaine 3 à 4</span>
+                    </div>
+                    <h4 class="step-title">Le Creuset de Purification &amp; Épreuves 60 FPS</h4>
+                    <p class="step-desc">
+                      Rien n'échappe à l'épreuve de rigueur. Le site est testé et affiné sur tous les supports : smartphones iOS et Android, tablettes et écrans 4K. Nous optimisons le rendu GPU, compressons les médias, auditons le SEO technique, l'accessibilité et la réactivité au doigt comme à la souris.
+                    </p>
+                    <div class="step-deliverables">
+                      <span class="step-chip">Framerate 60 FPS stable</span>
+                      <span class="step-chip">Tests cross-browser &amp; mobiles</span>
+                      <span class="step-chip">Optimisation Core Web Vitals</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Étape 05 -->
+                <div class="process-step-item">
+                  <div class="process-step-node">
+                    <span class="node-rune">ᛟ</span>
+                    <span class="node-num">05</span>
+                  </div>
+                  <div class="process-step-content">
+                    <div class="process-step-header">
+                      <span class="step-phase-tag">PHASE V • MISE EN LIGNE &amp; TRANSMISSION</span>
+                      <span class="step-timing">Livraison &amp; Post-lancement</span>
+                    </div>
+                    <h4 class="step-title">L'Allumage du Brasier &amp; Déploiement Officiel</h4>
+                    <p class="step-desc">
+                      Le sanctuaire est prêt à accueillir le monde. Nous configurons l'hébergement haute performance (Vercel, Netlify ou serveur personnalisé), raccordons votre nom de domaine avec certificat SSL, et déclenchons la mise en production sans aucune interruption. Remise de l'ensemble des fichiers sources, guide d'autonomie et suivi bienveillant de 30 jours inclus.
+                    </p>
+                    <div class="step-deliverables">
+                      <span class="step-chip">Déploiement live &amp; DNS sécurisé</span>
+                      <span class="step-chip">Remise des accès &amp; Fichiers sources</span>
+                      <span class="step-chip">Garantie &amp; Suivi 30 jours inclus</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Le Grimoire des Réponses (FAQ Interactive) -->
+            <div class="faq-section">
+              <div class="faq-header">
+                <h3 class="faq-title">Le Grimoire des Réponses</h3>
+                <p class="faq-subtitle">ÉCLAIRCISSEMENTS SUR NOTRE FORGE &amp; NOTRE ALLIANCE</p>
+              </div>
+
+              <div class="faq-accordion">
+                <!-- FAQ 1 -->
+                <div class="faq-item">
+                  <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-question-wrap">
+                      <span class="faq-rune">✦</span>
+                      <h4 class="faq-question">Combien de temps faut-il pour concevoir et livrer un site sur-mesure ?</h4>
+                    </div>
+                    <span class="faq-icon-toggle">+</span>
+                  </button>
+                  <div class="faq-answer-panel">
+                    <div class="faq-answer-content">
+                      Le délai varie selon l'envergure du sanctuaire : comptez généralement <strong>2 à 3 semaines</strong> pour une refonte ciblée ou un portfolio épuré, et <strong>3 à 5 semaines</strong> pour une expérience WebGL immersive complexe incluant des shaders personnalisés et une direction artistique complète. Un calendrier précis avec jalons de validation vous est remis dès le cadrage initial.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item">
+                  <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-question-wrap">
+                      <span class="faq-rune">✦</span>
+                      <h4 class="faq-question">Comment pouvons-nous suivre l'avancement durant la création ?</h4>
+                    </div>
+                    <span class="faq-icon-toggle">+</span>
+                  </button>
+                  <div class="faq-answer-panel">
+                    <div class="faq-answer-content">
+                      La transparence est totale : dès la phase de développement, vous disposez d'un <strong>lien de prévisualisation privé (Staging en direct)</strong> mis à jour à chaque avancée significative. Nous échangeons par le canal de votre choix (Slack, Discord, WhatsApp ou Visio hebdomadaire) avec des points réguliers pour recueillir vos retours.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item">
+                  <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-question-wrap">
+                      <span class="faq-rune">✦</span>
+                      <h4 class="faq-question">Les animations WebGL et effets 3D fonctionnent-ils sur smartphones ?</h4>
+                    </div>
+                    <span class="faq-icon-toggle">+</span>
+                  </button>
+                  <div class="faq-answer-panel">
+                    <div class="faq-answer-content">
+                      Absolument. Nous appliquons une politique stricte d'<strong>adaptation adaptative du GPU</strong> : sur mobile et matériel moins puissant, le code allège intelligemment les calculs volumétriques et réduit le nombre de particules pour garantir un <strong>défilement parfaitement fluide à 60 FPS</strong> sans faire surchauffer l'appareil ni vider la batterie.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item">
+                  <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-question-wrap">
+                      <span class="faq-rune">✦</span>
+                      <h4 class="faq-question">Quelles sont les modalités de paiement et de facturation ?</h4>
+                    </div>
+                    <span class="faq-icon-toggle">+</span>
+                  </button>
+                  <div class="faq-answer-panel">
+                    <div class="faq-answer-content">
+                      Le règlement s'effectue généralement en <strong>deux ou trois tranches</strong> : un acompte de 30% ou 50% au lancement des travaux (scellement du pacte), un jalon intermédiaire si le projet est conséquent, et le solde final à la livraison après validation de la mise en ligne. Paiements par virement bancaire sécurisé avec facturation en règle.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item">
+                  <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-question-wrap">
+                      <span class="faq-rune">✦</span>
+                      <h4 class="faq-question">Assurez-vous l'hébergement et le suivi après la livraison ?</h4>
+                    </div>
+                    <span class="faq-icon-toggle">+</span>
+                  </button>
+                  <div class="faq-answer-panel">
+                    <div class="faq-answer-content">
+                      Oui. Chaque projet inclut une <strong>garantie et assistance de 30 jours offerte</strong> après mise en production pour corriger tout ajustement imprévu. Par la suite, nous proposons un pacte de maintenance préventive (mises à jour, surveillance du nom de domaine, sauvegardes et optimisations continues) ou une transmission complète pour une autonomie totale.
+                    </div>
+                  </div>
+                </div>
+
+                <!-- FAQ 6 -->
+                <div class="faq-item">
+                  <button class="faq-trigger" aria-expanded="false">
+                    <div class="faq-question-wrap">
+                      <span class="faq-rune">✦</span>
+                      <h4 class="faq-question">Puis-je modifier moi-même les textes ou ajouter des projets plus tard ?</h4>
+                    </div>
+                    <span class="faq-icon-toggle">+</span>
+                  </button>
+                  <div class="faq-answer-panel">
+                    <div class="faq-answer-content">
+                      Oui, si vous le souhaitez. Nous pouvons raccorder un <strong>CMS headless léger et intuitif</strong> (Sanity, Strapi ou Notion) ou concevoir une structure de données claire (fichiers JSON modulaires) accompagnée d'un guide vidéo explicatif vous permettant d'ajouter vos futures réalisations en toute simplicité.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ═══ ACTE IV : L'AUTEL DU SERMENT (SECTION CONTACT) ═══ -->
+        <section id="contact" class="section-contact">
+          <div class="contact-inner-container">
+            <div class="contact-grid">
+              <!-- Colonne Gauche : Coordonnées & Statut -->
+              <div class="contact-meta-col">
+                <div class="contact-header">
+                  <div class="contact-tag">[ CHRONIQUE • ACTE IV ]</div>
+                  <h2 class="contact-title">L'Autel du Serment</h2>
+                  <p class="contact-intro">
+                    Une quête singulière, une marque à métamorphoser ou une vision immersive à forger ? Remplissez le formulaire ci-contre pour allumer le premier feu de notre alliance.
+                  </p>
+                </div>
+
+                <!-- Statut de disponibilité en temps réel -->
+                <div class="contact-status-badge">
+                  <div class="status-pulse-dot"></div>
+                  <span class="status-text">Disponible pour de nouveaux projets</span>
+                </div>
+
+                <!-- Coordonnées directes -->
+                <div class="contact-direct-list">
+                  <div class="contact-direct-item">
+                    <span class="contact-direct-label">Correspondance Astrale (Email)</span>
+                    <a href="mailto:artorias.abyss@folio.craft" class="contact-direct-value">
+                      artorias.abyss@folio.craft
+                    </a>
+                  </div>
+
+                  <div class="contact-direct-item">
+                    <span class="contact-direct-label">Base d'Opérations</span>
+                    <span class="contact-direct-value">Paris • International (Télétravail)</span>
+                  </div>
+
+                  <div class="contact-direct-item">
+                    <span class="contact-direct-label">Réseaux &amp; Laboratoires</span>
+                    <div class="contact-socials-row">
+                      <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">GitHub</a>
+                      <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">LinkedIn</a>
+                      <a href="https://codepen.io" target="_blank" rel="noopener noreferrer" class="contact-social-link">CodePen</a>
+                      <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="contact-social-link">Twitter</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Colonne Droite : Formulaire de Contact -->
+              <div class="contact-form-box">
+                <form id="contactForm" class="contact-form" autocomplete="off">
+                  <div class="form-group">
+                    <label for="contactName" class="form-label">Nom ou Alias du Voyageur *</label>
+                    <input type="text" id="contactName" name="name" class="form-input" placeholder="Ex: Dame Guenièvre, Studio Aethel..." required />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contactEmail" class="form-label">Adresse Électronique (Email) *</label>
+                    <input type="email" id="contactEmail" name="email" class="form-input" placeholder="votre.nom@domaine.com" required />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="projectType" class="form-label">Nature du Pacte Souhaité</label>
+                    <select id="projectType" name="projectType" class="form-select">
+                      <option value="vitrine">Site Vitrine &amp; Direction Artistique (Pacte 02)</option>
+                      <option value="webgl">Expérience WebGL &amp; 3D Interactive (Pacte 01)</option>
+                      <option value="refonte">Alchimie &amp; Refonte de Performance (Pacte 03)</option>
+                      <option value="autre">Projet sur-mesure / Autre quête</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contactBudget" class="form-label">Enveloppe Budgétaire Estimée</label>
+                    <select id="contactBudget" name="budget" class="form-select">
+                      <option value="3k-5k">3 000 € — 5 000 €</option>
+                      <option value="5k-10k" selected>5 000 € — 10 000 €</option>
+                      <option value="10k-20k">10 000 € — 20 000 €</option>
+                      <option value="20k+">20 000 € et plus</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contactMessage" class="form-label">Vision &amp; Détails du Projet *</label>
+                    <textarea id="contactMessage" name="message" class="form-textarea" placeholder="Décrivez votre vision, vos objectifs, l'ambiance recherchée et vos contraintes..." required></textarea>
+                  </div>
+
+                  <div id="formStatusMsg" class="form-status-msg"></div>
+
+                  <button type="submit" class="form-submit-btn">
+                    <span>✦ Sceller le Pacte (Envoyer)</span>
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </section>
@@ -672,6 +1326,6 @@
     <script src="libs/Flip.min.js"></script>
     <script src="libs/SplitText.min.js"></script>
     <script src="libs/lenis.min.js"></script>
-    <script type="module" src="js/main.js?v=15"></script>
+    <script type="module" src="js/main.js?v=41"></script>
   </body>
 </html>

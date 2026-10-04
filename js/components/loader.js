@@ -328,23 +328,34 @@ export function initLoader() {
   const heroRevealStart = 5.9;
 
   tl.to(".navbar", {
-    opacity: 1,
+    autoAlpha: 1,
     duration: 0.8,
     ease: "power2.out",
   }, heroRevealStart);
 
-  tl.fromTo(".navbar .nav-link", {
-    yPercent: 30,
+  tl.fromTo(".forge-nav-toggle", {
+    y: -10,
     opacity: 0,
     filter: "blur(6px)",
   }, {
-    yPercent: 0,
+    y: 0,
     opacity: 1,
     filter: "blur(0px)",
     duration: 1.0,
-    stagger: 0.08,
     ease: "power3.out",
-  }, heroRevealStart);
+  }, heroRevealStart + 0.1);
+
+  tl.fromTo(".navbar-socials", {
+    y: -10,
+    opacity: 0,
+    filter: "blur(6px)",
+  }, {
+    y: 0,
+    opacity: 1,
+    filter: "blur(0px)",
+    duration: 1.0,
+    ease: "power3.out",
+  }, heroRevealStart + 0.1);
 
   tl.fromTo(".navbar-logo", {
     y: -10,

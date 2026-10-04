@@ -1,0 +1,269 @@
+/* ══════════════════════════════════════════════════
+   FORGE-STYLE FULLSCREEN MENU
+   Inspired by forgeautomotive.co.uk
+   ══════════════════════════════════════════════════ */
+
+/* ── NAVBAR — Social Left | Logo Center | Navigate Right ── */
+
+.paragraphe {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--white);
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--white);
+  font-family: "Instrument Serif";
+  line-height: 0.95;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.nav-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(1.5rem, 4svh, 2.5rem) clamp(2rem, 4svw, 4rem);
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.nav-logo,
+.nav-toggler {
+  pointer-events: all;
+}
+
+.nav-logo,
+.nav-toggler {
+  text-transform: uppercase;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+}
+
+.navbar-logo .logo-svg {
+  width: clamp(0.5rem, 4vw, 1.2rem);
+  object-fit: contain;
+}
+
+.nav-logo a img {
+  width: 8rem;
+  object-fit: contain;
+  filter: invert(1);
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  z-index: 90;
+  background-color: #07080c; /* fallback if WebGL is unavailable */
+  background-image: url("../assets/images/eclipse-bg.png");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+  clip-path: circle(0px at 50% 50%);
+  will-change: clip-path;
+}
+
+.menu.is-visible {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.menu-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+}
+
+.menu-dim {
+  position: fixed;
+  inset: 0;
+  z-index: 89;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.menu-content {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transform-origin: center center;
+  will-change: transform, opacity, filter;
+}
+
+.menu-links {
+  height: 100%;
+  padding-top: 10svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.menu-link a {
+  text-transform: uppercase;
+  font-size: clamp(2rem, 8vw, 8rem);
+  letter-spacing: -0.05em;
+}
+
+.menu-secondary-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  padding: 2rem 0;
+}
+
+.menu-secondary-link a {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.menu-link a,
+.menu-secondary-link a {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.menu-link a .line,
+.menu-secondary-link a .line {
+  display: block;
+  white-space: nowrap;
+}
+
+.menu-link a .clone,
+.menu-secondary-link a .clone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.menu-link a .char,
+.menu-secondary-link a .char {
+  display: inline-block;
+  white-space: pre;
+  will-change: transform;
+}
+
+.menu-footer {
+  width: 100%;
+  padding: 2.5rem;
+  color: var(--white);
+  display: flex;
+  align-items: flex-end;
+}
+
+.menu-footer-copy {
+  flex: 1;
+  display: flex;
+}
+
+.menu-footer-copy p {
+  opacity: 0.5;
+  text-transform: uppercase;
+}
+
+.menu-footer-copy:nth-child(2) {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.menu-footer-copy:nth-child(3) {
+  justify-content: flex-end;
+}
+
+.page-container {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  z-index: 2;
+  background-color: var(--dark-bg, #0a0a0a);
+}
+
+/* ── Toggle Text Wrap ── */
+.toggle-text-wrap {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  height: 1.2em;
+  line-height: 1.2em;
+  vertical-align: bottom;
+}
+
+.toggle-sizer {
+  visibility: hidden;
+  display: block;
+  pointer-events: none;
+}
+
+.toggle-menu,
+.toggle-close {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════ */
+
+@media (max-width: 1000px) {
+  .menu-secondary-links {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .menu-secondary-link {
+    display: flex;
+    justify-content: center;
+  }
+  .menu-footer {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .menu-footer-copy:nth-child(1),
+  .menu-footer-copy:nth-child(3) {
+    display: none;
+  }
+  .menu-footer-copy:nth-child(2) {
+    width: 100%;
+  }
+}

@@ -489,3 +489,152 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 768px) {
+  .section-a-propos {
+    height: 100svh;
+  }
+
+  .abyss-track {
+    padding: 0 6vw;
+    gap: 5vw;
+  }
+
+  .abyss-stele {
+    width: 88vw;
+    padding: 2rem 1.6rem;
+    max-height: 85vh;
+  }
+
+  .stele-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .stele-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.22em;
+  }
+
+  .stele-sigil {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+  }
+
+  .stele-title {
+    font-size: clamp(1.5rem, 4.5vw, 2.2rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .stele-subtitle {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    margin-bottom: 1.2rem;
+  }
+
+  .stele-narrative {
+    font-size: clamp(0.95rem, 3vw, 1.1rem);
+    line-height: 1.65;
+  }
+
+  /* Stats */
+  .stat-card {
+    padding: 0.8rem 1rem;
+  }
+
+  .stat-title {
+    font-size: 1rem;
+  }
+
+  .stat-desc {
+    font-size: 0.88rem;
+  }
+
+  /* Forge pillars */
+  .stele-quote {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    padding-left: 1.2rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .pillar-box {
+    padding: 1rem 0.9rem;
+  }
+
+  .pillar-metric {
+    font-size: 1.4rem;
+  }
+
+  .pillar-label {
+    font-size: 0.65rem;
+  }
+
+  .pillar-detail {
+    font-size: 0.82rem;
+  }
+
+  /* Bonfire */
+  .bonfire-btn {
+    padding: 0.8rem 1.4rem;
+    font-size: 0.7rem;
+  }
+
+  .bonfire-visual {
+    width: 90px;
+    height: 90px;
+  }
+
+  .bonfire-flame-core {
+    width: 50px;
+    height: 50px;
+  }
+
+  .bonfire-sword-icon {
+    font-size: 2.6rem;
+  }
+
+  /* Hide wisps canvas on mobile for perf */
+  .abyss-wisps-canvas {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .abyss-stele {
+    width: 92vw;
+    padding: 1.6rem 1.2rem;
+  }
+
+  .abyss-track {
+    padding: 0 4vw;
+    gap: 4vw;
+  }
+
+  .stele-title {
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+  }
+
+  .stele-narrative {
+    font-size: 0.92rem;
+  }
+
+  .stat-title {
+    font-size: 0.9rem;
+  }
+
+  .bonfire-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .bonfire-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.8rem 1rem;
+    font-size: 0.65rem;
+  }
+}

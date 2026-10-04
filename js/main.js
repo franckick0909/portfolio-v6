@@ -4,12 +4,14 @@
  */
 import { initAbout } from "./components/about.js?v=15";
 import { initDragons } from "./components/dragons.js?v=15";
+import { initForgeMenu } from "./components/forge-menu.js?v=5";
 import { initGateReveal } from "./components/gate-reveal.js?v=15";
 import { initHero } from "./components/hero.js?v=15";
 import { initLoader } from "./components/loader.js?v=15";
 import { initProjects } from "./components/projects.js?v=15";
 import { initScrollAnimations } from "./components/scroll.js?v=15";
 import { initWaterRipple } from "./components/water-ripple.js?v=15";
+import { initServices } from "./components/services.js?v=1";
 import { initAllTextReveals } from "./utils/text-reveal.js?v=15";
 
 /* ── GSAP Plugins ── */
@@ -20,7 +22,7 @@ CustomEase.create("souls-ease", "0.25, 0.1, 0.25, 1");
 CustomEase.create("souls-out", "0.16, 1, 0.3, 1");
 
 /* ── Smooth Scroll (Lenis) ── */
-const lenis = new Lenis({
+export const lenis = new Lenis({
   duration: 1.1,
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
   orientation: "vertical",
@@ -29,6 +31,7 @@ const lenis = new Lenis({
   wheelMultiplier: 1.15,
   touchMultiplier: 1.5,
 });
+window.lenis = lenis;
 
 lenis.on("scroll", ScrollTrigger.update);
 
@@ -60,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Set initial states for elements that still exist in the DOM
   gsap.set(".scroll-indicator", { opacity: 0 });
   gsap.set(".hero-side, .hero-copyright", { opacity: 0 });
-  gsap.set(".navbar .nav-link", { opacity: 0, yPercent: 30 });
   gsap.set(".navbar-logo", { opacity: 0, y: -10 });
 
   // Init modules
@@ -73,6 +75,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initWaterRipple();
   initDragons();
   initAllTextReveals();
+  initForgeMenu();
+  initServices();
 
   // Smooth scroll for anchor navigation links (e.g. navbar PROJETS)
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -84,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const targetEl = document.querySelector(targetId);
       if (targetEl) {
         e.preventDefault();
-        lenis.scrollTo(targetEl, { offset: 0, duration: 1.2 });
+        lenis.scrollTo(targetEl, { offset: 0, duration: 1.5 });
       }
     });
   });
