@@ -558,16 +558,12 @@
 }
 
 .faq-answer-panel {
-  max-height: 0;
+  height: 0;
   overflow: hidden;
-  transition: max-height 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
   opacity: 0;
+  will-change: height, opacity;
 }
 
-.faq-item.is-open .faq-answer-panel {
-  max-height: 400px;
-  opacity: 1;
-}
 
 .faq-answer-content {
   padding: 0 1.8rem 1.6rem 3.4rem;

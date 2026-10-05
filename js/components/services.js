@@ -68,32 +68,92 @@ function initCard3DTilt() {
 }
 
 /**
- * 2. Accordéon FAQ (Le Grimoire des Réponses)
+ * 2. Accordéon FAQ (Le Grimoire des Réponses) - Ouverture & Fermeture Ultra-Smooth GSAP
  */
 function initFaqAccordion() {
   const faqItems = document.querySelectorAll(".faq-item");
   if (!faqItems.length) return;
 
+  function closePanel(itemToClose) {
+    if (!itemToClose.classList.contains("is-open")) return;
+    itemToClose.classList.remove("is-open");
+    const trig = itemToClose.querySelector(".faq-trigger");
+    const pan = itemToClose.querySelector(".faq-answer-panel");
+    if (trig) trig.setAttribute("aria-expanded", "false");
+    if (!pan) return;
+
+    if (typeof gsap !== "undefined") {
+      gsap.killTweensOf(pan);
+      gsap.to(pan, {
+        height: 0,
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.inOut",
+        onComplete: () => {
+          if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
+        },
+      });
+    } else {
+      pan.style.height = "0px";
+      pan.style.opacity = "0";
+    }
+  }
+
+  function openPanel(itemToOpen) {
+    itemToOpen.classList.add("is-open");
+    const trig = itemToOpen.querySelector(".faq-trigger");
+    const pan = itemToOpen.querySelector(".faq-answer-panel");
+    if (trig) trig.setAttribute("aria-expanded", "true");
+    if (!pan) return;
+
+    if (typeof gsap !== "undefined") {
+      gsap.killTweensOf(pan);
+      // Mesure dynamique de la hauteur du contenu
+      pan.style.height = "auto";
+      const targetHeight = pan.scrollHeight;
+      const startHeight = pan.offsetHeight || 0;
+      pan.style.height = startHeight + "px";
+
+      gsap.fromTo(
+        pan,
+        { height: startHeight, opacity: 0 },
+        {
+          height: targetHeight,
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.out",
+          onComplete: () => {
+            pan.style.height = "auto";
+            if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
+          },
+        }
+      );
+    } else {
+      pan.style.height = "auto";
+      pan.style.opacity = "1";
+    }
+  }
+
   faqItems.forEach((item) => {
     const trigger = item.querySelector(".faq-trigger");
     const panel = item.querySelector(".faq-answer-panel");
-
     if (!trigger || !panel) return;
 
     trigger.addEventListener("click", () => {
       const isOpen = item.classList.contains("is-open");
 
-      // Fermer les autres items
+      // Fermer tous les autres items
       faqItems.forEach((other) => {
         if (other !== item && other.classList.contains("is-open")) {
-          other.classList.remove("is-open");
-          const otherTrigger = other.querySelector(".faq-trigger");
-          if (otherTrigger) otherTrigger.setAttribute("aria-expanded", "false");
+          closePanel(other);
         }
       });
 
-      item.classList.toggle("is-open", !isOpen);
-      trigger.setAttribute("aria-expanded", !isOpen ? "true" : "false");
+      if (isOpen) {
+        closePanel(item);
+      } else {
+        openPanel(item);
+      }
     });
   });
 }

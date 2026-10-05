@@ -119,11 +119,11 @@ export function initAbout() {
       );
     }
 
-    // D. Animations spécifiques selon la stèle
-    // Stèle I : Origine (Paragraphes & Sceau tournant d'Artorias)
+    // Stèle I : Origine (Paragraphes, Citation & Reveal des Deux Portraits au scroll)
     if (stele.classList.contains("stele-origin")) {
       const paragraphs = stele.querySelectorAll(".stele-narrative p");
-      const badge = stele.querySelector(".stele-sigil-badge");
+      const quote = stele.querySelector(".stele-creator-quote");
+      const portraits = stele.querySelectorAll(".portrait-card");
 
       if (paragraphs.length) {
         steleTl.fromTo(
@@ -133,13 +133,55 @@ export function initAbout() {
           0.35
         );
       }
-      if (badge) {
+      if (quote) {
         steleTl.fromTo(
-          badge,
-          { opacity: 0, scale: 0.6, rotate: -60 },
-          { opacity: 1, scale: 1, rotate: 0, duration: 0.9, ease: "back.out(1.4)" },
-          0.4
+          quote,
+          { opacity: 0, x: -20 },
+          { opacity: 1, x: 0, duration: 0.6, ease: "power2.out" },
+          0.48
         );
+      }
+      if (portraits.length) {
+        portraits.forEach((card, pIdx) => {
+          const img = card.querySelector(".portrait-img");
+          const curtain = card.querySelector(".portrait-reveal-curtain");
+          const badge = card.querySelector(".portrait-meta-badge");
+
+          // Révélation élégante du reliquaire
+          steleTl.fromTo(
+            card,
+            { opacity: 0, y: 40, scale: 0.9 },
+            { opacity: 1, y: pIdx === 0 ? -8 : 8, scale: 1, duration: 0.85, ease: "power3.out" },
+            0.4 + pIdx * 0.18
+          );
+
+          if (curtain) {
+            steleTl.fromTo(
+              curtain,
+              { scaleY: 1 },
+              { scaleY: 0, duration: 0.95, ease: "power3.inOut", transformOrigin: "top center" },
+              0.45 + pIdx * 0.18
+            );
+          }
+
+          if (img) {
+            steleTl.fromTo(
+              img,
+              { scale: 1.25, filter: "grayscale(90%) contrast(1.2)" },
+              { scale: 1, filter: "grayscale(18%) contrast(1.1)", duration: 1.2, ease: "power2.out" },
+              0.45 + pIdx * 0.18
+            );
+          }
+
+          if (badge) {
+            steleTl.fromTo(
+              badge,
+              { opacity: 0, y: 15 },
+              { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
+              0.7 + pIdx * 0.18
+            );
+          }
+        });
       }
     }
 
@@ -190,18 +232,36 @@ export function initAbout() {
       }
     }
 
-    // Stèle IV : Bonfire (Épée, Flamme spectrale & Boutons de contact)
+    // Stèle IV : Bonfire (Épée de Guerrier plantée, Brasier de braises & Boutons)
     if (stele.classList.contains("stele-bonfire")) {
       const bonfireVisual = stele.querySelector(".bonfire-visual");
+      const sword = stele.querySelector(".bonfire-warrior-sword");
+      const flame = stele.querySelector(".bonfire-flame-core");
       const text = stele.querySelector(".stele-narrative");
       const buttons = stele.querySelectorAll(".bonfire-btn");
 
       if (bonfireVisual) {
         steleTl.fromTo(
           bonfireVisual,
-          { opacity: 0, scale: 0.3, y: 15 },
-          { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "back.out(1.5)" },
+          { opacity: 0, scale: 0.8, y: 20 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.85, ease: "power3.out" },
           0.35
+        );
+      }
+      if (flame) {
+        steleTl.fromTo(
+          flame,
+          { opacity: 0, scale: 0.2 },
+          { opacity: 1, scale: 1, duration: 0.9, ease: "back.out(1.5)" },
+          0.4
+        );
+      }
+      if (sword) {
+        steleTl.fromTo(
+          sword,
+          { opacity: 0, y: -45, rotate: -25 },
+          { opacity: 1, y: 0, rotate: -8, duration: 0.95, ease: "power3.out" },
+          0.45
         );
       }
       if (text) {
@@ -209,7 +269,7 @@ export function initAbout() {
           text,
           { opacity: 0, y: 20 },
           { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
-          0.45
+          0.55
         );
       }
       if (buttons.length) {
@@ -217,7 +277,7 @@ export function initAbout() {
           buttons,
           { opacity: 0, y: 20 },
           { opacity: 1, y: 0, duration: 0.55, stagger: 0.12, ease: "power2.out" },
-          0.55
+          0.65
         );
       }
     }

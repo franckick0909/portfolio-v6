@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&amp;family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&amp;family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Outfit:wght@400;700;900&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500;600&amp;family=Barlow+Condensed:wght@600;700;800;900&amp;family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&amp;family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Outfit:wght@400;700;900&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/loader.css?v=19" />
@@ -698,8 +698,9 @@
                   <!-- Double Portrait Reliquaire (Lunette & Bonnet) -->
                   <div class="stele-portraits-showcase">
                     <!-- Portrait 1 : Lunettes (L'Architecte) -->
-                    <div class="portrait-card portrait-architecte">
+                    <div class="portrait-card portrait-architecte" data-reveal="portrait">
                       <div class="portrait-glass-frame">
+                        <div class="portrait-reveal-curtain"></div>
                         <div class="portrait-corner-rune corner-tl">⌜</div>
                         <div class="portrait-corner-rune corner-tr">⌝</div>
                         <div class="portrait-corner-rune corner-bl">⌞</div>
@@ -720,8 +721,9 @@
                     </div>
 
                     <!-- Portrait 2 : Bonnet (Le Forgeron) -->
-                    <div class="portrait-card portrait-forgeron">
+                    <div class="portrait-card portrait-forgeron" data-reveal="portrait">
                       <div class="portrait-glass-frame">
+                        <div class="portrait-reveal-curtain"></div>
                         <div class="portrait-corner-rune corner-tl">⌜</div>
                         <div class="portrait-corner-rune corner-tr">⌝</div>
                         <div class="portrait-corner-rune corner-bl">⌞</div>
@@ -891,7 +893,55 @@
                 <div class="stele-bonfire-content">
                   <div class="bonfire-visual">
                     <div class="bonfire-flame-core"></div>
-                    <span class="bonfire-sword-icon">🗡</span>
+                    <!-- Véritable Épée de Guerrier des Souls plantée dans le brasier -->
+                    <svg class="bonfire-warrior-sword" viewBox="0 0 64 160" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="L'Épée du Serment">
+                      <defs>
+                        <linearGradient id="swordBladeGrad" x1="0" y1="0" x2="1" y2="0">
+                          <stop offset="0%" stop-color="#94a3b8" />
+                          <stop offset="35%" stop-color="#f8fafc" />
+                          <stop offset="50%" stop-color="#cbd5e1" />
+                          <stop offset="65%" stop-color="#64748b" />
+                          <stop offset="100%" stop-color="#334155" />
+                        </linearGradient>
+                        <linearGradient id="swordHeatGrad" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#e2e8f0" />
+                          <stop offset="55%" stop-color="#fdba74" />
+                          <stop offset="80%" stop-color="#f97316" />
+                          <stop offset="100%" stop-color="#ef4444" />
+                        </linearGradient>
+                        <linearGradient id="swordGoldGrad" x1="0" y1="0" x2="1" y2="1">
+                          <stop offset="0%" stop-color="#fef08a" />
+                          <stop offset="50%" stop-color="#c9a84c" />
+                          <stop offset="100%" stop-color="#78590c" />
+                        </linearGradient>
+                        <filter id="swordGlow" x="-20%" y="-20%" width="140%" height="140%">
+                          <feGaussianBlur stdDeviation="2" result="blur" />
+                          <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                        </filter>
+                      </defs>
+
+                      <!-- Pommeau supérieur couronné -->
+                      <polygon points="32,4 37,9 34,16 30,16 27,9" fill="url(#swordGoldGrad)" />
+                      <circle cx="32" cy="10" r="2.5" fill="#fef08a" filter="url(#swordGlow)" />
+
+                      <!-- Poignée / Fusée sculptée -->
+                      <rect x="30" y="16" width="4" height="22" rx="1" fill="#0f172a" />
+                      <line x1="30" y1="20" x2="34" y2="22" stroke="#c9a84c" stroke-width="0.9" />
+                      <line x1="30" y1="25" x2="34" y2="27" stroke="#c9a84c" stroke-width="0.9" />
+                      <line x1="30" y1="30" x2="34" y2="32" stroke="#c9a84c" stroke-width="0.9" />
+                      <line x1="30" y1="35" x2="34" y2="37" stroke="#c9a84c" stroke-width="0.9" />
+
+                      <!-- Garde imposante de guerrier (Artorias Greatsword) -->
+                      <path d="M12 40 C 22 41, 28 38, 32 42 C 36 38, 42 41, 52 40 C 53 43, 49 46, 42 45 C 36 44, 34 46, 32 46 C 30 46, 28 44, 22 45 C 15 46, 11 43, 12 40 Z" fill="url(#swordGoldGrad)" filter="url(#swordGlow)" />
+                      <polygon points="32,39 35,43 32,47 29,43" fill="#5ec5ff" filter="url(#swordGlow)" />
+
+                      <!-- Lame de Guerrier imposante avec pointe chauffée au rouge-braise -->
+                      <path d="M26 46 L 27 122 L 32 155 L 37 122 L 38 46 Z" fill="url(#swordHeatGrad)" />
+                      <line x1="32" y1="48" x2="32" y2="135" stroke="#0f172a" stroke-width="1.2" />
+                      <path d="M26 46 L 27 122 L 32 155 L 32 46 Z" fill="url(#swordBladeGrad)" opacity="0.35" />
+                      <!-- Runes gravées flamboyantes -->
+                      <path d="M32 58 L 30 63 L 34 65 M32 75 L 34 78 L 30 81 M32 92 L 31 96 L 33 99" stroke="#fed7aa" stroke-width="1" opacity="0.9" filter="url(#swordGlow)" />
+                    </svg>
                   </div>
 
                   <p
@@ -931,114 +981,114 @@
           </div>
 
           <div class="services-inner-container">
-            <!-- En-tête Acte III -->
+            <!-- En-tête Acte III — Récit post-Abysses (Kiln of the First Flame / Lige-Feu) -->
             <div class="section-header-ritual">
               <div class="ritual-tag">[ CHRONIQUE • ACTE III ]</div>
-              <div class="ritual-sigils">ᛋ • ᛖ • ᚱ • ᚢ • ᛁ • ᚲ • ᛖ • ᛋ</div>
-              <h2 class="ritual-title">La Voie du Forgeron</h2>
+              <div class="ritual-sigils">ᛋ • ᛖ • ᚱ • ᛗ • ᛖ • ᚾ • ᛏ • ᛋ</div>
+              <h2 class="ritual-title">L'Éveil du Premier Feu</h2>
               <p class="ritual-subtitle">
-                LES PACTES NUMÉRIQUES &amp; LE RITUEL DE CRÉATION SUR-MESURE
+                L'ÉMERGENCE DES ABYSSES, LES SERMENTS DE CENDRES &amp; LE GRAND PÈLERINAGE VERS LE TRÔNE
               </p>
               <div class="ritual-header-line"></div>
             </div>
 
-            <!-- 1. Les 3 Pactes de Création (Cartes Services) -->
+            <!-- 1. Les 3 Grands Serments de Cendres (Prestations Sacrées) -->
             <div class="services-pacts-grid">
-              <!-- Pacte 01 : WebGL & 3D -->
+              <!-- Serment 01 : Le Dragon Primordial (WebGL & 3D) -->
               <article class="pact-card">
                 <div class="pact-card-header">
-                  <div class="pact-num">[ PACTE 01 ]</div>
-                  <h3 class="pact-name">Expérience WebGL &amp; 3D Interactive</h3>
+                  <div class="pact-num">[ SERMENT I • DRAGON PRIMORDIAL ]</div>
+                  <h3 class="pact-name">Mondes WebGL &amp; 3D Interactive</h3>
                   <p class="pact-desc">
-                    Pour les créateurs, marques et studios qui refusent la banalité. Univers en temps réel, shaders GLSL sur-mesure, physiques interactives et storytelling cinématique taillés pour décrocher des distinctions (Awwwards / FWA).
+                    Comme les Dragons de Pierre qui régnaient avant l'apparition du Feu, ce serment modèle la matière brute dans l'espace. Univers en temps réel, shaders GLSL sur-mesure, physiques interactives et storytelling cinématique taillés pour décrocher les plus hauts honneurs (Awwwards / FWA).
                   </p>
                 </div>
 
                 <div class="pact-card-body">
-                  <div class="pact-deliverables-title">Ce qui est forgé :</div>
+                  <div class="pact-deliverables-title">Ce qui est scellé dans la roche :</div>
                   <ul class="pact-deliverables-list">
-                    <li>Scène Three.js fluide 60 FPS sans concessions</li>
-                    <li>Shaders de distorsion &amp; particules interactives</li>
-                    <li>Fallback GPU intelligent pour mobile</li>
-                    <li>Design audio spatial &amp; micro-interactions</li>
-                    <li>Dossier de candidature Awwwards / FWA</li>
+                    <li>Royaume Three.js temps réel fluide 60 FPS sans compromis</li>
+                    <li>Shaders de distorsion, réfraction &amp; fluides réactifs</li>
+                    <li>Adaptation adaptative du GPU pour mobile et 4K</li>
+                    <li>Design audio spatialisé &amp; micro-interactions immersives</li>
+                    <li>Édification du dossier de candidature Awwwards / FWA</li>
                   </ul>
                 </div>
 
                 <div class="pact-footer">
-                  <span class="pact-timing">3 à 5 semaines</span>
+                  <span class="pact-timing">3 à 5 semaines de pèlerinage</span>
                   <a href="#contact" class="pact-btn" data-service="webgl">
-                    <span>Invoquer ✦</span>
+                    <span>Prêter Serment ✦</span>
                   </a>
                 </div>
               </article>
 
-              <!-- Pacte 02 : Vitrine Haute-Couture (Featured) -->
+              <!-- Serment 02 : La Lame Solaire (Vitrine Haute-Couture) -->
               <article class="pact-card pact-card-featured">
-                <div class="pact-badge-featured">Pacte Recommandé</div>
+                <div class="pact-badge-featured">Serment Solaire Recommandé</div>
                 <div class="pact-card-header">
-                  <div class="pact-num">[ PACTE 02 ]</div>
-                  <h3 class="pact-name">Site Vitrine &amp; Direction Artistique</h3>
+                  <div class="pact-num">[ SERMENT II • LA LAME SOLAIRE ]</div>
+                  <h3 class="pact-name">Sanctuaire Vitrine Haute-Couture</h3>
                   <p class="pact-desc">
-                    Une présence numérique haute-couture, sombre et intemporelle. Typographie éditoriale noble, transitions de pages instantanées, défilement cinématique et zéro template réutilisé.
+                    Inspiré par la grandeur immaculée des Cités d'Or et la lumière sacrée. Une architecture numérique souveraine, où la typographie noble épouse un défilement cinématique et un code pur sans scories, inaltérable par le temps.
                   </p>
                 </div>
 
                 <div class="pact-card-body">
-                  <div class="pact-deliverables-title">Ce qui est forgé :</div>
+                  <div class="pact-deliverables-title">Ce qui est scellé dans la roche :</div>
                   <ul class="pact-deliverables-list">
-                    <li>Direction artistique &amp; maquettes UI/UX sur-mesure</li>
-                    <li>Code pur Vanilla ES6+ ultra-léger et pérenne</li>
+                    <li>Direction artistique singulière &amp; grilles éditoriales suisses</li>
+                    <li>Code pur Vanilla ES6+ affûté comme une lame, zéro dépendance lourde</li>
                     <li>Chorégraphies GSAP ScrollTrigger millimétrées</li>
                     <li>Optimisation SEO sémantique &amp; Core Web Vitals 95+</li>
-                    <li>Hébergement haute disponibilité &amp; SSL sécurisé</li>
+                    <li>Hébergement haute disponibilité &amp; rempart SSL imprenable</li>
                   </ul>
                 </div>
 
                 <div class="pact-footer">
-                  <span class="pact-timing">2 à 4 semaines</span>
+                  <span class="pact-timing">2 à 4 semaines de pèlerinage</span>
                   <a href="#contact" class="pact-btn" data-service="vitrine">
-                    <span>Invoquer ✦</span>
+                    <span>Prêter Serment ✦</span>
                   </a>
                 </div>
               </article>
 
-              <!-- Pacte 03 : Alchimie & Refonte -->
+              <!-- Serment 03 : Transposition des Âmes (Refonte) -->
               <article class="pact-card">
                 <div class="pact-card-header">
-                  <div class="pact-num">[ PACTE 03 ]</div>
+                  <div class="pact-num">[ SERMENT III • TRANSPOSITION D'ÂMES ]</div>
                   <h3 class="pact-name">Alchimie &amp; Refonte de Performance</h3>
                   <p class="pact-desc">
-                    Votre site existant souffre de lenteurs, de dépendances obsolètes ou d'un design usé ? Nous purifions l'architecture, éliminons le superflu et réinventons l'expérience pour la rendre foudroyante.
+                    À l'image des Seigneurs des Cendres transmutant les âmes corrompues en reliques de légende. Si votre sanctuaire existant souffre de lenteurs, de dépendances vétustes ou d'un design fané, nous consumons les scories et régénérons la flamme pour lui conférer la vivacité de l'éclair.
                   </p>
                 </div>
 
                 <div class="pact-card-body">
-                  <div class="pact-deliverables-title">Ce qui est forgé :</div>
+                  <div class="pact-deliverables-title">Ce qui est scellé dans la roche :</div>
                   <ul class="pact-deliverables-list">
-                    <li>Audit approfondi de performance, UX et SEO</li>
-                    <li>Réécriture du code sans framework surchargé</li>
-                    <li>Intégration d'un smooth scroll fluide (Lenis)</li>
-                    <li>Temps de chargement réduit sous la barre d'1.2s</li>
-                    <li>Accompagnement et transfert de compétences</li>
+                    <li>Diagnostic impitoyable de performance, UX et dette technique</li>
+                    <li>Purge des frameworks surchargés &amp; renaissance Vanilla</li>
+                    <li>Intégration d'un smooth scroll fluide et inertiel (Lenis)</li>
+                    <li>Temps de chargement réduit sous la barre de la seconde</li>
+                    <li>Transmission des reliques de code &amp; autonomie totale</li>
                   </ul>
                 </div>
 
                 <div class="pact-footer">
-                  <span class="pact-timing">2 à 3 semaines</span>
+                  <span class="pact-timing">2 à 3 semaines de pèlerinage</span>
                   <a href="#contact" class="pact-btn" data-service="refonte">
-                    <span>Invoquer ✦</span>
+                    <span>Prêter Serment ✦</span>
                   </a>
                 </div>
               </article>
             </div>
 
-            <!-- 2. Le Rituel de Forge (Timeline complète Contact -> Livraison) -->
+            <!-- 2. Le Pèlerinage de la Cendre (Timeline du Serment au Déploiement) -->
             <div class="ritual-process-section">
               <div class="ritual-process-header">
-                <h3 class="ritual-process-title">Le Rituel de Forge</h3>
+                <h3 class="ritual-process-title">Le Pèlerinage de la Cendre</h3>
                 <p class="ritual-process-sub">
-                  DÉROULEMENT COMPLET DE NOTRE ALLIANCE (DU PREMIER MESSAGE À LA LIVRAISON)
+                  LES CINQ ÉTAPES DE NOTRE ALLIANCE (DU PREMIER MESSAGE À L'ÉLÉVATION DU ROYAUME)
                 </p>
               </div>
 
@@ -1051,17 +1101,17 @@
                   </div>
                   <div class="process-step-content">
                     <div class="process-step-header">
-                      <span class="step-phase-tag">PHASE I • LE PREMIER CONTACT</span>
+                      <span class="step-phase-tag">PHASE I • L'APPEL DE LA GRÂCE</span>
                       <span class="step-timing">Jour 1 à 3</span>
                     </div>
-                    <h4 class="step-title">L'Incantation Initiale &amp; Cadrage Stratégique</h4>
+                    <h4 class="step-title">La Missive du Corbeau &amp; Cadrage de la Quête</h4>
                     <p class="step-desc">
-                      Tout commence par votre message transmis via le formulaire ci-dessous ou par corbeau électronique. Sous 24 heures, nous échangeons sur vos ambitions, votre audience, vos contraintes techniques et l'univers artistique souhaité. Nous formalisons un cahier des charges limpide, un devis transparent et un calendrier d'exécution sans zone d'ombre.
+                      Tout commence par votre invocation transmise par le formulaire ci-dessous ou par corbeau électronique. Sous 24 heures, nous nous réunissons autour du feu de camp pour sonder votre quête, cartographier vos ambitions et établir les contours de l'univers souhaité. Nous formalisons un pacte limpide, un devis transparent et un calendrier sans zone d'ombre.
                     </p>
                     <div class="step-deliverables">
-                      <span class="step-chip">Échange stratégique (Visio / Mail)</span>
-                      <span class="step-chip">Cahier des charges validé</span>
-                      <span class="step-chip">Calendrier &amp; Devis scellés</span>
+                      <span class="step-chip">Échange stratégique autour du feu (Visio / Mail)</span>
+                      <span class="step-chip">Pacte &amp; Périmètre scellés</span>
+                      <span class="step-chip">Calendrier d'ascension défini</span>
                     </div>
                   </div>
                 </div>
@@ -1074,16 +1124,16 @@
                   </div>
                   <div class="process-step-content">
                     <div class="process-step-header">
-                      <span class="step-phase-tag">PHASE II • CONCEPTION &amp; DIRECTION ARTISTIQUE</span>
+                      <span class="step-phase-tag">PHASE II • LE TRACÉ DES RUNES</span>
                       <span class="step-timing">Semaine 1</span>
                     </div>
-                    <h4 class="step-title">L'Ébauche Astrale &amp; Prototypage UX</h4>
+                    <h4 class="step-title">L'Ébauche Céleste &amp; Architecture du Monde</h4>
                     <p class="step-desc">
-                      Avant de forger la moindre ligne de code, nous façonnons les fondations visuelles : moodboard sombre, recherche typographique, palette de teintes et wireframes interactifs. Vous visualisez l'architecture de navigation et l'ambiance esthétique. Vos retours sont intégrés jusqu'à validation complète de la direction artistique.
+                      Avant de graver le premier fragment de code dans la pierre, nous façonnons les fondations visuelles : moodboard crépusculaire, typographie sacrée, palette d'obsidienne et prototypes interactifs. Vous contemplez l'architecture de navigation et l'ambiance esthétique. Vos retours affinent la vision jusqu'à perfection.
                     </p>
                     <div class="step-deliverables">
-                      <span class="step-chip">Moodboard artistique &amp; Grilles</span>
-                      <span class="step-chip">Architecture de contenu</span>
+                      <span class="step-chip">Direction artistique &amp; Grilles sacrées</span>
+                      <span class="step-chip">Architecture des cryptes et contenus</span>
                       <span class="step-chip">Prototypage des interactions clés</span>
                     </div>
                   </div>
@@ -1097,17 +1147,17 @@
                   </div>
                   <div class="process-step-content">
                     <div class="process-step-header">
-                      <span class="step-phase-tag">PHASE III • DÉVELOPPEMENT CRÉATIF</span>
+                      <span class="step-phase-tag">PHASE III • L'ALLUMAGE DU BRASIER</span>
                       <span class="step-timing">Semaine 2 à 3</span>
                     </div>
-                    <h4 class="step-title">La Forge du Code &amp; Alchimie WebGL</h4>
+                    <h4 class="step-title">La Forge de l'Âme &amp; Code Ancestral WebGL</h4>
                     <p class="step-desc">
-                      Le design s'anime dans la matière. Nous développons le site en code pur, sans framework superflu : Three.js, shaders GLSL pour les effets de réfraction et fluides, et GSAP ScrollTrigger pour la chorégraphie cinématique. Un lien secret de prévisualisation (Staging privé) vous est confié pour suivre et tester l'expérience en temps réel.
+                      Le design s'anime dans la matière brute. Nous bâtissons le sanctuaire en code pur, sans artifice lourd : Three.js, shaders GLSL pour les réfractions et particules, et GSAP ScrollTrigger pour la chorégraphie cinématique. Une clé de vision astrale privée (Staging secret) vous est confiée pour explorer le sanctuaire au fil de sa construction.
                     </p>
                     <div class="step-deliverables">
-                      <span class="step-chip">Lien de prévisualisation secret (Staging)</span>
-                      <span class="step-chip">Shaders &amp; 3D interactifs</span>
-                      <span class="step-chip">Défilement Lenis cinématique</span>
+                      <span class="step-chip">Clé de vision astrale privée (Staging en direct)</span>
+                      <span class="step-chip">Shaders GLSL &amp; 3D réactifs</span>
+                      <span class="step-chip">Défilement Lenis cinématique soyeux</span>
                     </div>
                   </div>
                 </div>
@@ -1120,17 +1170,17 @@
                   </div>
                   <div class="process-step-content">
                     <div class="process-step-header">
-                      <span class="step-phase-tag">PHASE IV • POLISSAGE &amp; PERFORMANCE</span>
+                      <span class="step-phase-tag">PHASE IV • L'ÉPREUVE DU CREUSET</span>
                       <span class="step-timing">Semaine 3 à 4</span>
                     </div>
-                    <h4 class="step-title">Le Creuset de Purification &amp; Épreuves 60 FPS</h4>
+                    <h4 class="step-title">Purification 60 FPS &amp; Épreuve des Supports</h4>
                     <p class="step-desc">
-                      Rien n'échappe à l'épreuve de rigueur. Le site est testé et affiné sur tous les supports : smartphones iOS et Android, tablettes et écrans 4K. Nous optimisons le rendu GPU, compressons les médias, auditons le SEO technique, l'accessibilité et la réactivité au doigt comme à la souris.
+                      L'épreuve du combat : le sanctuaire est mis à l'épreuve sur tous les supports connus (smartphones iOS et Android, tablettes et écrans 4K). Nous domptons l'allocation mémoire GPU, allégeons les calculs volumétriques, optimisons le SEO sémantique et vérifions la fluidité au doigt comme au curseur.
                     </p>
                     <div class="step-deliverables">
-                      <span class="step-chip">Framerate 60 FPS stable</span>
-                      <span class="step-chip">Tests cross-browser &amp; mobiles</span>
-                      <span class="step-chip">Optimisation Core Web Vitals</span>
+                      <span class="step-chip">Framerate 60 FPS immuable</span>
+                      <span class="step-chip">Purification cross-browser &amp; mobiles</span>
+                      <span class="step-chip">Core Web Vitals au firmament</span>
                     </div>
                   </div>
                 </div>
@@ -1143,17 +1193,17 @@
                   </div>
                   <div class="process-step-content">
                     <div class="process-step-header">
-                      <span class="step-phase-tag">PHASE V • MISE EN LIGNE &amp; TRANSMISSION</span>
-                      <span class="step-timing">Livraison &amp; Post-lancement</span>
+                      <span class="step-phase-tag">PHASE V • LE COURONNEMENT DU SEIGNEUR</span>
+                      <span class="step-timing">Livraison &amp; Garde Éternelle</span>
                     </div>
-                    <h4 class="step-title">L'Allumage du Brasier &amp; Déploiement Officiel</h4>
+                    <h4 class="step-title">L'Allumage Officiel &amp; Rayonnement sur le Monde</h4>
                     <p class="step-desc">
-                      Le sanctuaire est prêt à accueillir le monde. Nous configurons l'hébergement haute performance (Vercel, Netlify ou serveur personnalisé), raccordons votre nom de domaine avec certificat SSL, et déclenchons la mise en production sans aucune interruption. Remise de l'ensemble des fichiers sources, guide d'autonomie et suivi bienveillant de 30 jours inclus.
+                      Le sanctuaire s'élève aux yeux de tous. Nous configurons l'hébergement haute performance (Vercel, Netlify ou serveur dédié), raccordons votre domaine sous rempart SSL chiffré, et déclenchons la mise en ligne sans interruption. Remise de l'intégralité des reliques de code source, guide d'autonomie et garde protectrice de 30 jours incluse.
                     </p>
                     <div class="step-deliverables">
-                      <span class="step-chip">Déploiement live &amp; DNS sécurisé</span>
-                      <span class="step-chip">Remise des accès &amp; Fichiers sources</span>
-                      <span class="step-chip">Garantie &amp; Suivi 30 jours inclus</span>
+                      <span class="step-chip">Mise en ligne live &amp; DNS sécurisé</span>
+                      <span class="step-chip">Remise complète des reliques sources</span>
+                      <span class="step-chip">Garde &amp; Veillée protectrice 30 jours offerte</span>
                     </div>
                   </div>
                 </div>
@@ -1467,7 +1517,11 @@
             <!-- Grand Bouton d'Ascension Magnétique (Retour au Sommet) -->
             <div class="footer-ascension-row">
               <a href="#" id="backToTopBtn" class="footer-ascension-btn" aria-label="Retour au sommet">
-                <span class="ascension-sword">🗡</span>
+                <span class="ascension-sword">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="display:block;">
+                    <path d="M6.92 5L12 2l5.08 3L13 13.5v4.5l3 1v2l-4-1-4 1v-2l3-1V13.5L6.92 5zM12 4.2L8.5 6.2l3.5 6.5 3.5-6.5L12 4.2z"/>
+                  </svg>
+                </span>
                 <span class="ascension-text">RALLUMER LE PREMIER FEU • RETOUR AU SOMMET</span>
                 <span class="ascension-arrow">↑</span>
               </a>
@@ -1510,6 +1564,6 @@
     <script src="libs/Flip.min.js"></script>
     <script src="libs/SplitText.min.js"></script>
     <script src="libs/lenis.min.js"></script>
-    <script type="module" src="js/main.js?v=43"></script>
+    <script type="module" src="js/main.js?v=44"></script>
   </body>
 </html>
