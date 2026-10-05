@@ -170,71 +170,179 @@
 }
 
 /* ══════════════════════════════════════════════════
-   STÈLE I : L'ORIGINE (Identité & Manifeste)
+   STÈLE I : L'ORIGINE (Identité & Double Portrait)
    ══════════════════════════════════════════════════ */
+.stele-origin {
+  width: min(1040px, 88vw);
+}
+
 .stele-origin-body {
   display: grid;
-  grid-template-columns: 1fr 180px;
-  gap: 2.5rem;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(1.8rem, 3.2vw, 3rem);
   align-items: center;
 }
 
 .stele-narrative {
   font-family: var(--font-body, "EB Garamond", serif);
-  font-size: clamp(1.05rem, 1.3vw, 1.28rem);
-  line-height: 1.75;
+  font-size: clamp(1.02rem, 1.25vw, 1.22rem);
+  line-height: 1.72;
   color: rgba(230, 235, 245, 0.88);
 }
 
 .stele-narrative p {
-  margin: 0 0 1.2rem;
+  margin: 0 0 1rem;
 }
 
 .stele-narrative p:last-child {
   margin-bottom: 0;
 }
 
-.stele-sigil-badge {
+.stele-creator-quote {
+  margin-top: 1.2rem;
+  padding: 0.75rem 1.1rem;
+  background: rgba(94, 197, 255, 0.04);
+  border-left: 2px solid #c9a84c;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: rgba(201, 168, 76, 0.95);
+  border-radius: 0 3px 3px 0;
+}
+
+.stele-creator-quote p {
+  margin: 0;
+}
+
+.creator-quote-rune {
+  font-size: 1.3rem;
+  line-height: 1;
+  color: #c9a84c;
+}
+
+/* Double Portrait Reliquaire */
+.stele-portraits-showcase {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.1rem;
+  position: relative;
+}
+
+.portrait-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portrait-card.portrait-architecte {
+  transform: translateY(-8px);
+}
+
+.portrait-card.portrait-forgeron {
+  transform: translateY(8px);
+}
+
+.portrait-card:hover {
+  transform: translateY(-14px) scale(1.02);
+  z-index: 5;
+}
+
+.portrait-glass-frame {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  background: rgba(10, 14, 22, 0.85);
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.8),
+    inset 0 0 25px rgba(0, 0, 0, 0.85);
+  aspect-ratio: 3 / 4;
+}
+
+.portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  image-orientation: from-image;
+  display: block;
+  filter: grayscale(18%) contrast(1.1) brightness(0.94);
+  transition: filter 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.portrait-card:hover .portrait-img {
+  filter: grayscale(0%) contrast(1.05) brightness(1.06);
+  transform: scale(1.06);
+}
+
+.portrait-sheen-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.12) 0%,
+    transparent 50%,
+    rgba(201, 168, 76, 0.15) 100%
+  );
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  transition: opacity 0.4s ease;
+}
+
+.portrait-corner-rune {
+  position: absolute;
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.85rem;
+  line-height: 1;
+  color: #c9a84c;
+  opacity: 0.75;
+  pointer-events: none;
+  z-index: 3;
+  text-shadow: 0 0 6px rgba(201, 168, 76, 0.6);
+}
+
+.corner-tl { top: 4px; left: 6px; }
+.corner-tr { top: 4px; right: 6px; }
+.corner-bl { bottom: 4px; left: 6px; }
+.corner-br { bottom: 4px; right: 6px; }
+
+.portrait-meta-badge {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  border: 1px dashed rgba(94, 197, 255, 0.35);
-  background: radial-gradient(circle, rgba(16, 24, 38, 0.8) 0%, rgba(4, 6, 10, 0.95) 75%);
-  box-shadow:
-    0 0 25px rgba(94, 197, 255, 0.15),
-    inset 0 0 20px rgba(0, 0, 0, 0.8);
-  position: relative;
   text-align: center;
-  transition: transform 0.6s ease;
+  padding: 0.4rem 0.6rem;
+  background: rgba(14, 18, 28, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  backdrop-filter: blur(8px);
 }
 
-.abyss-stele:hover .stele-sigil-badge {
-  transform: rotate(45deg);
-  border-color: rgba(94, 197, 255, 0.6);
-  box-shadow: 0 0 35px rgba(94, 197, 255, 0.3);
+.portrait-rune-sigil {
+  font-size: 0.95rem;
+  color: #c9a84c;
+  line-height: 1;
+  margin-bottom: 2px;
+  text-shadow: 0 0 8px rgba(201, 168, 76, 0.5);
 }
 
-.badge-rune {
-  font-size: 2.5rem;
+.portrait-role-title {
+  font-family: "OptimusPrinceps", serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: #ffffff;
-  text-shadow: 0 0 18px rgba(94, 197, 255, 0.8);
-  transition: transform 0.6s ease;
 }
 
-.abyss-stele:hover .badge-rune {
-  transform: rotate(-45deg);
-}
-
-.badge-sub {
+.portrait-role-sub {
   font-family: var(--font-mono, "DM Mono", monospace);
-  font-size: 0.65rem;
-  letter-spacing: 0.28em;
-  color: rgba(255, 255, 255, 0.5);
-  margin-top: 0.4rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
 }
 
 /* ══════════════════════════════════════════════════
@@ -478,12 +586,12 @@
   }
   .stele-origin-body {
     grid-template-columns: 1fr;
-    gap: 1.8rem;
+    gap: 2rem;
   }
-  .stele-sigil-badge {
+  .stele-portraits-showcase {
+    max-width: 440px;
     margin: 0 auto;
-    width: 120px;
-    height: 120px;
+    width: 100%;
   }
   .stele-pillars-grid {
     grid-template-columns: 1fr;
