@@ -93,18 +93,16 @@ export function initServicesCanvas() {
   );
   forgeGroup.add(coreMesh);
 
-  // 3. Nuage de Particules de Braises Astrales
-  const particleCount = 280;
+  // 3. Nuage de Particules de Braises Astrales Micro-fines
+  const particleCount = 160;
   const positions = new Float32Array(particleCount * 3);
-  const scales = new Float32Array(particleCount);
   const driftSpeeds = new Float32Array(particleCount);
 
   for (let i = 0; i < particleCount; i++) {
     positions[i * 3] = (Math.random() - 0.5) * 45;
     positions[i * 3 + 1] = (Math.random() - 0.5) * 35;
     positions[i * 3 + 2] = (Math.random() - 0.5) * 25;
-    scales[i] = Math.random() * 0.12 + 0.04;
-    driftSpeeds[i] = Math.random() * 0.008 + 0.003;
+    driftSpeeds[i] = Math.random() * 0.006 + 0.002;
   }
 
   const particleGeometry = new THREE.BufferGeometry();
@@ -113,25 +111,26 @@ export function initServicesCanvas() {
     new THREE.BufferAttribute(positions, 3)
   );
 
-  // Création de texture de particule douce via canvas 2D
+  // Texture de particule fine et cristalline (micro-étincelle)
   const pCanvas = document.createElement("canvas");
-  pCanvas.width = 32;
-  pCanvas.height = 32;
+  pCanvas.width = 16;
+  pCanvas.height = 16;
   const pCtx = pCanvas.getContext("2d");
-  const pGrad = pCtx.createRadialGradient(16, 16, 0, 16, 16, 16);
+  const pGrad = pCtx.createRadialGradient(8, 8, 0, 8, 8, 8);
   pGrad.addColorStop(0, "rgba(255, 255, 255, 1)");
-  pGrad.addColorStop(0.35, "rgba(201, 168, 76, 0.8)");
+  pGrad.addColorStop(0.2, "rgba(201, 168, 76, 0.75)");
+  pGrad.addColorStop(0.6, "rgba(201, 168, 76, 0.1)");
   pGrad.addColorStop(1, "rgba(201, 168, 76, 0)");
   pCtx.fillStyle = pGrad;
-  pCtx.fillRect(0, 0, 32, 32);
+  pCtx.fillRect(0, 0, 16, 16);
 
   const particleTexture = new THREE.CanvasTexture(pCanvas);
 
   const particleMaterial = new THREE.PointsMaterial({
-    size: 1.2,
+    size: 0.18,
     map: particleTexture,
     transparent: true,
-    opacity: 0.65,
+    opacity: 0.45,
     blending: THREE.AdditiveBlending,
     depthWrite: false,
     color: currentColor,

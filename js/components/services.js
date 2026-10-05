@@ -11,7 +11,7 @@
  * - Animations d'apparition séquencée au scroll (ScrollTrigger)
  */
 
-import { initServicesCanvas } from "./services-canvas.js?v=1";
+import { initServicesCanvas } from "./services-canvas.js?v=2";
 
 export function initServices() {
   initServicesCanvas();

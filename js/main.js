@@ -2,7 +2,7 @@
  * main.js — Dark Fantasy Portfolio — Point d'entrée principal
  * GSAP, CustomEase, ScrollTrigger, Flip et Lenis chargés via CDN
  */
-import { initAbout } from "./components/about.js?v=15";
+import { initAbout } from "./components/about.js?v=16";
 import { initDragons } from "./components/dragons.js?v=15";
 import { initForgeMenu } from "./components/forge-menu.js?v=5";
 import { initGateReveal } from "./components/gate-reveal.js?v=15";
@@ -11,7 +11,7 @@ import { initLoader } from "./components/loader.js?v=15";
 import { initProjects } from "./components/projects.js?v=15";
 import { initScrollAnimations } from "./components/scroll.js?v=15";
 import { initWaterRipple } from "./components/water-ripple.js?v=15";
-import { initServices } from "./components/services.js?v=1";
+import { initServices } from "./components/services.js?v=2";
 import { initAllTextReveals } from "./utils/text-reveal.js?v=15";
 
 /* ── GSAP Plugins ── */

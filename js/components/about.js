@@ -234,22 +234,34 @@ function initAbyssWisps(section) {
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
 
-  let width = (canvas.width = section.offsetWidth || window.innerWidth);
-  let height = (canvas.height = section.offsetHeight || window.innerHeight);
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let cssW = section.offsetWidth || window.innerWidth;
+  let cssH = section.offsetHeight || window.innerHeight;
+
+  function resize() {
+    cssW = section.offsetWidth || window.innerWidth;
+    cssH = section.offsetHeight || window.innerHeight;
+    canvas.width = Math.round(cssW * dpr);
+    canvas.height = Math.round(cssH * dpr);
+    canvas.style.width = cssW + "px";
+    canvas.style.height = cssH + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
 
   const particles = [];
-  const COUNT = 35; // Très léger, 60 FPS garanti
+  const COUNT = 28; // Nombre subtil pour une ambiance éthérée pure
 
   for (let i = 0; i < COUNT; i++) {
     particles.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      radius: Math.random() * 2.2 + 0.8,
-      speedY: -(Math.random() * 0.4 + 0.15),
-      speedX: (Math.random() - 0.5) * 0.3,
-      alpha: Math.random() * 0.6 + 0.2,
-      pulseSpeed: Math.random() * 0.03 + 0.01,
-      hue: Math.random() > 0.4 ? 205 : 42, // Bleu spectral ou or pâle
+      x: Math.random() * cssW,
+      y: Math.random() * cssH,
+      radius: Math.random() * 0.5 + 0.35, // 0.35px à 0.85px : micro-braises discrètes
+      speedY: -(Math.random() * 0.3 + 0.1),
+      speedX: (Math.random() - 0.5) * 0.2,
+      alpha: Math.random() * 0.4 + 0.15,
+      pulseSpeed: Math.random() * 0.02 + 0.01,
+      hue: Math.random() > 0.45 ? 205 : 42,
     });
   }
 
@@ -273,37 +285,34 @@ function initAbyssWisps(section) {
 
   observer.observe(section);
 
-  window.addEventListener("resize", () => {
-    width = canvas.width = section.offsetWidth || window.innerWidth;
-    height = canvas.height = section.offsetHeight || window.innerHeight;
-  });
+  window.addEventListener("resize", resize);
 
   function render() {
     if (!isVisible) return;
-    ctx.clearRect(0, 0, width, height);
+    ctx.clearRect(0, 0, cssW, cssH);
 
     for (let i = 0; i < COUNT; i++) {
       const p = particles[i];
       p.y += p.speedY;
-      p.x += p.speedX + Math.sin(p.y * 0.01) * 0.2;
-      p.alpha += Math.sin(Date.now() * 0.001 * p.pulseSpeed) * 0.01;
+      p.x += p.speedX + Math.sin(p.y * 0.01) * 0.15;
+      p.alpha += Math.sin(Date.now() * 0.001 * p.pulseSpeed) * 0.008;
 
       // Réapparition en bas
       if (p.y < -10) {
-        p.y = height + 10;
-        p.x = Math.random() * width;
+        p.y = cssH + 10;
+        p.x = Math.random() * cssW;
       }
-      if (p.x < -10) p.x = width + 10;
-      if (p.x > width + 10) p.x = -10;
+      if (p.x < -10) p.x = cssW + 10;
+      if (p.x > cssW + 10) p.x = -10;
 
-      const currentAlpha = Math.max(0.1, Math.min(0.85, p.alpha));
+      const currentAlpha = Math.max(0.1, Math.min(0.65, p.alpha));
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
       ctx.fillStyle = p.hue === 205
         ? `rgba(94, 197, 255, ${currentAlpha})`
-        : `rgba(243, 208, 130, ${currentAlpha * 0.8})`;
-      ctx.shadowBlur = 12;
-      ctx.shadowColor = p.hue === 205 ? "rgba(94, 197, 255, 0.8)" : "rgba(243, 208, 130, 0.6)";
+        : `rgba(243, 208, 130, ${currentAlpha * 0.75})`;
+      ctx.shadowBlur = 3;
+      ctx.shadowColor = p.hue === 205 ? "rgba(94, 197, 255, 0.5)" : "rgba(243, 208, 130, 0.4)";
       ctx.fill();
     }
 
