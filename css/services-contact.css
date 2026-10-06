@@ -7,11 +7,18 @@
    • L'Autel du Serment (Formulaire de Contact & Coordonnées)
    ══════════════════════════════════════════════════ */
 
-/* ── CONTENEUR PRINCIPAL SERVICES ── */
+/* ── CONTENEUR PRINCIPAL SERVICES — LA CAVERNE DE CRISTAL ── */
 .section-services {
   position: relative;
   width: 100%;
-  background: #040508;
+  background-color: #03060a;
+  background-image: 
+    radial-gradient(ellipse at 50% 15%, rgba(64, 224, 208, 0.09) 0%, transparent 60%),
+    linear-gradient(180deg, #020406 0%, rgba(3, 8, 16, 0.78) 15%, rgba(4, 10, 18, 0.76) 85%, #020406 100%),
+    url('../assets/images/crystal-cave.jpg');
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
   color: var(--white, #d4e8e8);
   padding: clamp(6rem, 12vh, 10rem) clamp(1.5rem, 5vw, 6rem);
   overflow: hidden;
@@ -451,17 +458,72 @@
 }
 
 /* ══════════════════════════════════════════════════
-   3. LE GRIMOIRE DES RÉPONSES (FAQ Interactive)
+   ACTE IV : LES GRANDES ARCHIVES (SECTION FAQ DÉDIÉE)
    ══════════════════════════════════════════════════ */
+.section-faq {
+  position: relative;
+  width: 100%;
+  background-color: #040508;
+  background-image: 
+    radial-gradient(ellipse at 50% 12%, rgba(201, 168, 76, 0.1) 0%, transparent 65%),
+    linear-gradient(180deg, #020406 0%, rgba(8, 7, 11, 0.82) 15%, rgba(8, 7, 11, 0.8) 85%, #020306 100%),
+    url('../assets/images/grand-archives.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--white, #d4e8e8);
+  padding: clamp(6rem, 12vh, 9.5rem) clamp(1.5rem, 5vw, 6rem);
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  z-index: 21;
+}
+
+.faq-ambient-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.faq-ambient-glow {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, rgba(60, 100, 180, 0.04) 50%, transparent 70%);
+  filter: blur(80px);
+}
+
+.faq-inner-container,
 .faq-section {
   position: relative;
   max-width: 980px;
   margin: 0 auto;
+  z-index: 1;
 }
 
 .faq-header {
   text-align: center;
   margin-bottom: clamp(3rem, 5vh, 4rem);
+}
+
+.faq-section-tag {
+  font-family: var(--font-mono, "DM Mono", monospace);
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  text-shadow: 0 0 12px rgba(201, 168, 76, 0.45);
+  margin-bottom: 0.6rem;
+}
+
+.faq-section-sigils {
+  font-size: 0.85rem;
+  letter-spacing: 0.45em;
+  color: rgba(255, 255, 255, 0.28);
+  margin-bottom: 0.8rem;
 }
 
 .faq-title {
@@ -481,6 +543,13 @@
   text-transform: uppercase;
 }
 
+.faq-header-line {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c9a84c, transparent);
+  margin: 1.2rem auto 0;
+}
+
 .faq-accordion {
   display: flex;
   flex-direction: column;
@@ -488,8 +557,10 @@
 }
 
 .faq-item {
-  background: linear-gradient(135deg, rgba(14, 16, 22, 0.75) 0%, rgba(8, 10, 14, 0.8) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(135deg, rgba(14, 16, 22, 0.78) 0%, rgba(8, 10, 14, 0.84) 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 4px;
   overflow: hidden;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -850,7 +921,14 @@
 .site-monumental-footer {
   position: relative;
   width: 100%;
-  background: #020306;
+  background-color: #030406;
+  background-image: 
+    radial-gradient(ellipse at 50% 0%, rgba(255, 90, 20, 0.08) 0%, transparent 60%),
+    linear-gradient(180deg, #020306 0%, rgba(6, 4, 6, 0.8) 20%, rgba(9, 6, 7, 0.74) 75%, #020204 100%),
+    url('../assets/images/kiln-first-flame.jpg');
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
   color: var(--white, #d4e8e8);
   padding: clamp(5rem, 10vh, 8rem) clamp(1.5rem, 5vw, 6rem) 3.5rem;
   overflow: hidden;
